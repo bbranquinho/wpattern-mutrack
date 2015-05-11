@@ -1,0 +1,12 @@
+package org.wpattern.mutrack.service.utils;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = { ServiceContext.BASE_PACKAGE })
+public class ServiceContext {
+
+	static final String BASE_PACKAGE = "org.wpattern.mutrack.service";
+
+}
