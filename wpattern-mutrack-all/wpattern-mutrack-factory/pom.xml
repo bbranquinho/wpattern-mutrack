@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.wpattern</groupId>
+		<artifactId>wpattern-mutrack-all</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>wpattern-mutrack-factory</artifactId>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<!-- WPATTERN MUTRACK DATA -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wpattern-mutrack-data</artifactId>
+		</dependency>
+
+		<!-- WPATTERN MUTRACK UTILS -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wpattern-mutrack-utils</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.name}-${project.version}</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
