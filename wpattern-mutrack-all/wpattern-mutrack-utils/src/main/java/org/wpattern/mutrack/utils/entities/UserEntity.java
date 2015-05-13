@@ -1,12 +1,7 @@
 package org.wpattern.mutrack.utils.entities;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,9 +23,9 @@ public class UserEntity extends BaseEntity<Long> {
 	@Column(name = "password", length = 128, nullable = false)
 	private String password;
 
-	@OneToMany(fetch = FetchType.EAGER, targetEntity = PackageEntity.class)
-	@JoinColumn(name = "owner_id")
-	private List<PackageEntity> packages;
+	// @OneToMany(fetch = FetchType.EAGER, targetEntity = PackageEntity.class)
+	// @JoinColumn(name = "owner_id")
+	// private List<PackageEntity> packages;
 
 	public UserEntity() {
 	}
@@ -66,12 +61,12 @@ public class UserEntity extends BaseEntity<Long> {
 		this.password = password;
 	}
 
-	public List<PackageEntity> getPackages() {
-		return this.packages;
-	}
-
-	public void setPackages(List<PackageEntity> packages) {
-		this.packages = packages;
-	}
+	// public List<PackageEntity> getPackages() {
+	// return this.packages;
+	// }
+	//
+	// public void setPackages(List<PackageEntity> packages) {
+	// this.packages = packages;
+	// }
 
 }

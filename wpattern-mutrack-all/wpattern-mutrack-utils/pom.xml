@@ -20,11 +20,11 @@
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>javax.persistence</artifactId>
 		</dependency>
-
-		<!-- JAVAX WS -->
+		
+		<!-- RESTEASY SPRING -->
 		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>jsr311-api</artifactId>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-spring</artifactId>
 		</dependency>
 	</dependencies>
 </project>

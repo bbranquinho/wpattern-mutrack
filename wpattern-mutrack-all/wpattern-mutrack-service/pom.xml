@@ -51,16 +51,10 @@
 			<artifactId>resteasy-spring</artifactId>
 		</dependency>
 
-		<!-- RESTEASY JACKSON PROVIDER -->
+		<!-- SERVLET API -->
 		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jackson-provider</artifactId>
-		</dependency>
-
-		<!-- JACKSON MAPPER ASL -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 	</dependencies>
 </project>

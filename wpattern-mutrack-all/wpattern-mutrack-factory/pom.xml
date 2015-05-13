@@ -16,10 +16,46 @@
 			<artifactId>wpattern-mutrack-data</artifactId>
 		</dependency>
 
+		<!-- WPATTERN MUTRACK SERVICE -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wpattern-mutrack-service</artifactId>
+		</dependency>
+
 		<!-- WPATTERN MUTRACK UTILS -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>wpattern-mutrack-utils</artifactId>
+		</dependency>
+
+		<!-- SPRING CORE -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+
+		<!-- SPRING CONTEXT -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+		<!-- SPRING WEB -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<!-- RESTEASY SPRING -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-spring</artifactId>
+		</dependency>
+
+		<!-- SERVLET API -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -30,6 +66,24 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.3.0.M2</version>
+
+				<configuration>
+					<scanIntervalSeconds>1</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/</contextPath>
+					</webApp>
+
+					<httpConnector>
+						<port>8080</port>
+					</httpConnector>
+
+					<scanTargetPatterns>
+						<scanTargetPattern>
+							<directory>${basedir}/target/${project.build.finalName}</directory>
+						</scanTargetPattern>
+					</scanTargetPatterns>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
