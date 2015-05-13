@@ -11,6 +11,6 @@ import org.wpattern.mutrack.service.utils.ServiceContext;
 @ComponentScan(basePackages = { FactoryContext.BASE_PACKAGE })
 public class FactoryContext {
 
-	static final String BASE_PACKAGE = "org.wpattern";
+	static final String BASE_PACKAGE = "org.wpattern.mutrack.factory";
 
 }

@@ -16,9 +16,9 @@ public class WebAppInitializer implements WebApplicationInitializer {
 		servletContext.addListener(new ResteasyBootstrap());
 		servletContext.addListener(new SpringContextLoaderListener());
 
-		Dynamic dynamic = servletContext.addServlet("Resteasy", new HttpServletDispatcher());
-		dynamic.setLoadOnStartup(1);
-		dynamic.addMapping("/service/*");
+		Dynamic dispatcher = servletContext.addServlet("Resteasy", new HttpServletDispatcher());
+		dispatcher.setLoadOnStartup(1);
+		dispatcher.addMapping("/service/*");
 	}
 
 
