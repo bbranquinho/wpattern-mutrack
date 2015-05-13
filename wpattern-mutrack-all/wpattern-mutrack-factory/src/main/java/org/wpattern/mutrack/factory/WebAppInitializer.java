@@ -8,13 +8,11 @@ import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 import org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap;
 import org.jboss.resteasy.plugins.spring.SpringContextLoaderListener;
 import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.request.RequestContextListener;
 
 public class WebAppInitializer implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		servletContext.addListener(new RequestContextListener());
 		servletContext.addListener(new ResteasyBootstrap());
 		servletContext.addListener(new SpringContextLoaderListener());
 
