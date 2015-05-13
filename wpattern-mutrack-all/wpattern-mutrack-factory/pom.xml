@@ -10,12 +10,6 @@
 	<packaging>war</packaging>
 
 	<dependencies>
-		<!-- RESTEASY SPRING -->
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-spring</artifactId>
-		</dependency>
-		
 		<!-- WPATTERN MUTRACK DATA -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -56,6 +50,12 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		
+		<!-- RESTEASY SPRING -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-spring</artifactId>
 		</dependency>
 	</dependencies>
 
