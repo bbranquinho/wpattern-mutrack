@@ -41,12 +41,21 @@ $ mvn clean install jetty:run -DskipTests=true
 
 Example of services:
 GET http://localhost:8080/service/public/user (Find all users)
+
 GET http://localhost:8080/service/public/user/1 (Find the user with the id 1)
+
 GET http://localhost:8080/service/public/user/page/0/5 (Find first 5 users)
+
 GET http://localhost:8080/service/public/user/page/0/5/name,email (Sort by name and email and get first 5 users)
+
 GET http://localhost:8080/service/public/user/name/branquinho (Find the user with the name 'branquinho')
+
 GET http://localhost:8080/service/public/user/name/branquinho@gmail.com  (Find the user with the email 'branquinho@gmail.com')
+
 POST http://localhost:8080/service/public/user (Add a new user. Must pass a JSON in the body, like {"userEntity":{"email":"my@gmail.com","name":"MyName","password":"123456"}} and put in the header Content-type: application/json)
+
 PUT http://localhost:8080/service/public/user (Update a user. Must pass a JSON in the body, like {"userEntity":{"email":"my@gmail.com","name":"MyName","password":"123456"}} and put in the header Content-type: application/json)
+
 DELETE http://localhost:8080/service/public/user (Delete a user based in a ID)
+
 GET http://localhost:8080/service/public/userpermission/1,2 (Find the userpermission with the userId 1 and permissionId 2)
