@@ -40,6 +40,7 @@ $ mvn clean install jetty:run -DskipTests=true
 * REST Service
 
 Example of services:
+
 GET http://localhost:8080/service/public/user (Find all users)
 
 GET http://localhost:8080/service/public/user/1 (Find the user with the id 1)
