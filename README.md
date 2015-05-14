@@ -2,7 +2,7 @@
 
 Project using to track packages (correios, fedex, ...). The project are using REST (back-end) and AngularJS (front-end).
 
-<h1><b>Under development.<b/></h1>
+<h1>Under Development</h1>
 
 <h2>REST Service:</h2>
 
@@ -10,9 +10,7 @@ Project using to track packages (correios, fedex, ...). The project are using RE
 
 2. Spring Security
 
-3. Handle errors over REST
-
-Follw the example: https://stormpath.com/blog/spring-mvc-rest-exception-handling-best-practices-part-1/ and  https://stormpath.com/blog/spring-mvc-rest-exception-handling-best-practices-part-2/
+3. Handle errors over REST (Following the example: https://stormpath.com/blog/spring-mvc-rest-exception-handling-best-practices-part-1/ and  https://stormpath.com/blog/spring-mvc-rest-exception-handling-best-practices-part-2/)
 
 4. CORs Filter
 
