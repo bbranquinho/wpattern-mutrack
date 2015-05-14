@@ -1,7 +1,20 @@
 # wpattern-mutrack
-<b>Under development.<b/>
 
 Project using to track packages (correios, fedex, ...). The project are using REST (back-end) and AngularJS (front-end).
+
+<h1><b>Under development.<b/></h1>
+
+REST Service:
+
+1. Include bean validation (Hibernate Validation);
+
+2. Spring Security;
+
+3. Handle errors over REST.
+
+AngularJS Application
+
+1. Start the development using Yeoman, Gulp, ...
 
 <h1>Requirements</h1>
 
