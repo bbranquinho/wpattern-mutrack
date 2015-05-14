@@ -39,7 +39,7 @@ $ mvn clean install jetty:run -DskipTests=true
 
 <h1>REST Service</h1>
 
-<h1>Example of Services</h1>
+Examples:
 
 GET http://localhost:8080/service/public/user (Find all users)
 
