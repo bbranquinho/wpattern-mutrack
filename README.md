@@ -6,11 +6,13 @@ Project using to track packages (correios, fedex, ...). The project are using RE
 
 REST Service:
 
-1. Include bean validation (Hibernate Validation);
+1. Include bean validation (Hibernate Validation)
 
-2. Spring Security;
+2. Spring Security
 
-3. Handle errors over REST.
+3. Handle errors over REST
+
+Follw the example: https://stormpath.com/blog/spring-mvc-rest-exception-handling-best-practices-part-1/ and  https://stormpath.com/blog/spring-mvc-rest-exception-handling-best-practices-part-2/
 
 AngularJS Application
 
