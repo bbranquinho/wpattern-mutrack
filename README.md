@@ -1,5 +1,7 @@
 # wpattern-mutrack
-Project using AngularJS to track packages.
+<b>Under development.<b/>
+
+Project using to track packages (correios, fedex, ...). The project are using REST (back-end) and AngularJS (front-end).
 
 * Requeriments
 
