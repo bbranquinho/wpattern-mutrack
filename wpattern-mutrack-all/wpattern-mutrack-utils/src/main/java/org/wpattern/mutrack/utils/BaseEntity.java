@@ -2,12 +2,14 @@ package org.wpattern.mutrack.utils;
 
 import java.io.Serializable;
 
+import javax.persistence.Transient;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.data.domain.Persistable;
 
-public abstract class BaseEntity<PK extends Serializable> extends AbstractPersistable<PK> implements Serializable {
+public abstract class BaseEntity<PK extends Serializable> implements Persistable<PK> {
 
 	private static final long serialVersionUID = 201505091502L;
 
@@ -21,14 +23,12 @@ public abstract class BaseEntity<PK extends Serializable> extends AbstractPersis
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
-	@Override
-	public boolean isNew() {
-		return super.isNew();
-	}
+	public abstract void setId(PK id);
 
 	@Override
-	public void setId(PK id) {
-		super.setId(id);
+	@Transient
+	public boolean isNew() {
+		return null == this.getId();
 	}
 
 }

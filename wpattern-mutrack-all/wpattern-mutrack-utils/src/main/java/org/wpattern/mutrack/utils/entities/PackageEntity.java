@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -17,6 +19,10 @@ import org.wpattern.mutrack.utils.BaseEntity;
 public class PackageEntity extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 201505091506L;
+
+	@Id
+	@GeneratedValue
+	private Long id;
 
 	@Column(name = "name", length = 60, nullable = false)
 	private String name;
@@ -48,6 +54,15 @@ public class PackageEntity extends BaseEntity<Long> {
 		this.destinationCep = destinationCep;
 		this.registerDate = registerDate;
 		this.user = user;
+	}
+
+	@Override
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {

@@ -1,6 +1,7 @@
 package org.wpattern.mutrack.utils.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -16,6 +17,9 @@ public class UserPermissionEntity extends BaseEntity<UserPermissionKey> {
 
 	private static final long serialVersionUID = 201505091629L;
 
+	@Id
+	private UserPermissionKey id;
+
 	@ManyToOne
 	@JoinColumn(name = "user_id", insertable = false, updatable = false)
 	private UserEntity user;
@@ -30,6 +34,15 @@ public class UserPermissionEntity extends BaseEntity<UserPermissionKey> {
 	public UserPermissionEntity(UserEntity user, PermissionEntity permission) {
 		this.user = user;
 		this.permission = permission;
+	}
+
+	@Override
+	public UserPermissionKey getId() {
+		return this.id;
+	}
+
+	public void setId(UserPermissionKey id) {
+		this.id = id;
 	}
 
 	public UserEntity getUser() {

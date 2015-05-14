@@ -51,6 +51,12 @@
 			<artifactId>resteasy-spring</artifactId>
 		</dependency>
 
+		<!-- RESTEASY JACKSON -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson-provider</artifactId>
+		</dependency>
+
 		<!-- SERVLET API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
