@@ -4,7 +4,7 @@ Project using to track packages (correios, fedex, ...). The project are using RE
 
 <h1><b>Under development.<b/></h1>
 
-REST Service:
+<h3>REST Service:</h3>
 
 1. Include bean validation (Hibernate Validation)
 
@@ -14,7 +14,9 @@ REST Service:
 
 Follw the example: https://stormpath.com/blog/spring-mvc-rest-exception-handling-best-practices-part-1/ and  https://stormpath.com/blog/spring-mvc-rest-exception-handling-best-practices-part-2/
 
-AngularJS Application
+4. CORs Filter
+
+<h3>AngularJS Application</h3>
 
 1. Start the development using Yeoman, Gulp, ...
 
