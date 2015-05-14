@@ -3,7 +3,7 @@
 
 Project using to track packages (correios, fedex, ...). The project are using REST (back-end) and AngularJS (front-end).
 
-* Requeriments
+<h1>Requirements</h1>
 
 The project can be used in any system, but the follow description is based on Ubuntu.
 
@@ -13,7 +13,7 @@ Git
 JDK 1.8
 Maven 3.0+ (can be installed with the command: $ sudo apt-get install maven)
 
-* Configuration
+<h1>Configuration</h1>
 
 Create the database using the script "wpattern-mutrack/wpattern-mutrack-all/project_files/database/database_create.sql".
 Configure properties used by the database "wpattern-mutrack/wpattern-mutrack-all/wpattern-mutrack-data/src/main/resources/data.properties".
@@ -25,7 +25,7 @@ $ cd wpattern-mutrack
 
 $ cd wpattern-mutrack-all
 
-* Executing
+<h1>Executing</h1>
 
 $ cd wpattern-mutrack
 
@@ -37,9 +37,9 @@ $ cd wpattern-mutrack-factory
 
 $ mvn clean install jetty:run -DskipTests=true
 
-* REST Service
+<h1>REST Service</h1>
 
-Example of services:
+<h1>Example of Services</h1>
 
 GET http://localhost:8080/service/public/user (Find all users)
 
