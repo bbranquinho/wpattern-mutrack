@@ -1,0 +1,36 @@
+# wpattern-mutrack
+Project using AngularJS to track packages.
+
+* Requeriments
+
+The project can be used in any system, but the follow description is based on Ubuntu.
+
+Firt is recommend: $ sudo apt-get update
+
+Git
+JDK 1.8
+Maven 3.0+ (can be installed with the command: $ sudo apt-get install maven)
+
+* Configuration
+
+Create the database using the script "wpattern-mutrack/wpattern-mutrack-all/project_files/database/database_create.sql".
+Configure properties used by the database "wpattern-mutrack/wpattern-mutrack-all/wpattern-mutrack-data/src/main/resources/data.properties".
+After that execute these follow commands:
+
+$ git clone https://github.com/bbranquinho/wpattern-mutrack.git
+
+$ cd wpattern-mutrack
+
+$ cd wpattern-mutrack-all
+
+* Executing
+
+$ cd wpattern-mutrack
+
+$ cd wpattern-mutrack-all
+
+$ mvn clean install -DskipTests=true
+
+$ cd wpattern-mutrack-factory
+
+$ mvn clean install jetty:run -DskipTests=true
