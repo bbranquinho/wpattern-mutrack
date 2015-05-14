@@ -23,12 +23,13 @@ public class UserEntity extends BaseEntity<Long> {
 	@Column(name = "name", length = 120, nullable = false)
 	private String name;
 
-	@Column(name = "email", length = 255, nullable = false)
+	@Column(name = "email", length = 255, nullable = false, unique = true)
 	private String email;
 
 	@Column(name = "password", length = 128, nullable = false)
 	private String password;
 
+	// This property was removed to simplify the management of the project.
 	// @OneToMany(fetch = FetchType.EAGER, targetEntity = PackageEntity.class)
 	// @JoinColumn(name = "owner_id")
 	// private List<PackageEntity> packages;
@@ -48,6 +49,7 @@ public class UserEntity extends BaseEntity<Long> {
 		return this.id;
 	}
 
+	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}

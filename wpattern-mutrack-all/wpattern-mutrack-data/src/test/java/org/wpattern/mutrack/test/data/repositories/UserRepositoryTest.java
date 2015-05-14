@@ -3,7 +3,6 @@ package org.wpattern.mutrack.test.data.repositories;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -19,12 +18,29 @@ public class UserRepositoryTest extends AbstractDataTest {
 	private IUserRepository userRepository;
 
 	@Test
-	@Transactional
 	public void testFindAll() {
 		List<UserEntity> users = this.userRepository.findAll();
 
 		if (this.LOGGER.isDebugEnabled()) {
 			this.LOGGER.debug(users);
+		}
+	}
+
+	@Test
+	public void testFindByName() {
+		List<UserEntity> users = this.userRepository.findByName("augusto");
+
+		if (this.LOGGER.isDebugEnabled()) {
+			this.LOGGER.debug(users);
+		}
+	}
+
+	@Test
+	public void testQuery() {
+		UserEntity user = this.userRepository.findByEmail("augusto@gmail.com");
+
+		if (this.LOGGER.isDebugEnabled()) {
+			this.LOGGER.debug(user);
 		}
 	}
 

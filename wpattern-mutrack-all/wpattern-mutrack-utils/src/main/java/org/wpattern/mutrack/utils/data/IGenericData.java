@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.wpattern.mutrack.utils.BaseEntity;
 
-public interface IGenericData<T extends BaseEntity<PK>, PK extends Serializable> {
+public interface IGenericData<T extends BaseEntity<ID>, ID extends Serializable> {
 
 	public List<T> findAll();
+
+	public List<T> findAll(Integer page, Integer size, String... fields);
 
 	public T add(T entityObject);
 
@@ -15,6 +17,6 @@ public interface IGenericData<T extends BaseEntity<PK>, PK extends Serializable>
 
 	public void delete(T entityObject);
 
-	public T findByPK(PK pk);
+	public T findById(ID id);
 
 }

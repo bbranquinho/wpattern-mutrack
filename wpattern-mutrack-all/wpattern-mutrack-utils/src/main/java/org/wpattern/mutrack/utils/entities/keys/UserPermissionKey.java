@@ -21,6 +21,13 @@ public class UserPermissionKey extends BaseKey {
 	public UserPermissionKey() {
 	}
 
+	public UserPermissionKey(String id) {
+		String[] split = this.parseKey(id, 2);
+
+		this.userId = Long.parseLong(split[0].trim());
+		this.permissionId = Long.parseLong(split[1].trim());
+	}
+
 	public UserPermissionKey(Long permissionId, Long userId) {
 		super();
 		this.permissionId = permissionId;

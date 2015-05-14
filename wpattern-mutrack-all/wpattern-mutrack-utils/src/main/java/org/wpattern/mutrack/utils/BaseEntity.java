@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.domain.Persistable;
 
-public abstract class BaseEntity<PK extends Serializable> implements Persistable<PK> {
+public abstract class BaseEntity<ID extends Serializable> implements Persistable<ID> {
 
 	private static final long serialVersionUID = 201505091502L;
 
@@ -23,7 +23,7 @@ public abstract class BaseEntity<PK extends Serializable> implements Persistable
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
-	public abstract void setId(PK id);
+	public abstract void setId(ID id);
 
 	@Override
 	@Transient

@@ -63,6 +63,12 @@
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jackson-provider</artifactId>
 		</dependency>
+
+		<!-- CORS FILTER -->
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>cors-filter</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
