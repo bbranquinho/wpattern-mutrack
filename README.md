@@ -32,15 +32,11 @@ Maven 3.0+ (can be installed with the command: $ sudo apt-get install maven)
 
 <h1>Configuration</h1>
 
-Create the database using the script "wpattern-mutrack/wpattern-mutrack-all/project_files/database/database_create.sql".
-Configure properties used by the database "wpattern-mutrack/wpattern-mutrack-all/wpattern-mutrack-data/src/main/resources/data.properties".
-After that execute these follow commands:
-
 $ git clone https://github.com/bbranquinho/wpattern-mutrack.git
 
-$ cd wpattern-mutrack
+Create the database using the script "wpattern-mutrack/wpattern-mutrack-all/project_files/database/database_create.sql".
 
-$ cd wpattern-mutrack-all
+Configure properties used by the database "wpattern-mutrack/wpattern-mutrack-all/wpattern-mutrack-data/src/main/resources/data.properties".
 
 <h1>Executing</h1>
 
