@@ -25,7 +25,9 @@ The project can be used in any system, but the follow description is based on Ub
 Firt is recommended: $ sudo apt-get update
 
 Git
+
 JDK 1.8
+
 Maven 3.0+ (can be installed with the command: $ sudo apt-get install maven)
 
 <h1>Configuration</h1>
