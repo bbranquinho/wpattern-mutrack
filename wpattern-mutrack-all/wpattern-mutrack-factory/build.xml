@@ -1,0 +1,19 @@
+<!DOCTYPE project>
+<project name="wpattern-mutrack-factory" default="run">
+
+	<target name="run">
+		<exec executable="mvn">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="jetty:run" />
+			<arg value="-Dmaven.test.skip=true" />
+		</exec>
+	</target>
+	
+	<target name="stop">
+		<exec executable="mvn">
+			<arg value="jetty:stop" />
+		</exec>
+	</target>
+	
+</project>
