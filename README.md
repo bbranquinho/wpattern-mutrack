@@ -1,4 +1,4 @@
-# WPattern MuTrack
+# WPattern - MuTrack
 
 Project to track packages (correios, fedex, ...). The project use REST (back-end) and AngularJS (front-end).
 
