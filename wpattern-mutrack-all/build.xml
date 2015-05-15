@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 <!DOCTYPE project>
-=======
->>>>>>> 532d5ae6d9222e56ef6b39d2191c6b8873820277
 <project name="wpattern-mutrack-all" default="remake-all">
 
 	<target name="remake-all">
