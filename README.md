@@ -22,7 +22,7 @@ Project to track packages (correios, fedex, ...). The project use REST (back-end
 
 The project can be used in any system, but the follow description is based on Ubuntu.
 
-Firt is recommend: $ sudo apt-get update
+Firt is recommended: $ sudo apt-get update
 
 Git
 JDK 1.8
