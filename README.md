@@ -4,7 +4,7 @@ Project to track packages (correios, fedex, ...). The project use REST (back-end
 
 <h1>Under Development</h1>
 
-<h4>REST Service:</h4>
+<h5>REST Service</h5>
 
 1. Include bean validation (Hibernate Validation)
 
@@ -14,7 +14,7 @@ Project to track packages (correios, fedex, ...). The project use REST (back-end
 
 4. CORs Filter
 
-<h4>AngularJS Application</h4>
+<h5>AngularJS Application</h5>
 
 1. Start the development using Yeoman, Gulp, ...
 
