@@ -1,10 +1,10 @@
-# wpattern-mutrack
+# WPattern - MuTrack
 
 Project to track packages (correios, fedex, ...). The project use REST (back-end) and AngularJS (front-end).
 
 <h1>Under Development</h1>
 
-<h2>REST Service:</h2>
+<h5>REST Service</h5>
 
 1. Include bean validation (Hibernate Validation)
 
@@ -14,7 +14,7 @@ Project to track packages (correios, fedex, ...). The project use REST (back-end
 
 4. CORs Filter
 
-<h2>AngularJS Application</h2>
+<h5>AngularJS Application</h5>
 
 1. Start the development using Yeoman, Gulp, ...
 
@@ -22,23 +22,21 @@ Project to track packages (correios, fedex, ...). The project use REST (back-end
 
 The project can be used in any system, but the follow description is based on Ubuntu.
 
-Firt is recommend: $ sudo apt-get update
+Firt is recommended: $ sudo apt-get update
 
 Git
+
 JDK 1.8
+
 Maven 3.0+ (can be installed with the command: $ sudo apt-get install maven)
 
 <h1>Configuration</h1>
 
-Create the database using the script "wpattern-mutrack/wpattern-mutrack-all/project_files/database/database_create.sql".
-Configure properties used by the database "wpattern-mutrack/wpattern-mutrack-all/wpattern-mutrack-data/src/main/resources/data.properties".
-After that execute these follow commands:
-
 $ git clone https://github.com/bbranquinho/wpattern-mutrack.git
 
-$ cd wpattern-mutrack
+Create the database using the script "wpattern-mutrack/wpattern-mutrack-all/project_files/database/database_create.sql".
 
-$ cd wpattern-mutrack-all
+Configure properties used by the database "wpattern-mutrack/wpattern-mutrack-all/wpattern-mutrack-data/src/main/resources/data.properties".
 
 <h1>Executing</h1>
 
