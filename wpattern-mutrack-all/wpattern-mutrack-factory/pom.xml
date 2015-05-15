@@ -82,6 +82,9 @@
 
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
+					<stopKey>stop</stopKey>
+    				<stopPort>9999</stopPort>
+    				
 					<webApp>
 						<contextPath>/</contextPath>
 					</webApp>

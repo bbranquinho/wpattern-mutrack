@@ -1,4 +1,4 @@
-package org.wpattern.mutrack.factory;
+package org.wpattern.mutrack.factory.utils;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,7 +21,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping(ServiceNames.ROOT_PATH + "/*");
 
-		// TODO: augusto.branquinho Not test and developed until now. Will be used when start the development of the AngularJS application.
+		// TODO: augusto.branquinho Not tested and developed until now. Will be used when start the development of the AngularJS application.
 		//		FilterRegistration.Dynamic corsFilder = servletContext.addFilter("CORS", new CORSFilter());
 		//		corsFilder.addMappingForUrlPatterns(null, false, "/*");
 	}

@@ -1,4 +1,4 @@
-package org.wpattern.mutrack.factory;
+package org.wpattern.mutrack.factory.utils;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

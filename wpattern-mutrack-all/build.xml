@@ -1,0 +1,20 @@
+<project name="wpattern-mutrack-all" default="remake-all">
+
+	<target name="remake-all">
+		<exec executable="mvn">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="-Dmaven.test.skip=true" />
+		</exec>
+	</target>
+	
+	<target name="run-factory">
+		<antcall target="remake-all" />
+		<subant buildpath="wpattern-mutrack-factory" target="run" />
+	</target>
+	
+	<target name="stop-factory">
+		<subant buildpath="wpattern-mutrack-factory" target="stop" />
+	</target>
+	
+</project>
