@@ -70,6 +70,6 @@ POST http://localhost:8080/service/public/user (Add a new user. Must pass a JSON
 
 PUT http://localhost:8080/service/public/user (Update a user. Must pass a JSON in the body, like {"userEntity":{"email":"my@gmail.com","name":"MyName","password":"123456"}} and put in the header Content-type: application/json)
 
-DELETE http://localhost:8080/service/public/user (Delete a user based in a ID)
+DELETE http://localhost:8080/service/public/user (Delete a user. Must pass a JSON in the body, like {"userEntity":{"id":1,"email":"my@gmail.com","name":"MyName","password":"123456"}} and put in the header Content-type: application/json)
 
 GET http://localhost:8080/service/public/userpermission/1,2 (Find the userpermission with the userId 1 and permissionId 2)
