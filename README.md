@@ -58,9 +58,9 @@ GET http://localhost:8080/service/public/user (Find all users)
 
 GET http://localhost:8080/service/public/user/1 (Find the user with the id 1)
 
-GET http://localhost:8080/service/public/user/page/0/5 (Find first 5 users)
+GET http://localhost:8080/service/public/user/page/1/5 (Find the second page containing 5 users)
 
-GET http://localhost:8080/service/public/user/page/0/5/name,email (Sort by name and email and get first 5 users)
+GET http://localhost:8080/service/public/user/page/2/5/name,email (Sort by name and email and get the third page containing 5 users)
 
 GET http://localhost:8080/service/public/user/name/branquinho (Find the user with the name 'branquinho')
 
