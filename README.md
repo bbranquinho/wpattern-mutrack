@@ -10,7 +10,7 @@ Project to track packages (correios, fedex, ...). The project use REST (back-end
 
 2. Spring Security
 
-3. Handle errors over REST (Following the example: https://stormpath.com/blog/spring-mvc-rest-exception-handling-best-practices-part-1/ and  https://stormpath.com/blog/spring-mvc-rest-exception-handling-best-practices-part-2/)
+3. Handle errors over REST (Following: https://github.com/swagger-api/swagger-spec)
 
 4. CORs Filter
 
