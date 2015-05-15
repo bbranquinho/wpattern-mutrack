@@ -4,17 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Produces;
 
 import org.apache.log4j.Logger;
 import org.wpattern.mutrack.utils.BaseEntity;
 import org.wpattern.mutrack.utils.data.IGenericData;
 import org.wpattern.mutrack.utils.services.IGenericService;
-import org.wpattern.mutrack.utils.services.ServiceConstants;
 
-@Consumes(ServiceConstants.MEDIA_TYPE)
-@Produces(ServiceConstants.MEDIA_TYPE)
 public abstract class GenericService<T extends BaseEntity<ID>, ID extends Serializable> implements IGenericService<T, ID> {
 
 	private final Logger LOGGER = Logger.getLogger(this.getClass());
