@@ -4,6 +4,10 @@ Project to track packages (correios, fedex, ...). The project use REST (back-end
 
 <h1>Under Development</h1>
 
+Partial deployment architecture used by the project.
+
+![](https://github.com/bbranquinho/wpattern-mutrack/blob/master/files/deployment.jpg)
+
 <h5>REST Service</h5>
 
 1. Include bean validation (Hibernate Validation)
@@ -17,6 +21,10 @@ Project to track packages (correios, fedex, ...). The project use REST (back-end
 <h5>AngularJS Application</h5>
 
 1. Start the development using Yeoman, Gulp, ...
+
+Distribution and dependency of packages used for each project.
+
+![](https://github.com/bbranquinho/wpattern-mutrack/blob/master/files/rest-service-architecture.jpg)
 
 <h1>Requirements</h1>
 
