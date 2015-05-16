@@ -22,7 +22,7 @@ Partial deployment architecture used by the project.
 
 1. Start the development using Yeoman, Gulp, ...
 
-Distribution and dependencies of packages used for each project.
+Distribution and dependency of packages used for each project.
 
 ![](https://github.com/bbranquinho/wpattern-mutrack/blob/master/files/rest-service-architecture.jpg)
 
