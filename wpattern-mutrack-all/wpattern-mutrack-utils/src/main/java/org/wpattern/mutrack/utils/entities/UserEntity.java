@@ -37,6 +37,10 @@ public class UserEntity extends BaseEntity<Long> {
 	public UserEntity() {
 	}
 
+	public UserEntity(Long id) {
+		this.setId(id);
+	}
+
 	public UserEntity(String name, String email, String password) {
 		super();
 		this.name = name;

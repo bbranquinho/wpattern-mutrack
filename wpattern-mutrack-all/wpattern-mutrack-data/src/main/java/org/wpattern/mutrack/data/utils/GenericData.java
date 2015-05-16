@@ -6,8 +6,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.wpattern.mutrack.utils.BaseEntity;
@@ -27,15 +27,15 @@ public abstract class GenericData<T extends BaseEntity<ID>, ID extends Serializa
 
 	@Override
 	public List<T> findAll(Integer page, Integer size, String... fields) {
-		Page<T> pageResult;
+		Sort sort = this.mountSort(fields);
 
-		if ((fields != null) && (fields.length > 0)) {
-			pageResult = this.genericRepository.findAll(new PageRequest(page, size, Direction.ASC, fields));
+		if ((page != null) && (size != null)) {
+			return this.genericRepository.findAll(this.mountPage(page, size, sort)).getContent();
+		} else if (sort != null) {
+			return this.genericRepository.findAll(sort);
 		} else {
-			pageResult = this.genericRepository.findAll(new PageRequest(page, size));
+			return this.genericRepository.findAll();
 		}
-
-		return pageResult.getContent();
 	}
 
 	@Override
@@ -70,6 +70,18 @@ public abstract class GenericData<T extends BaseEntity<ID>, ID extends Serializa
 	@Override
 	public T findById(ID id) {
 		return this.genericRepository.findOne(id);
+	}
+
+	protected PageRequest mountPage(Integer page, Integer size, Sort sort) {
+		return new PageRequest(page, size, sort);
+	}
+
+	protected Sort mountSort(String[] fields) {
+		if ((fields == null) || (fields.length <= 0)) {
+			return null;
+		}
+
+		return new Sort(Direction.ASC, fields);
 	}
 
 }

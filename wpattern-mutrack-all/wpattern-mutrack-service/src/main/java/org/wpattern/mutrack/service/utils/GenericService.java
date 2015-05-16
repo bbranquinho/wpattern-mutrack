@@ -18,32 +18,13 @@ public abstract class GenericService<T extends BaseEntity<ID>, ID extends Serial
 	protected IGenericData<T, ID> genericData;
 
 	@Override
-	public List<T> findAll() {
-		if (this.LOGGER.isDebugEnabled()) {
-			this.LOGGER.debug(String.format("Request all records [%s].", this.getClass()));
-		}
-
-		return this.genericData.findAll();
-	}
-
-	@Override
-	public List<T> findAll(Integer page, Integer size) {
-		if (this.LOGGER.isDebugEnabled()) {
-			this.LOGGER.debug(String.format("Request all records [%s] to page [%s] with size of [%s].",
-					this.getClass(), page, size));
-		}
-
-		return this.genericData.findAll(page, size);
-	}
-
-	@Override
 	public List<T> findAll(Integer page, Integer size, String fields) {
 		if (this.LOGGER.isDebugEnabled()) {
 			this.LOGGER.debug(String.format("Request all records [%s] to page [%s] with size of [%s] and fields [%s].",
 					this.getClass(), page, size, fields));
 		}
 
-		return this.genericData.findAll(page, size, fields.split("\\.|,"));
+		return this.genericData.findAll(page, size, this.splitFields(fields));
 	}
 
 	@Override
@@ -80,6 +61,14 @@ public abstract class GenericService<T extends BaseEntity<ID>, ID extends Serial
 		}
 
 		return this.genericData.findById(id);
+	}
+
+	protected String[] splitFields(String fields) {
+		if ((fields == null) || (fields.trim().isEmpty())) {
+			return null;
+		}
+
+		return fields.split("\\.|,");
 	}
 
 }
