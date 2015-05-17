@@ -10,7 +10,11 @@ TODO (Activities):
       1. Include bean validation (Hibernate Validation)
       2. Spring Security
       3. Handle REST errors (https://github.com/swagger-api/swagger-spec)
-      4. CORs Filter
   * AngularJS (front-end)
       1. Test the angular calling the REST, must require the CORs filter inside the REST.
       2. Create a project using Yeoman, Gulp, ...
+
+IMPROVAMENTS (Activities):
+  * REST (back-end)
+      1. Use the CORS developed by RESTEasy Sprint instead the com.thetransactioncompany/com.thetransactioncompany.
+      
