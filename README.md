@@ -16,8 +16,6 @@ Partial deployment architecture used by the project.
 
 3. Handle errors over REST (Following: https://github.com/swagger-api/swagger-spec)
 
-4. CORs Filter
-
 <h5>AngularJS Application</h5>
 
 1. Start the development using Yeoman, Gulp, ...
