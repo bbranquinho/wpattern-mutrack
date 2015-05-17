@@ -16,5 +16,5 @@ TODO (Activities):
 
 IMPROVAMENTS (Activities):
   * REST (back-end)
-      1. Use the CORS developed by RESTEasy Sprint instead the com.thetransactioncompany/com.thetransactioncompany.
+      1. 
       
