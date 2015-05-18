@@ -1,5 +1,6 @@
 package org.wpattern.mutrack.factory.utils;
 
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
@@ -19,6 +20,9 @@ import org.wpattern.mutrack.utils.services.ServiceNames;
 @Component
 public class WebAppInitializer implements WebApplicationInitializer, Feature {
 
+	@Inject
+	private FactoryProperties properties;
+
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		servletContext.addListener(new ResteasyBootstrap());
@@ -32,7 +36,7 @@ public class WebAppInitializer implements WebApplicationInitializer, Feature {
 	@Override
 	public boolean configure(FeatureContext context) {
 		CorsFilter corsFilter = new CorsFilter();
-		corsFilter.getAllowedOrigins().add("*");
+		corsFilter.getAllowedOrigins().addAll(this.properties.getCorsAllowedOrigins());
 		context.register(corsFilter);
 
 		return true;
