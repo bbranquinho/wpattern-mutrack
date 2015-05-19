@@ -17,6 +17,10 @@ public abstract class GenericData<T extends BaseEntity<ID>, ID extends Serializa
 
 	private static final Logger LOGGER = Logger.getLogger(GenericData.class);
 
+	protected static final int DEFAULT_SIZE = 10;
+
+	protected static final int DEFAULT_PAGE = 0;
+
 	@Inject
 	protected JpaRepository<T, ID> genericRepository;
 
@@ -29,7 +33,13 @@ public abstract class GenericData<T extends BaseEntity<ID>, ID extends Serializa
 	public List<T> findAll(Integer page, Integer size, String... fields) {
 		Sort sort = this.mountSort(fields);
 
-		if ((page != null) && (size != null)) {
+		if ((page != null) || (size != null)) {
+			if (page == null) {
+				page = DEFAULT_PAGE;
+			} else if (size == null) {
+				size = DEFAULT_SIZE;
+			}
+
 			return this.genericRepository.findAll(this.mountPage(page, size, sort)).getContent();
 		} else if (sort != null) {
 			return this.genericRepository.findAll(sort);

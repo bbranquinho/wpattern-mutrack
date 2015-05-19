@@ -23,7 +23,13 @@ public class PackageData extends GenericData<PackageEntity, Long> implements IPa
 		UserEntity user = new UserEntity(userId);
 		Sort sort = this.mountSort(fields);
 
-		if ((page != null) && (size != null)) {
+		if ((page != null) || (size != null)) {
+			if (page == null) {
+				page = DEFAULT_PAGE;
+			} else if (size == null) {
+				size = DEFAULT_SIZE;
+			}
+
 			return this.packageRepository.findByUser(user, this.mountPage(page, size, sort));
 		} else if (sort != null) {
 			return this.packageRepository.findByUser(user, sort);
