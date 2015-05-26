@@ -7,6 +7,11 @@ angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'u
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
+      })
+      .state('package', {
+        url: '/package',
+        templateUrl: 'app/package/package.html',
+        controller: 'PackageCtrl'
       });
 
     $urlRouterProvider.otherwise('/');
