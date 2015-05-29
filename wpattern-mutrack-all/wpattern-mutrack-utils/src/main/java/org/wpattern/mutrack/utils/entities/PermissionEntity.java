@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.wpattern.mutrack.utils.BaseEntity;
 import org.wpattern.mutrack.utils.entities.converters.PermissionConverter;
@@ -14,7 +13,6 @@ import org.wpattern.mutrack.utils.entities.types.PermissionType;
 
 @Entity
 @Table(name = "tb_permission")
-@XmlRootElement
 public class PermissionEntity extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 201505091608L;
@@ -35,6 +33,7 @@ public class PermissionEntity extends BaseEntity<Long> {
 		return this.id;
 	}
 
+	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}

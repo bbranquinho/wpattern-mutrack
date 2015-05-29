@@ -9,13 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.wpattern.mutrack.utils.BaseEntity;
 
 @Entity
 @Table(name = "tb_package")
-@XmlRootElement
 public class PackageEntity extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 201505091506L;
@@ -61,6 +59,7 @@ public class PackageEntity extends BaseEntity<Long> {
 		return this.id;
 	}
 
+	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}

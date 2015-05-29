@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap'])
+angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap', 'datatables'])
+  .constant('REST_URL', 'http://localhost:8080/service/public')
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
@@ -15,5 +16,4 @@ angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'u
       });
 
     $urlRouterProvider.otherwise('/');
-  })
-;
+  });
