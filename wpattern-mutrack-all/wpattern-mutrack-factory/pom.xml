@@ -10,6 +10,12 @@
 	<packaging>war</packaging>
 
 	<dependencies>
+		<!-- WPATTERN MUTRACK BUSINESS -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wpattern-mutrack-business</artifactId>
+		</dependency>
+
 		<!-- WPATTERN MUTRACK DATA -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -77,8 +83,8 @@
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 					<stopKey>stop</stopKey>
-    				<stopPort>9999</stopPort>
-    				
+					<stopPort>9999</stopPort>
+
 					<webApp>
 						<contextPath>/</contextPath>
 					</webApp>

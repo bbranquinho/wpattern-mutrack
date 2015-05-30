@@ -27,7 +27,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableJpaRepositories(basePackages = { DataContext.REPOSITORY_BASE_PACKAGE })
 public class DataContext {
 
-	private static final Logger LOGGER = Logger.getLogger(DataContext.class);
+	private final Logger LOGGER = Logger.getLogger(DataContext.class);
 
 	static final String BASE_PACKAGE = "org.wpattern.mutrack.data";
 
@@ -92,7 +92,7 @@ public class DataContext {
 		try {
 			dataSource.setDriverClass(this.properties.getDatabaseDriver());
 		} catch (PropertyVetoException e) {
-			LOGGER.error(e.getMessage(), e);
+			this.LOGGER.error(e.getMessage(), e);
 			System.exit(-1);
 		}
 
