@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('mutrack')
-  .factory('PackageSrv', function($http) {
-    var REST_URL = 'http://localhost:8080/service/public/package';
+  .factory('PackageSrv', function($http, REST_URL) {
+    var url = REST_URL.ROOT + '/package';
     var dataFactory = {};
 
     dataFactory.getPackages = function() {
-      return $http.get(REST_URL);
+      return $http.get(url);
     };
 
     return dataFactory;
