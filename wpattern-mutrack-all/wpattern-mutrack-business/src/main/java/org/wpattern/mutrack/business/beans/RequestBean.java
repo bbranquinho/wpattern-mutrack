@@ -1,4 +1,4 @@
-package org.wpattern.mutrack.business;
+package org.wpattern.mutrack.business.beans;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class RequestBean extends BaseBean {
 	private String typeResult;
 
 	@XStreamImplicit
-	private List<RequestObject> object;
+	private List<RequestObjectBean> object;
 
 	public RequestBean() {
 	}
@@ -62,11 +62,11 @@ public class RequestBean extends BaseBean {
 		this.typeResult = typeResult;
 	}
 
-	public List<RequestObject> getObject() {
+	public List<RequestObjectBean> getObject() {
 		return this.object;
 	}
 
-	public void setObject(List<RequestObject> object) {
+	public void setObject(List<RequestObjectBean> object) {
 		this.object = object;
 	}
 

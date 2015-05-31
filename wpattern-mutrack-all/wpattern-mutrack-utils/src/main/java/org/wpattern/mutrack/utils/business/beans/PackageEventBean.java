@@ -10,7 +10,7 @@ public class PackageEventBean extends BaseBean {
 
 	private String type;
 
-	private String status;
+	private Integer status;
 
 	private Date date;
 
@@ -37,11 +37,11 @@ public class PackageEventBean extends BaseBean {
 		this.type = type;
 	}
 
-	public String getStatus() {
+	public Integer getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 

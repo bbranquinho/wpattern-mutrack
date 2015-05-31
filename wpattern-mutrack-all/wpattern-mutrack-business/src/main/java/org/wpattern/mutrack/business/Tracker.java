@@ -7,6 +7,8 @@ import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +16,13 @@ import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
+import org.wpattern.mutrack.business.beans.RequestBean;
+import org.wpattern.mutrack.business.beans.RequestEventBean;
+import org.wpattern.mutrack.business.beans.RequestObjectBean;
 import org.wpattern.mutrack.business.utils.CorreioProperties;
 import org.wpattern.mutrack.utils.business.ITracker;
 import org.wpattern.mutrack.utils.business.beans.PackageBean;
+import org.wpattern.mutrack.utils.business.beans.PackageEventBean;
 import org.wpattern.mutrack.utils.business.exceptions.ParserException;
 
 import com.thoughtworks.xstream.XStream;
@@ -26,7 +32,11 @@ public class Tracker implements ITracker {
 
 	private static final String URL_PATH = "http://websro.correios.com.br/sro_bin/sroii_xml.eventos";
 
+	private static final String DATE_PATTERN = "dd/MM/yyyy hh:mm";
+
 	private final Logger LOGGER = Logger.getLogger(this.getClass());
+
+	private final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(DATE_PATTERN);
 
 	private XStream xStream;
 
@@ -74,10 +84,32 @@ public class Tracker implements ITracker {
 	private List<PackageBean> convertToPackage(RequestBean requestBean) {
 		List<PackageBean> packages = new ArrayList<PackageBean>();
 
-		for (RequestObject obj : requestBean.getObject()) {
-			PackageBean pack = new PackageBean();
+		try {
+			for (RequestObjectBean obj : requestBean.getObject()) {
+				PackageBean pack = new PackageBean();
 
-			packages.add(pack);
+				pack.setPackageCode(obj.getPackageCode());
+
+				for (RequestEventBean objEvent : obj.getEvents()) {
+					PackageEventBean event = new PackageEventBean();
+
+					event.setStatus(objEvent.getStatus());
+					event.setDate(this.DATE_FORMAT.parse(objEvent.getDate() + " " + objEvent.getHour()));
+					event.setDescription(objEvent.getDescription());
+					event.setComment(objEvent.getComment());
+					event.setLocation(objEvent.getLocation());
+					event.setCepUnity(objEvent.getCep());
+					event.setCity(objEvent.getCity());
+					event.setUf(objEvent.getUf());
+
+					pack.addEvent(event);
+				}
+
+				packages.add(pack);
+			}
+		} catch (ParseException e) {
+			this.LOGGER.error(e.getMessage(), e);
+			throw new ParserException(e.getMessage(), e);
 		}
 
 		return packages ;

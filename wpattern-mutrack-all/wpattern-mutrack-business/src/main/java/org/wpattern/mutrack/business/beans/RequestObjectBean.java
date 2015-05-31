@@ -1,4 +1,4 @@
-package org.wpattern.mutrack.business;
+package org.wpattern.mutrack.business.beans;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 @XStreamAlias("objeto")
-public class RequestObject extends BaseBean {
+public class RequestObjectBean extends BaseBean {
 
 	private static final long serialVersionUID = 201505301546L;
 
@@ -18,7 +18,7 @@ public class RequestObject extends BaseBean {
 	@XStreamImplicit
 	private List<RequestEventBean> events;
 
-	public RequestObject() {
+	public RequestObjectBean() {
 	}
 
 	public String getPackageCode() {

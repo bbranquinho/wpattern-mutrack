@@ -1,4 +1,4 @@
-package org.wpattern.mutrack.business;
+package org.wpattern.mutrack.business.beans;
 
 import org.wpattern.mutrack.utils.BaseBean;
 
@@ -49,6 +49,110 @@ public class RequestEventBean extends BaseBean {
 	private String sto;
 
 	public RequestEventBean() {
+	}
+
+	public String getTipo() {
+		return this.tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public Integer getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getDate() {
+		return this.date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getHour() {
+		return this.hour;
+	}
+
+	public void setHour(String hour) {
+		this.hour = hour;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getReceiver() {
+		return this.receiver;
+	}
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+
+	public String getReceiverDocument() {
+		return this.receiverDocument;
+	}
+
+	public void setReceiverDocument(String receiverDocument) {
+		this.receiverDocument = receiverDocument;
+	}
+
+	public String getComment() {
+		return this.comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String getLocation() {
+		return this.location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getCep() {
+		return this.cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getCity() {
+		return this.city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getUf() {
+		return this.uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getSto() {
+		return this.sto;
+	}
+
+	public void setSto(String sto) {
+		this.sto = sto;
 	}
 
 }

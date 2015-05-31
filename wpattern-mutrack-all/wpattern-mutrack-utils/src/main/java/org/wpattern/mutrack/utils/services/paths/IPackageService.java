@@ -28,6 +28,6 @@ public interface IPackageService extends IGenericService<PackageEntity, Long> {
 
 	@POST
 	@Path("/tracker")
-	public List<PackageBean> tracker(List<String> codes);
+	public List<PackageBean> tracker(List<Long> packagesId);
 
 }

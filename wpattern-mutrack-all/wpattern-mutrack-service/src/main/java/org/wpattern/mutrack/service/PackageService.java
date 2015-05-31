@@ -1,5 +1,6 @@
 package org.wpattern.mutrack.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,7 +28,15 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 	}
 
 	@Override
-	public List<PackageBean> tracker(List<String> codes) {
+	public List<PackageBean> tracker(List<Long> packagesId) {
+		List<String> codes = new ArrayList<String>();
+		PackageEntity packagee;
+
+		for (Long packageId : packagesId) {
+			packagee = this.packageData.findById(packageId);
+			codes.add(packagee.getCode());
+		}
+
 		return this.tracker.track(codes);
 	}
 

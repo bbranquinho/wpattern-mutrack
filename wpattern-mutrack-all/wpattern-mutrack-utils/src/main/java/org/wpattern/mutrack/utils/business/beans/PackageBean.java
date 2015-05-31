@@ -1,33 +1,36 @@
 package org.wpattern.mutrack.utils.business.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.wpattern.mutrack.utils.BaseBean;
-import org.wpattern.mutrack.utils.entities.PackageEntity;
 
 public class PackageBean extends BaseBean {
 
 	private static final long serialVersionUID = 201505301309L;
 
-	private PackageEventBean events;
+	private List<PackageEventBean> events;
 
-	private PackageEntity packagee;
+	private String packageCode;
 
 	public PackageBean() {
+		this.events = new ArrayList<PackageEventBean>();
 	}
 
-	public PackageEventBean getEvents() {
+	public List<PackageEventBean> getEvents() {
 		return this.events;
 	}
 
-	public void setEvents(PackageEventBean events) {
-		this.events = events;
+	public void addEvent(PackageEventBean event) {
+		this.events.add(event);
 	}
 
-	public PackageEntity getPackagee() {
-		return this.packagee;
+	public String getPackageCode() {
+		return this.packageCode;
 	}
 
-	public void setPackagee(PackageEntity packagee) {
-		this.packagee = packagee;
+	public void setPackageCode(String packageCode) {
+		this.packageCode = packageCode;
 	}
 
 }
