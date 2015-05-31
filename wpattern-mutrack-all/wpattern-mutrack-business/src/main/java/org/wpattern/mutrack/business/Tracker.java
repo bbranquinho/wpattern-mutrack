@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -132,7 +133,7 @@ public class Tracker implements ITracker {
 			outStream.println(params);
 			outStream.close();
 
-			BufferedReader subProcessInputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			BufferedReader subProcessInputReader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.ISO_8859_1));
 
 			String line = null;
 
