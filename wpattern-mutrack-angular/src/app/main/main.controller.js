@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mutrack')
-  .controller('MainCtrl', function ($scope, localStorageService) {
+  .controller('MainCtrl', function ($scope, localStorageService, ngNotify) {
     var packagesInStore = localStorageService.get('packages');
 
     $scope.packages = packagesInStore || [];
@@ -11,7 +11,9 @@ angular.module('mutrack')
     }, true);
 
     $scope.savePackage = function() {
+      $scope.package.code = $scope.package.code.toUpperCase();
       $scope.packages.push($scope.package);
+      ngNotify.set('Pacote salvo, buscando último status do pacote ' + $scope.package.code + '!', 'success');
       $scope.package = {};
     };
 

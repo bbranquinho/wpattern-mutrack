@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
- 'ngResource', 'ui.router', 'ui.bootstrap', 'LocalStorageModule'])
+ 'ngResource', 'ui.router', 'ui.bootstrap', 'LocalStorageModule', 'ngNotify'])
   .constant('REST_URL', {
     'ROOT':'http://localhost:8080/service/public'
   })
