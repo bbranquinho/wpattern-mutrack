@@ -93,3 +93,15 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `mutrack`.`tb_permission`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mutrack`;
+INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (1, 'ROLE_ADMIN');
+INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (2, 'ROLE_USER');
+INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (3, 'ROLE_EMPLOYEE');
+
+COMMIT;
+

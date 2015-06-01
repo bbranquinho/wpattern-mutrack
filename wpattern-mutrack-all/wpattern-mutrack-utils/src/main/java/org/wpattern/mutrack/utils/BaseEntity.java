@@ -7,6 +7,7 @@ import javax.persistence.Transient;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.data.domain.Persistable;
 
 public abstract class BaseEntity<ID extends Serializable> implements Persistable<ID> {
@@ -27,6 +28,7 @@ public abstract class BaseEntity<ID extends Serializable> implements Persistable
 
 	@Override
 	@Transient
+	@JsonIgnore
 	public boolean isNew() {
 		return null == this.getId();
 	}

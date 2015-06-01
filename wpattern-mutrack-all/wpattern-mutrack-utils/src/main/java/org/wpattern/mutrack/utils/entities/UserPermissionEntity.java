@@ -5,14 +5,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.wpattern.mutrack.utils.BaseEntity;
 import org.wpattern.mutrack.utils.entities.keys.UserPermissionKey;
 
 @Entity
 @Table(name = "tb_user_permission")
-@XmlRootElement
 public class UserPermissionEntity extends BaseEntity<UserPermissionKey> {
 
 	private static final long serialVersionUID = 201505091629L;
@@ -41,6 +39,7 @@ public class UserPermissionEntity extends BaseEntity<UserPermissionKey> {
 		return this.id;
 	}
 
+	@Override
 	public void setId(UserPermissionKey id) {
 		this.id = id;
 	}

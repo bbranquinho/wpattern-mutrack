@@ -7,6 +7,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>wpattern-mutrack-business</module>
 		<module>wpattern-mutrack-data</module>
 		<module>wpattern-mutrack-service</module>
 		<module>wpattern-mutrack-utils</module>
@@ -44,6 +45,13 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- WPATTERN MUTRACK BUSINESS -->
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>wpattern-mutrack-business</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 			<!-- WPATTERN MUTRACK DATA -->
 			<dependency>
 				<groupId>${project.groupId}</groupId>
@@ -155,6 +163,13 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>3.1.0</version>
+			</dependency>
+
+			<!-- XSTREAM -->
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>1.4.8</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

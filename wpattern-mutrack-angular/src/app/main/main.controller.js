@@ -1,64 +1,32 @@
 'use strict';
 
+// SERVICES
+
 angular.module('mutrack')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      {
-        'title': 'AngularJS',
-        'url': 'https://angularjs.org/',
-        'description': 'HTML enhanced for web apps!',
-        'logo': 'angular.png'
-      },
-      {
-        'title': 'BrowserSync',
-        'url': 'http://browsersync.io/',
-        'description': 'Time-saving synchronised browser testing.',
-        'logo': 'browsersync.png'
-      },
-      {
-        'title': 'GulpJS',
-        'url': 'http://gulpjs.com/',
-        'description': 'The streaming build system.',
-        'logo': 'gulp.png'
-      },
-      {
-        'title': 'Jasmine',
-        'url': 'http://jasmine.github.io/',
-        'description': 'Behavior-Driven JavaScript.',
-        'logo': 'jasmine.png'
-      },
-      {
-        'title': 'Karma',
-        'url': 'http://karma-runner.github.io/',
-        'description': 'Spectacular Test Runner for JavaScript.',
-        'logo': 'karma.png'
-      },
-      {
-        'title': 'Protractor',
-        'url': 'https://github.com/angular/protractor',
-        'description': 'End to end test framework for AngularJS applications built on top of WebDriverJS.',
-        'logo': 'protractor.png'
-      },
-      {
-        'title': 'Bootstrap',
-        'url': 'http://getbootstrap.com/',
-        'description': 'Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.',
-        'logo': 'bootstrap.png'
-      },
-      {
-        'title': 'Angular UI Bootstrap',
-        'url': 'http://angular-ui.github.io/bootstrap/',
-        'description': 'Bootstrap components written in pure AngularJS by the AngularUI Team.',
-        'logo': 'ui-bootstrap.png'
-      },
-      {
-        'title': 'Less',
-        'url': 'http://lesscss.org/',
-        'description': 'Less extends the CSS language, adding features that allow variables, mixins, functions and many other techniques.',
-        'logo': 'less.png'
-      }
-    ];
-    angular.forEach($scope.awesomeThings, function(awesomeThing) {
-      awesomeThing.rank = Math.random();
-    });
-  });
+  .controller('MainCtrl', function ($scope, PackageSrv, SchedulerTrackSrv, localStorageService, ngNotify) {
+    var packagesInStore = localStorageService.get('packages');
+
+    $scope.packages = packagesInStore || [];
+
+    $scope.$watch('packages', function() {
+      localStorageService.set('packages', $scope.packages);
+    }, true);
+
+    $scope.savePackage = function() {
+      $scope.package.code = $scope.package.code.toUpperCase();
+      $scope.packages.push($scope.package);
+      ngNotify.set('Pacote \'' + $scope.package.code + '\' salvo, buscando o último status!', 'success');
+      PackageSrv.trackLastEvent($scope.package);
+      $scope.package = {};
+    };
+
+    $scope.deletePackage = function(pack) {
+      var indexOf = $scope.packages.indexOf(pack);
+
+      $scope.packages.splice(indexOf, 1);
+    };
+
+    PackageSrv.trackMultipleLastEvent(PackageSrv.selectPackagesToTrack($scope.packages));
+
+    SchedulerTrackSrv.track($scope.packages);
+});

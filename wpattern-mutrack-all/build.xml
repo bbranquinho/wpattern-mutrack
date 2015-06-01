@@ -18,4 +18,9 @@
 		<subant buildpath="wpattern-mutrack-factory" target="stop" />
 	</target>
 	
+	<target name="restart-factory">
+		<antcall target="stop-factory" />
+		<antcall target="run-factory" />
+	</target>
+	
 </project>
