@@ -40,4 +40,9 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 		return this.tracker.track(codes);
 	}
 
+	@Override
+	public PackageBean trackerLastStatus(String packageCode) {
+		return this.tracker.trackLastStatus(packageCode);
+	}
+
 }

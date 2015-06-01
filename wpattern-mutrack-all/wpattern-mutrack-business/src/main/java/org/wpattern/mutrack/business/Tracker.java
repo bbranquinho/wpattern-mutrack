@@ -24,6 +24,7 @@ import org.wpattern.mutrack.business.utils.CorreioProperties;
 import org.wpattern.mutrack.utils.business.ITracker;
 import org.wpattern.mutrack.utils.business.beans.PackageBean;
 import org.wpattern.mutrack.utils.business.beans.PackageEventBean;
+import org.wpattern.mutrack.utils.business.exceptions.PackageException;
 import org.wpattern.mutrack.utils.business.exceptions.ParserException;
 
 import com.thoughtworks.xstream.XStream;
@@ -48,6 +49,25 @@ public class Tracker implements ITracker {
 		this.xStream = new XStream();
 		this.xStream.processAnnotations(RequestBean.class);
 		this.xStream.ignoreUnknownElements();
+	}
+
+	@Override
+	public PackageBean trackLastStatus(String code) {
+		String params = String.format("usuario=%s&senha=%s&tipo=L&resultado=U&objetos=%s",
+				this.correioProperties.getCorreioUsuario(), this.correioProperties.getCorreioSenha(), code);
+
+		String requestResult = this.request(params);
+
+		List<PackageBean> packages = this.convertToPackage(this.parseRequest(requestResult));
+
+		if (packages.size() != 1) {
+			String message = String.format("Return a invalid number of packages when search for package [%s].", code);
+
+			this.LOGGER.warn(message);
+			throw new PackageException(message);
+		}
+
+		return packages.get(0);
 	}
 
 	@Override
