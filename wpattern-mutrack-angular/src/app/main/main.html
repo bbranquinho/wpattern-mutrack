@@ -28,7 +28,7 @@
                      <td>{{ package.name }}</td>
                      <td>{{ package.description }}</td>
                      <td>
-                       <i class="fa fa-spinner fa-pulse fa-2x" ng-show="package.lastStatus == null"></i>
+                       <i class="fa fa-spinner fa-pulse fa-2x" ng-show="package.lastStatusChecking"></i>
                        <span class="label" ng-class="package.status == 1 ? 'label-success' : 'label-warning'">{{ package.status == 1 ? 'Recebido' : 'Acompanhando' }}</span>
                        {{ package.lastStatus }}<br>{{ package.date | date:'yyyy-MM-dd HH:mm' }}
                      </td>

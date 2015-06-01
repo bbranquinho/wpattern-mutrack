@@ -69,6 +69,22 @@ public class Tracker implements ITracker {
 
 		return packages.get(0);
 	}
+	
+	@Override
+	public List<PackageBean> trackLastStatus(List<String> packagesCode) {
+		String concatCodes = "";
+
+		for (String code : packagesCode) {
+			concatCodes += code;
+		}
+
+		String params = String.format("usuario=%s&senha=%s&tipo=L&resultado=U&objetos=%s",
+				this.correioProperties.getCorreioUsuario(), this.correioProperties.getCorreioSenha(), concatCodes);
+
+		String requestResult = this.request(params);
+
+		return this.convertToPackage(this.parseRequest(requestResult));
+	}
 
 	@Override
 	public List<PackageBean> track(List<String> codes) {

@@ -1,7 +1,9 @@
 'use strict';
 
+// SERVICES
+
 angular.module('mutrack')
-  .controller('MainCtrl', function ($scope, PackageSrv, AutoTrackSrv, localStorageService, ngNotify) {
+  .controller('MainCtrl', function ($scope, PackageSrv, SchedulerTrackSrv, localStorageService, ngNotify) {
     var packagesInStore = localStorageService.get('packages');
 
     $scope.packages = packagesInStore || [];
@@ -13,7 +15,7 @@ angular.module('mutrack')
     $scope.savePackage = function() {
       $scope.package.code = $scope.package.code.toUpperCase();
       $scope.packages.push($scope.package);
-      ngNotify.set('Pacote salvo, buscando último status do pacote ' + $scope.package.code + '!', 'success');
+      ngNotify.set('Pacote \'' + $scope.package.code + '\' salvo, buscando o último status!', 'success');
       PackageSrv.trackLastEvent($scope.package);
       $scope.package = {};
     };
@@ -24,5 +26,7 @@ angular.module('mutrack')
       $scope.packages.splice(indexOf, 1);
     };
 
-    AutoTrackSrv.track($scope.packages);
+    PackageSrv.trackMultipleLastEvent(PackageSrv.selectPackagesToTrack($scope.packages));
+
+    SchedulerTrackSrv.track($scope.packages);
 });

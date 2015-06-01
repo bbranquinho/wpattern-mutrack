@@ -34,4 +34,8 @@ public interface IPackageService extends IGenericService<PackageEntity, Long> {
 	@Path("/tracker/lastevent/{packageCode}")
 	public PackageBean trackerLastStatus(@PathParam("packageCode") String packageCode);
 
+	@POST
+	@Path("/tracker/lastevent")
+	public List<PackageBean> trackerMultipleLastStatus(List<String> packagesCode);
+
 }

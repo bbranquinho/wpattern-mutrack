@@ -45,4 +45,9 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 		return this.tracker.trackLastStatus(packageCode);
 	}
 
+	@Override
+	public List<PackageBean> trackerMultipleLastStatus(List<String> packageCode) {
+		return this.tracker.trackLastStatus(packageCode);
+	}
+
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-var intervalTrack = 10 * 60 *1000;
+var intervalTrack = 15 * 60 * 1000; // 15 minutes
 
 // DIRECTIVES
 
@@ -24,13 +24,13 @@ angular.module('mutrack')
 // SERVICES
 
 angular.module('mutrack')
-  .service('AutoTrackSrv', function($interval) {
+  .service('SchedulerTrackSrv', function($interval, PackageSrv) {
     return {
       track : function(packages) {
         $interval(function() {
-          for (var pack in packages) {
-            var asss = pack;
-          }
+          var packagesToVerify = PackageSrv.selectPackagesToTrack(packages);
+
+          PackageSrv.trackMultipleLastEvent(packagesToVerify);
         }, intervalTrack);
       }
     };
