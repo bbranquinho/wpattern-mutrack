@@ -44,7 +44,7 @@ Create the database using the script "wpattern-mutrack/wpattern-mutrack-all/proj
 
 Configure properties used by the database "wpattern-mutrack/wpattern-mutrack-all/wpattern-mutrack-data/src/main/resources/data.properties".
 
-<h1>Executing</h1>
+<h1>Executing (REST Service)</h1>
 
 $ cd wpattern-mutrack
 
@@ -56,7 +56,15 @@ $ cd wpattern-mutrack-factory
 
 $ mvn clean install jetty:run -DskipTests=true
 
-<h1>REST Service</h1>
+<h1>Executing (AngularJS)</h1>
+
+$ cd wpattern-mutrack
+
+$ cd wpattern-mutrack-angular
+
+$ gulp serve
+
+<h1>Calling the REST Service</h1>
 
 Examples:
 
