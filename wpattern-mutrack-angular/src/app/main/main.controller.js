@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mutrack')
-  .controller('MainCtrl', function ($scope, PackageSrv, localStorageService, ngNotify) {
+  .controller('MainCtrl', function ($scope, PackageSrv, AutoTrackSrv, localStorageService, ngNotify) {
     var packagesInStore = localStorageService.get('packages');
 
     $scope.packages = packagesInStore || [];
@@ -23,4 +23,6 @@ angular.module('mutrack')
 
       $scope.packages.splice(indexOf, 1);
     };
+
+    AutoTrackSrv.track($scope.packages);
 });

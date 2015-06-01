@@ -27,7 +27,11 @@
                      <td><a ng-href="http://websro.correios.com.br/sro_bin/txect01$.Inexistente?P_LINGUA=001&P_TIPO=002&P_COD_LIS={{ package.code }}" target="_blank">{{ package.code }}</a></td>
                      <td>{{ package.name }}</td>
                      <td>{{ package.description }}</td>
-                     <td><i class="fa fa-spinner fa-pulse fa-2x" ng-show="package.lastStatus == null"></i>{{ package.lastStatus }}<br>{{ package.date | date:'yyyy-MM-dd HH:mm' }}</td>
+                     <td>
+                       <i class="fa fa-spinner fa-pulse fa-2x" ng-show="package.lastStatus == null"></i>
+                       <span class="label" ng-class="package.status == 1 ? 'label-success' : 'label-warning'">{{ package.status == 1 ? 'Recebido' : 'Acompanhando' }}</span>
+                       {{ package.lastStatus }}<br>{{ package.date | date:'yyyy-MM-dd HH:mm' }}
+                     </td>
                      <td class="delete">
                        <button class="btn btn-danger" ng-click="deletePackage(package)" aria-label="remove">X</button>
                      </td>

@@ -14,6 +14,7 @@ angular.module('mutrack')
         .success(function(data) {
           pack.lastStatus = data.events[0].description;
           pack.date = new Date(parseInt(data.events[0].date));
+          pack.status = data.events[0].status;
         })
         .error(function(erro) {
           ngNotify.set('Erro ao buscar o status do pacote: ' + erro, 'error');
