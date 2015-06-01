@@ -15,11 +15,11 @@
          <table class="table">
              <thead>
                  <tr class="filters">
-                     <th><input type="text" class="form-control" placeholder="Código" disabled></th>
-                     <th><input type="text" class="form-control" placeholder="Nome" disabled></th>
-                     <th><input type="text" class="form-control" placeholder="Descrição" disabled></th>
-                     <th><input type="text" class="form-control" placeholder="Último Status" disabled></th>
-                     <th><input type="text" class="form-control" disabled></th>
+                     <th><input id="packageCode" type="text" class="form-control" placeholder="Código" disabled></th>
+                     <th><input id="packageName" type="text" class="form-control" placeholder="Nome" disabled></th>
+                     <th><input id="packageDescription" type="text" class="form-control" placeholder="Descrição" disabled></th>
+                     <th><input id="packageStatus" type="text" class="form-control" placeholder="Último Status" disabled></th>
+                     <th><input id="packageDelete" type="text" class="form-control" disabled></th>
                  </tr>
              </thead>
              <tbody>
@@ -27,7 +27,7 @@
                      <td><a ng-href="http://websro.correios.com.br/sro_bin/txect01$.Inexistente?P_LINGUA=001&P_TIPO=002&P_COD_LIS={{ package.code }}" target="_blank">{{ package.code }}</a></td>
                      <td>{{ package.name }}</td>
                      <td>{{ package.description }}</td>
-                     <td></td>
+                     <td><i class="fa fa-spinner fa-pulse fa-2x" ng-show="package.lastStatus == null"></i>{{ package.lastStatus }}<br>{{ package.date | date:'yyyy-MM-dd HH:mm' }}</td>
                      <td class="delete">
                        <button class="btn btn-danger" ng-click="deletePackage(package)" aria-label="remove">X</button>
                      </td>
@@ -39,13 +39,13 @@
 
   <form role="form" ng-submit="savePackage()">
     <fieldset>
-      <legend>Adicionar Pacote</legend>
+      <legend><Buscar></Buscar>Buscar Pacote</legend>
 
       <!-- Numero -->
       <div class="form-group">
-        <label class=" control-label" for="textinput">Número</label>
+        <label class=" control-label" for="textinput">Código</label>
         <div class="">
-          <input name="textinput" placeholder="Número do pacote" class="form-control input-md" type="text" ng-model="package.code">
+          <input name="textinput" placeholder="Código do pacote" class="form-control input-md" type="text" ng-model="package.code">
         </div>
       </div>
 
