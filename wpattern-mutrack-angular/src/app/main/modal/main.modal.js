@@ -1,9 +1,18 @@
 'use strict';
 // More about modal: https://angular-ui.github.io/bootstrap/
 
-angular.module('mutrack').controller('PackageModalCtrl', function ($scope, $modalInstance) {
+angular.module('mutrack').controller('PackageModalCtrl', function ($scope, $modalInstance, pack) {
 
-  $scope.package = { };
+  if (pack === undefined) {
+    $scope.package = { 'enabledCode':false };
+  } else {
+    $scope.package = {
+      'enabledCode':true,
+      'code':pack.code,
+      'name':pack.name,
+      'description':pack.description
+    };
+  }
 
   $scope.save = function () {
     $modalInstance.close($scope.package);

@@ -21,6 +21,7 @@
                      <th><input id="packageName" type="text" class="form-control" placeholder="Nome" disabled></th>
                      <th><input id="packageDescription" type="text" class="form-control" placeholder="Descrição" disabled></th>
                      <th><input id="packageStatus" type="text" class="form-control" placeholder="Último Status" disabled></th>
+                     <th><input id="packageEdit" type="text" class="form-control" disabled></th>
                      <th><input id="packageDelete" type="text" class="form-control" disabled></th>
                  </tr>
              </thead>
@@ -35,6 +36,9 @@
                          {{ ((package.status == 1) && (package.type === 'BDE')) ? 'Recebido' : 'Acompanhando' }}</span>
                          {{ package.date | date:'yyyy-MM-dd HH:mm' }}<br>
                          {{ package.lastStatus }}
+                     </td>
+                     <td class="search">
+                       <button class="btn glyphicon glyphicon-search" ng-click="openEditPackage(package)"></button>
                      </td>
                      <td class="delete">
                        <button class="btn btn-danger" ng-click="deletePackage(package)" aria-label="remove">X</button>

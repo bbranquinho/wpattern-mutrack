@@ -41,6 +41,26 @@ angular.module('mutrack')
       });
     };
 
+    // Open Modal (Edit a Package)
+    $scope.openEditPackage = function (pack) {
+      var modalInstance = $modal.open({
+        animation: true,
+        templateUrl: 'packageModalContent.html',
+        controller: 'PackageModalCtrl',
+        size: 'lg',
+        resolve: {
+          pack: function () {
+            return pack;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (packEdited) {
+        pack.name = packEdited.name;
+        pack.description = packEdited.description;
+      });
+    };
+
     // Open Modal (Full Track of a Package)
     $scope.openTrackPackage = function (code) {
       var modalInstance = $modal.open({
