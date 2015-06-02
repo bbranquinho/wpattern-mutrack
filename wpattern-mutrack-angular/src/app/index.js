@@ -1,9 +1,12 @@
 'use strict';
 
+var BASE_URL = 'http://localhost:8080/service/public';
+
 angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
  'ngResource', 'ui.router', 'ui.bootstrap', 'LocalStorageModule', 'ngNotify'])
   .constant('REST_URL', {
-    'ROOT':'http://localhost:8080/service/public'
+    'ROOT':BASE_URL,
+    'PACKAGE':BASE_URL + '/package'
   })
   .config(['localStorageServiceProvider', function(localStorageServiceProvider){
     localStorageServiceProvider.setPrefix('ls');

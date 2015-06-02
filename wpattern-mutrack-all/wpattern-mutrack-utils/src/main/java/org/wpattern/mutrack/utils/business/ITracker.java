@@ -8,8 +8,10 @@ public interface ITracker {
 
 	public List<PackageBean> track(List<String> codes);
 
-	public PackageBean trackLastStatus(String code);
+	public PackageBean trackFullEvent(String code);
 
-	public List<PackageBean> trackLastStatus(List<String> packagesCode);
+	public PackageBean trackLastEvent(String code);
+
+	public List<PackageBean> trackLastEvent(List<String> packagesCode);
 
 }

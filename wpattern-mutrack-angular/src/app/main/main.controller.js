@@ -28,7 +28,7 @@ angular.module('mutrack')
       var modalInstance = $modal.open({
         animation: true,
         templateUrl: 'packageModalContent.html',
-        controller: 'MainModalCtrl',
+        controller: 'PackageModalCtrl',
         size: 'lg',
         resolve: {
           pack: function () {
@@ -41,23 +41,26 @@ angular.module('mutrack')
       });
     };
 
+    // Open Modal (Full Track of a Package)
+    $scope.openTrackPackage = function (code) {
+      var modalInstance = $modal.open({
+        animation: true,
+        templateUrl: 'trackModalContent.html',
+        controller: 'TrackPackageModalCtrl',
+        size: 'lg',
+        resolve: {
+          code: function () {
+            return code;
+          }
+        }
+      });
+
+      modalInstance.result.then(function () { });
+    };
+
     // Track the last event of all packages.
     PackageSrv.trackMultipleLastEvent(PackageSrv.selectPackagesToTrack($scope.packages));
 
     // Start a scheduler to track packages.
     SchedulerTrackSrv.track($scope.packages);
-});
-
-// More about modal: https://angular-ui.github.io/bootstrap/
-angular.module('mutrack').controller('MainModalCtrl', function ($scope, $modalInstance, pack) {
-
-  $scope.package = { };
-
-  $scope.save = function () {
-    $modalInstance.close($scope.package);
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
 });

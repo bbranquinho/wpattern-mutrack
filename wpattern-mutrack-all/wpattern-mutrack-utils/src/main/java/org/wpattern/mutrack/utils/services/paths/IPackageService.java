@@ -31,11 +31,15 @@ public interface IPackageService extends IGenericService<PackageEntity, Long> {
 	public List<PackageBean> tracker(List<Long> packagesId);
 
 	@GET
+	@Path("/tracker/fullevent/{packageCode}")
+	public PackageBean trackerFullEvent(@PathParam("packageCode") String packageCode);
+
+	@GET
 	@Path("/tracker/lastevent/{packageCode}")
-	public PackageBean trackerLastStatus(@PathParam("packageCode") String packageCode);
+	public PackageBean trackerLastEvent(@PathParam("packageCode") String packageCode);
 
 	@POST
 	@Path("/tracker/lastevent")
-	public List<PackageBean> trackerMultipleLastStatus(List<String> packagesCode);
+	public List<PackageBean> trackerMultipleLastEvent(List<String> packagesCode);
 
 }

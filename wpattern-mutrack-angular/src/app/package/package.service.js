@@ -17,6 +17,7 @@ angular.module('mutrack')
       $http.get(url + '/tracker/lastevent/' + pack.code)
         .success(function(data) {
           pack.lastStatus = data.events[0].description;
+          pack.type = data.events[0].type;
           pack.date = new Date(parseInt(data.events[0].date));
           pack.status = data.events[0].status;
           pack.lastStatusChecking = false;

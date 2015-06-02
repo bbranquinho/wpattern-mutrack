@@ -52,7 +52,26 @@ public class Tracker implements ITracker {
 	}
 
 	@Override
-	public PackageBean trackLastStatus(String code) {
+	public PackageBean trackFullEvent(String code) {
+		String params = String.format("usuario=%s&senha=%s&tipo=L&resultado=T&objetos=%s",
+				this.correioProperties.getCorreioUsuario(), this.correioProperties.getCorreioSenha(), code);
+
+		String requestResult = this.request(params);
+
+		List<PackageBean> packages = this.convertToPackage(this.parseRequest(requestResult));
+
+		if (packages.size() != 1) {
+			String message = String.format("Return a invalid number of packages when search for package [%s].", code);
+
+			this.LOGGER.warn(message);
+			throw new PackageException(message);
+		}
+
+		return packages.get(0);
+	}
+
+	@Override
+	public PackageBean trackLastEvent(String code) {
 		String params = String.format("usuario=%s&senha=%s&tipo=L&resultado=U&objetos=%s",
 				this.correioProperties.getCorreioUsuario(), this.correioProperties.getCorreioSenha(), code);
 
@@ -69,9 +88,9 @@ public class Tracker implements ITracker {
 
 		return packages.get(0);
 	}
-	
+
 	@Override
-	public List<PackageBean> trackLastStatus(List<String> packagesCode) {
+	public List<PackageBean> trackLastEvent(List<String> packagesCode) {
 		String concatCodes = "";
 
 		for (String code : packagesCode) {
@@ -131,6 +150,7 @@ public class Tracker implements ITracker {
 					PackageEventBean event = new PackageEventBean();
 
 					event.setStatus(objEvent.getStatus());
+					event.setType(objEvent.getTipo());
 					event.setDate(this.DATE_FORMAT.parse(objEvent.getDate() + " " + objEvent.getHour()));
 					event.setDescription(objEvent.getDescription());
 					event.setComment(objEvent.getComment());

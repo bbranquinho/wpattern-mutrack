@@ -3,8 +3,8 @@
   <h2>Rastreamento de Pacotes</h2>
 
   <div class="row">
-     <div ng-include="'app/main/main.modal.html'"></div>
-     
+     <div ng-include="'app/main/modal/main.modal.html'"></div>
+
      <div class="panel panel-primary filterable">
          <div class="panel-heading">
              <h3 class="panel-title">Pacotes</h3>
@@ -26,13 +26,15 @@
              </thead>
              <tbody>
                  <tr ng-repeat="package in packages">
-                     <td><a ng-href="http://websro.correios.com.br/sro_bin/txect01$.Inexistente?P_LINGUA=001&P_TIPO=002&P_COD_LIS={{ package.code }}" target="_blank">{{ package.code }}</a></td>
+                     <td><a ng-click="openTrackPackage(package.code)">{{ package.code }}</a></td>
                      <td>{{ package.name }}</td>
                      <td>{{ package.description }}</td>
                      <td>
                        <i class="fa fa-spinner fa-pulse fa-2x" ng-show="package.lastStatusChecking"></i>
-                       <span class="label" ng-class="package.status == 1 ? 'label-success' : 'label-warning'">{{ package.status == 1 ? 'Recebido' : 'Acompanhando' }}</span>
-                       {{ package.lastStatus }}<br>{{ package.date | date:'yyyy-MM-dd HH:mm' }}
+                       <span class="label" ng-class="((package.status == 1) && (package.type === 'BDE')) ? 'label-success' : 'label-warning'">
+                         {{ ((package.status == 1) && (package.type === 'BDE')) ? 'Recebido' : 'Acompanhando' }}</span>
+                         {{ package.date | date:'yyyy-MM-dd HH:mm' }}<br>
+                         {{ package.lastStatus }}
                      </td>
                      <td class="delete">
                        <button class="btn btn-danger" ng-click="deletePackage(package)" aria-label="remove">X</button>
@@ -42,5 +44,7 @@
          </table>
      </div>
   </div>
+
+  <div ng-include="'app/main/modal/main.modal.track.html'"></div>
 
 </div>

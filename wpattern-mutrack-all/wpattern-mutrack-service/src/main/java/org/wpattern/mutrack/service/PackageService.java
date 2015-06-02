@@ -41,13 +41,18 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 	}
 
 	@Override
-	public PackageBean trackerLastStatus(String packageCode) {
-		return this.tracker.trackLastStatus(packageCode);
+	public PackageBean trackerFullEvent(String packageCode) {
+		return this.tracker.trackFullEvent(packageCode);
 	}
 
 	@Override
-	public List<PackageBean> trackerMultipleLastStatus(List<String> packageCode) {
-		return this.tracker.trackLastStatus(packageCode);
+	public PackageBean trackerLastEvent(String packageCode) {
+		return this.tracker.trackLastEvent(packageCode);
+	}
+
+	@Override
+	public List<PackageBean> trackerMultipleLastEvent(List<String> packageCode) {
+		return this.tracker.trackLastEvent(packageCode);
 	}
 
 }
