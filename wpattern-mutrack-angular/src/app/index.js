@@ -22,6 +22,11 @@ angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
         url: '/package',
         templateUrl: 'app/package/package.html',
         controller: 'PackageCtrl'
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'app/login/login.html',
+        controller: 'LoginCtrl'
       });
 
     $urlRouterProvider.otherwise('/');
