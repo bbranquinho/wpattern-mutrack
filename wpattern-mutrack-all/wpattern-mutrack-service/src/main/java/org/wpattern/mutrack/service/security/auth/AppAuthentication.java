@@ -1,4 +1,4 @@
-package org.wpattern.mutrack.factory.auth;
+package org.wpattern.mutrack.service.security.auth;
 
 import javax.inject.Named;
 import javax.ws.rs.FormParam;
@@ -11,7 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.wpattern.mutrack.factory.security.TokenUtils;
+import org.wpattern.mutrack.service.security.TokenUtils;
 
 @Named
 public class AppAuthentication {
