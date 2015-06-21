@@ -18,3 +18,5 @@ IMPROVAMENTS (Activities):
   * REST (back-end)
       1. 
       
+EXAMPLE OF PROJECTS
+  1. Spring Security with REST: https://github.com/philipsorst/angular-rest-springsecurity

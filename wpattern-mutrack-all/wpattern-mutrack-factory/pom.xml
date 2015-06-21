@@ -52,6 +52,18 @@
 			<artifactId>spring-web</artifactId>
 		</dependency>
 
+		<!-- SPRING SECURITY WEB -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+
+		<!-- SPRING SECURITY CONFIG -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+
 		<!-- SERVLET API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
