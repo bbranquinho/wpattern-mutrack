@@ -10,8 +10,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class UserDao implements UserDetailsService {
 
 	@Override
-	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
-
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		//		LoginBean user
+		//				if (null == user) {
+		//					throw new UsernameNotFoundException("The user with name " + username + " was not found");
+		//				}
+		//
+		//				return user;
 		return null;
 	}
 
