@@ -13,13 +13,11 @@ import org.jboss.resteasy.plugins.interceptors.CorsFilter;
 import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 import org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap;
 import org.jboss.resteasy.plugins.spring.SpringContextLoaderListener;
-import org.springframework.stereotype.Component;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.wpattern.mutrack.utils.services.ServiceNames;
 
 @Provider
-@Component
 public class WebAppInitializer implements WebApplicationInitializer, Feature {
 
 	@Inject
@@ -38,7 +36,7 @@ public class WebAppInitializer implements WebApplicationInitializer, Feature {
 
 		// Spring Security filter.
 		FilterRegistration.Dynamic securityDispatcher = servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"));
-		securityDispatcher.addMappingForUrlPatterns(null, false, "/*");;
+		securityDispatcher.addMappingForUrlPatterns(null, false, "/*");
 	}
 
 	@Override
