@@ -2,6 +2,7 @@ package org.wpattern.mutrack.service.security;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -13,17 +14,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
-
+@Component
 public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 
-	private final UserDetailsService userService;
-
-	public AuthenticationTokenProcessingFilter(UserDetailsService userService)
-	{
-		this.userService = userService;
-	}
+	@Inject
+	private UserDetailsService userService;
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

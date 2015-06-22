@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
-import org.wpattern.mutrack.service.security.AuthenticationTokenProcessingFilter;
 
 @Configuration
 public class ServiceSecurityContext {
@@ -19,9 +18,9 @@ public class ServiceSecurityContext {
 		return new StandardPasswordEncoder("ThisIsASecretSoChangeMe");
 	}
 
-	@Bean(name = "authenticationTokenProcessingFilter")
-	public AuthenticationTokenProcessingFilter getAuthenticationTokenProcessingFilter() {
-		return new AuthenticationTokenProcessingFilter(this.userService);
+	@Bean(name = "authService")
+	public UserDetailsService getUserDetailsService() {
+		return this.userService;
 	}
 
 }
