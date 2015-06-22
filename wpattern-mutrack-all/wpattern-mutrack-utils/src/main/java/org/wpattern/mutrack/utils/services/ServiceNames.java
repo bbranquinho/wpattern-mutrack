@@ -22,8 +22,6 @@ public final class ServiceNames {
 
 	public static final String USER_PATH = PRIVATE_ROOT_PATH + "/user";
 
-	public static final String USER_PERMISSION_PATH = PRIVATE_ROOT_PATH + "/userpermission";
-
 	///////////////////////////////////////////////////////////////
 	// PUBLIC PATHS
 	///////////////////////////////////////////////////////////////
