@@ -5,11 +5,11 @@ import java.util.Map;
 
 public enum PermissionType {
 
-	ADMIN("ROLE_ADMIN"),
+	ADMIN("admin"),
 
-	USER("ROLE_USER"),
+	USER("user"),
 
-	EMPLOYEE("ROLE_EMPLOYEE");
+	EMPLOYEE("employee");
 
 	private final String role;
 
@@ -29,7 +29,7 @@ public enum PermissionType {
 
 	public static PermissionType parse(String role) {
 		if (role != null) {
-			return MAP_PERMISSIONS.get(role.toUpperCase());
+			return MAP_PERMISSIONS.get(role.toLowerCase());
 		}
 
 		return null;

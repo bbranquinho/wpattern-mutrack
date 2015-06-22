@@ -1,9 +1,15 @@
 package org.wpattern.mutrack.utils.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.wpattern.mutrack.utils.BaseEntity;
@@ -26,6 +32,10 @@ public class UserEntity extends BaseEntity<Long> {
 
 	@Column(name = "password", length = 128, nullable = false)
 	private String password;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_user_permission", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "permission_id") )
+	private List<PermissionEntity> permissions;
 
 	// This property was removed to simplify the management of the project.
 	// @OneToMany(fetch = FetchType.EAGER, targetEntity = PackageEntity.class)
@@ -78,6 +88,14 @@ public class UserEntity extends BaseEntity<Long> {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<PermissionEntity> getPermissions() {
+		return this.permissions;
+	}
+
+	public void setPermissions(List<PermissionEntity> permissions) {
+		this.permissions = permissions;
 	}
 
 	// public List<PackageEntity> getPackages() {

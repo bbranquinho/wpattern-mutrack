@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.service.utils.GenericService;
 import org.wpattern.mutrack.utils.data.IUserData;
@@ -15,6 +16,16 @@ public class UserService extends GenericService<UserEntity, Long> implements IUs
 
 	@Inject
 	private IUserData userData;
+
+	@Inject
+	private PasswordEncoder passwordEncoder;
+
+	@Override
+	public UserEntity insert(UserEntity user) {
+		user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+
+		return super.insert(user);
+	}
 
 	@Override
 	public List<UserEntity> findByName(String name) {
