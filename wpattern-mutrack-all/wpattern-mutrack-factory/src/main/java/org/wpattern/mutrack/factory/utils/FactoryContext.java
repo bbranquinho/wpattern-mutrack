@@ -1,7 +1,5 @@
 package org.wpattern.mutrack.factory.utils;
 
-import javax.ws.rs.core.SecurityContext;
-
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -12,7 +10,7 @@ import org.wpattern.mutrack.service.utils.ServiceSecurityContext;
 
 @Configuration
 @Import(value = { BusinessContext.class, DataContext.class, ServiceContext.class,
-		ServiceSecurityContext.class, SecurityContext.class })
+		ServiceSecurityContext.class })
 @ComponentScan(basePackages = { FactoryContext.BASE_PACKAGE })
 public class FactoryContext {
 
