@@ -11,14 +11,7 @@
     http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
     <context:component-scan base-package="org.wpattern.mutrack.factory" />
-    
-<!--     <bean id="userDao" class="org.wpattern.mutrack.service.security.auth.JpaUserDao"> -->
-<!-- 	</bean> -->
-    
-    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder">
-		<constructor-arg value="ThisIsASecretSoChangeMe" />
-	</bean>
-	
+
 	<security:authentication-manager id="authenticationManager">
 		<security:authentication-provider user-service-ref="authService">
 			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
@@ -33,11 +26,5 @@
 		<security:intercept-url pattern="/service/private/package" access="permitAll" />
 		<security:intercept-url pattern="/service/private/user/**" access="hasRole('user')" />
 	</security:http>
-
-	<bean id="unauthorizedEntryPoint" class="org.wpattern.mutrack.service.security.UnauthorizedEntryPoint" />
-
-	<bean class="org.wpattern.mutrack.service.security.AuthenticationTokenProcessingFilter" id="authenticationTokenProcessingFilter">
-		<constructor-arg ref="authService" />
-	</bean>
 
 </beans>
