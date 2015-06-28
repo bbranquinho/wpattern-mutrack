@@ -1,0 +1,47 @@
+<div class="row">
+   <div class="panel panel-primary filterable">
+       <div class="panel-heading">
+           <h3 class="panel-title">Pacotes</h3>
+           <div class="pull-right">
+               <button class="btn btn-default btn-xs btn-filter">
+                 <span class="glyphicon glyphicon-filter"></span> Filtrar
+               </button>
+           </div>
+       </div>
+       <table class="table">
+           <thead>
+               <tr class="filters">
+                   <th><input id="packageCode" type="text" class="form-control" placeholder="Código" disabled></th>
+                   <th><input id="packageName" type="text" class="form-control" placeholder="Nome" disabled></th>
+                   <th><input id="packageDescription" type="text" class="form-control" placeholder="Descrição" disabled></th>
+                   <th><input id="packageStatus" type="text" class="form-control" placeholder="Último Status" disabled></th>
+                   <th><input id="packageEdit" type="text" class="form-control" disabled></th>
+                   <th><input id="packageDelete" type="text" class="form-control" disabled></th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr ng-repeat="package in packages">
+                   <td><a ng-click="openTrackPackage(package.code)">{{ package.code }}</a></td>
+                   <td>{{ package.name }}</td>
+                   <td>{{ package.description }}</td>
+                   <td>
+                     <i class="fa fa-spinner fa-pulse fa-2x" ng-show="package.lastStatusChecking"></i>
+                     <span class="label" ng-class="((package.status == 1) && (package.type === 'BDE')) ? 'label-success' : 'label-warning'">
+                       {{ ((package.status == 1) && (package.type === 'BDE')) ? 'Recebido' : 'Acompanhando' }}</span>
+                       {{ package.date | date:'yyyy-MM-dd HH:mm' }}<br>
+                       {{ package.lastStatus }}
+                   </td>
+                   <td class="search">
+                     <button class="btn glyphicon glyphicon-edit" ng-click="openEditPackage(package)"></button>
+                   </td>
+                   <td class="delete">
+                     <button class="btn btn-danger" ng-click="deletePackage(package)" aria-label="remove">X</button>
+                   </td>
+               </tr>
+           </tbody>
+       </table>
+   </div>
+</div>
+
+<div ng-include="'app/track/modal/add.track.modal.html'"></div>
+<div ng-include="'app/track/modal/full.track.modal.html'"></div>

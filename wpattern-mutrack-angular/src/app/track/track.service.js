@@ -1,10 +1,12 @@
 'use strict';
 
+var intervalTrack = 15 * 60 * 1000; // 15 minutes
+
 var ignorePackageStatus = [1];
 
 angular.module('mutrack')
-  .factory('PackageSrv', function($http, ngNotify, REST_URL) {
-    var url = REST_URL.ROOT + '/package';
+  .factory('TrackSrv', function($http, ngNotify, REST_URL) {
+    var url = REST_URL.PUBLIC_PATH + '/track';
     var dataFactory = {};
 
     dataFactory.getPackages = function() {
@@ -14,7 +16,7 @@ angular.module('mutrack')
     dataFactory.trackLastEvent = function(pack) {
       pack.lastStatusChecking = true;
 
-      $http.get(url + '/tracker/lastevent/' + pack.code)
+      $http.get(url + '/lastevent/' + pack.code)
         .success(function(data) {
           pack.lastStatus = data.events[0].description;
           pack.type = data.events[0].type;
@@ -54,7 +56,7 @@ angular.module('mutrack')
 
       var requestParams = {
         method: 'POST',
-        url: url + '/tracker/lastevent',
+        url: url + '/lastevent',
         headers: { 'Content-Type': 'application/json' },
         data: packageCodes
       };
@@ -88,4 +90,17 @@ angular.module('mutrack')
     };
 
     return dataFactory;
+});
+
+angular.module('mutrack')
+  .service('SchedulerTrackSrv', function($interval, TrackSrv) {
+    return {
+      track : function(packages) {
+        $interval(function() {
+          var packagesToVerify = TrackSrv.selectPackagesToTrack(packages);
+
+          TrackSrv.trackMultipleLastEvent(packagesToVerify);
+        }, intervalTrack);
+      }
+    };
 });
