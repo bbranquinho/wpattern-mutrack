@@ -1,6 +1,6 @@
 'use strict';
 
-var BASE_URL = 'http://localhost:8080/service/public';
+var BASE_URL = 'http://localhost:8080/service/private';
 
 angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
  'ngResource', 'ui.router', 'ui.bootstrap', 'LocalStorageModule', 'ngNotify'])
