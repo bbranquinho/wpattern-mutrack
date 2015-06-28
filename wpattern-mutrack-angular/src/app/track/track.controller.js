@@ -27,7 +27,7 @@ angular.module('mutrack')
     $scope.openAddPackage = function () {
       var modalInstance = $modal.open({
         animation: true,
-        templateUrl: 'addTrackModalContent.html',
+        templateUrl: 'trackModalContent.html',
         controller: 'TrackModalCtrl',
         size: 'lg',
         resolve: {
@@ -45,7 +45,7 @@ angular.module('mutrack')
     $scope.openEditPackage = function (pack) {
       var modalInstance = $modal.open({
         animation: true,
-        templateUrl: 'addTrackModalContent.html',
+        templateUrl: 'trackModalContent.html',
         controller: 'TrackModalCtrl',
         size: 'lg',
         resolve: {
@@ -66,7 +66,7 @@ angular.module('mutrack')
       var modalInstance = $modal.open({
         animation: true,
         templateUrl: 'fullTrackModalContent.html',
-        controller: 'TrackPackageModalCtrl',
+        controller: 'FullTrackModalCtrl',
         size: 'lg',
         resolve: {
           code: function () {

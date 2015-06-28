@@ -22,15 +22,3 @@ angular.module('mutrack').controller('TrackModalCtrl', function ($scope, $modalI
     $modalInstance.dismiss('cancel');
   };
 });
-
-angular.module('mutrack').controller('TrackPackageModalCtrl', function ($scope, $http, $modalInstance, code, TrackModalSrv) {
-
-  $scope.events = [];
-  $scope.code = code;
-
-  $scope.close = function () {
-    $modalInstance.close();
-  };
-
-  TrackModalSrv.refreshEvents($scope, $http, code);
-});
