@@ -16,7 +16,8 @@ import org.wpattern.mutrack.utils.BaseEntity;
 public interface IGenericService<T extends BaseEntity<ID>, ID extends Serializable> {
 
 	@GET
-	public List<T> findAll(@QueryParam("page") Integer page, @QueryParam("size") Integer size, @QueryParam("fields") String fields);
+	public List<T> findAll(@QueryParam("page") Integer page, @QueryParam("size") Integer size,
+			@QueryParam("sort") String fields, @QueryParam("sortDesc") String fieldsDesc);
 
 	@POST
 	public T insert(T entityObject);

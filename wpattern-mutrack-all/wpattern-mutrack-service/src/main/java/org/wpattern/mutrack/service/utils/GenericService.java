@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
+import org.springframework.data.domain.Sort.Direction;
 import org.wpattern.mutrack.utils.BaseEntity;
 import org.wpattern.mutrack.utils.data.IGenericData;
 import org.wpattern.mutrack.utils.services.IGenericService;
@@ -18,13 +19,17 @@ public abstract class GenericService<T extends BaseEntity<ID>, ID extends Serial
 	protected IGenericData<T, ID> genericData;
 
 	@Override
-	public List<T> findAll(Integer page, Integer size, String fields) {
+	public List<T> findAll(Integer page, Integer size, String fields, String fieldsDesc) {
 		if (this.LOGGER.isDebugEnabled()) {
 			this.LOGGER.debug(String.format("Request all records [%s] to page [%s] with size of [%s] and fields [%s].",
 					this.getClass(), page, size, fields));
 		}
 
-		return this.genericData.findAll(page, size, this.splitFields(fields));
+		if ((fieldsDesc != null) && (!fieldsDesc.trim().isEmpty())) {
+			return this.genericData.findAll(page, size, Direction.DESC, this.splitFields(fields));
+		} else {
+			return this.genericData.findAll(page, size, Direction.ASC, this.splitFields(fields));
+		}
 	}
 
 	@Override

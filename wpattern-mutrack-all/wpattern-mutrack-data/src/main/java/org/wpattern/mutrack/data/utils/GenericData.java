@@ -30,8 +30,8 @@ public abstract class GenericData<T extends BaseEntity<ID>, ID extends Serializa
 	}
 
 	@Override
-	public List<T> findAll(Integer page, Integer size, String... fields) {
-		Sort sort = this.mountSort(fields);
+	public List<T> findAll(Integer page, Integer size, Direction direction, String... fields) {
+		Sort sort = this.mountSort(direction, fields);
 
 		if ((page != null) || (size != null)) {
 			if (page == null) {
@@ -86,12 +86,12 @@ public abstract class GenericData<T extends BaseEntity<ID>, ID extends Serializa
 		return new PageRequest(page, size, sort);
 	}
 
-	protected Sort mountSort(String[] fields) {
+	protected Sort mountSort(Direction direction, String[] fields) {
 		if ((fields == null) || (fields.length <= 0)) {
 			return null;
 		}
 
-		return new Sort(Direction.ASC, fields);
+		return new Sort(direction, fields);
 	}
 
 }

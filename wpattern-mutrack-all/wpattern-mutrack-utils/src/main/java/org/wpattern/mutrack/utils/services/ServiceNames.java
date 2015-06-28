@@ -28,4 +28,6 @@ public final class ServiceNames {
 
 	public static final String AUTH_PATH = PUBLIC_ROOT_PATH + "/auth";
 
+	public static final String TRACK_PATH = PUBLIC_ROOT_PATH + "/track";
+
 }

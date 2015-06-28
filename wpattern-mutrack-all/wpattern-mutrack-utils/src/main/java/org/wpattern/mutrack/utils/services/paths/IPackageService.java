@@ -4,13 +4,11 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-import org.wpattern.mutrack.utils.business.beans.PackageBean;
 import org.wpattern.mutrack.utils.entities.PackageEntity;
 import org.wpattern.mutrack.utils.services.IGenericService;
 import org.wpattern.mutrack.utils.services.ServiceConstants;
@@ -25,21 +23,5 @@ public interface IPackageService extends IGenericService<PackageEntity, Long> {
 	@Path("/userid/{id: [0-9]*$}")
 	public List<PackageEntity> findByUserId(@PathParam("id") Long userId, @QueryParam("page") Integer page,
 			@QueryParam("size") Integer size, @QueryParam("fields") String fields);
-
-	@POST
-	@Path("/tracker")
-	public List<PackageBean> tracker(List<Long> packagesId);
-
-	@GET
-	@Path("/tracker/fullevent/{packageCode}")
-	public PackageBean trackerFullEvent(@PathParam("packageCode") String packageCode);
-
-	@GET
-	@Path("/tracker/lastevent/{packageCode}")
-	public PackageBean trackerLastEvent(@PathParam("packageCode") String packageCode);
-
-	@POST
-	@Path("/tracker/lastevent")
-	public List<PackageBean> trackerMultipleLastEvent(List<String> packagesCode);
 
 }

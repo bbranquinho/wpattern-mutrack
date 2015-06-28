@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.data.repositories.IPackageRepository;
 import org.wpattern.mutrack.data.utils.GenericData;
@@ -21,7 +22,7 @@ public class PackageData extends GenericData<PackageEntity, Long> implements IPa
 	@Override
 	public List<PackageEntity> findByUserId(Long userId, Integer page, Integer size, String... fields) {
 		UserEntity user = new UserEntity(userId);
-		Sort sort = this.mountSort(fields);
+		Sort sort = this.mountSort(Direction.ASC, fields);
 
 		if ((page != null) || (size != null)) {
 			if (page == null) {

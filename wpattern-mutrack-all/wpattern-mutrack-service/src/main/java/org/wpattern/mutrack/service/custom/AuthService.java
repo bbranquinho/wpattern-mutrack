@@ -1,4 +1,4 @@
-package org.wpattern.mutrack.service;
+package org.wpattern.mutrack.service.custom;
 
 import javax.inject.Inject;
 
