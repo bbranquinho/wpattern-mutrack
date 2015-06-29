@@ -43,7 +43,7 @@ public class AuthService implements IAuthService, UserDetailsService {
 
 		UserDetails userDetails = this.loadUserByUsername(auth.getEmail());
 
-		return new TokenBean(TokenUtils.createToken(userDetails, this.securityProperties.getMagickey(), this.securityProperties.getExpires()));
+		return new TokenBean(TokenUtils.createToken(userDetails, this.securityProperties.getMagickey(), this.securityProperties.getInterval()));
 	}
 
 	@Override

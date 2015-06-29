@@ -11,8 +11,8 @@ public class SecurityProperties {
 	@Value("${service.security.token.magickey}")
 	private String magickey;
 
-	@Value("${service.security.token.expires}")
-	private Long expires;
+	@Value("${service.security.token.interval}")
+	private Long interval;
 
 	@Value("${service.security.password.secret}")
 	private String secret;
@@ -28,12 +28,12 @@ public class SecurityProperties {
 		this.magickey = magickey;
 	}
 
-	public Long getExpires() {
-		return this.expires;
+	public Long getInterval() {
+		return this.interval;
 	}
 
-	public void setExpires(Long expires) {
-		this.expires = expires;
+	public void setInterval(Long interval) {
+		this.interval = interval;
 	}
 
 	public String getSecret() {

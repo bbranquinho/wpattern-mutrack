@@ -10,8 +10,8 @@ public final class TokenUtils {
 
 	private TokenUtils() { }
 
-	public static String createToken(UserDetails userDetails, String magicKey, long expires) {
-		expires += System.currentTimeMillis();
+	public static String createToken(UserDetails userDetails, String magicKey, long interval) {
+		long expires = System.currentTimeMillis() + interval;
 		StringBuilder tokenBuilder = new StringBuilder();
 
 		tokenBuilder.append(userDetails.getUsername());
