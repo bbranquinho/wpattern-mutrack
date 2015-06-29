@@ -20,8 +20,8 @@ import org.wpattern.mutrack.utils.services.ServiceNames;
 public interface IPackageService extends IGenericService<PackageEntity, Long> {
 
 	@GET
-	@Path("/userid/{id: [0-9]*$}")
+	@Path("/user/{id: [0-9]*$}")
 	public List<PackageEntity> findByUserId(@PathParam("id") Long userId, @QueryParam("page") Integer page,
-			@QueryParam("size") Integer size, @QueryParam("fields") String fields);
+			@QueryParam("size") Integer size, @QueryParam("sort") String fields);
 
 }

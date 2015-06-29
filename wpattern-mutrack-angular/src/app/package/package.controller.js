@@ -1,8 +1,6 @@
 'use strict';
 
 angular.module('mutrack')
-  .controller('PackageCtrl', function() {
+  .controller('PackageCtrl', function($scope) {
     $scope.packages = [];
-
-    
 });

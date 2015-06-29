@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.wpattern.mutrack.utils.BaseEntity;
 
 @Entity
@@ -30,6 +31,7 @@ public class UserEntity extends BaseEntity<Long> {
 	@Column(name = "email", length = 255, nullable = false, unique = true)
 	private String email;
 
+	@JsonIgnore
 	@Column(name = "password", length = 128, nullable = false)
 	private String password;
 
