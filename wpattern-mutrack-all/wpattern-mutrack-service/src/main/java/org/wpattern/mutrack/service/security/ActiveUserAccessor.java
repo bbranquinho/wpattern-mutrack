@@ -2,7 +2,6 @@ package org.wpattern.mutrack.service.security;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import org.wpattern.mutrack.service.interfaces.IActiveUserAccessor;
 import org.wpattern.mutrack.utils.services.beans.LoginDetailBean;
 
 @Component

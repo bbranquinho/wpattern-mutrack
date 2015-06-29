@@ -1,4 +1,4 @@
-package org.wpattern.mutrack.service.interfaces;
+package org.wpattern.mutrack.service.security;
 
 import org.wpattern.mutrack.utils.services.beans.LoginDetailBean;
 

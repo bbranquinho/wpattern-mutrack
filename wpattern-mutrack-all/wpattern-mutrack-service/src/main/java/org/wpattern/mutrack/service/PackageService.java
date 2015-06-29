@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
-import org.wpattern.mutrack.service.interfaces.IActiveUserAccessor;
+import org.wpattern.mutrack.service.security.IActiveUserAccessor;
 import org.wpattern.mutrack.service.utils.GenericService;
 import org.wpattern.mutrack.utils.data.IPackageData;
 import org.wpattern.mutrack.utils.entities.PackageEntity;
