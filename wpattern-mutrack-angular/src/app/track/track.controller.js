@@ -1,16 +1,7 @@
 'use strict';
 
 angular.module('mutrack')
-  .controller('TrackCtrl', function ($scope, $modal, $log, TrackSrv, SchedulerTrackSrv, localStorageService, ngNotify) {
-    // Local storage of public packages.
-    var packagesInStore = localStorageService.get('packages');
-
-    $scope.packages = packagesInStore || [];
-
-    $scope.$watch('packages', function() {
-      localStorageService.set('packages', $scope.packages);
-    }, true);
-
+  .controller('TrackCtrl', function ($scope, $modal, $log, TrackSrv, SchedulerTrackSrv, ngNotify) {
     $scope.savePackage = function(pack) {
       pack.code = pack.code.toUpperCase();
       $scope.packages.push(pack);
