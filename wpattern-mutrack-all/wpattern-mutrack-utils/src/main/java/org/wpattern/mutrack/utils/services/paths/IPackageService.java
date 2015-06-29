@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
@@ -20,8 +19,8 @@ import org.wpattern.mutrack.utils.services.ServiceNames;
 public interface IPackageService extends IGenericService<PackageEntity, Long> {
 
 	@GET
-	@Path("/user/{id: [0-9]*$}")
-	public List<PackageEntity> findByUserId(@PathParam("id") Long userId, @QueryParam("page") Integer page,
-			@QueryParam("size") Integer size, @QueryParam("sort") String fields);
+	@Path("/byuser")
+	public List<PackageEntity> findPackageByUser(@QueryParam("page") Integer page, @QueryParam("size") Integer size,
+			@QueryParam("sort") String fields, @QueryParam("sortDesc") String fieldsDesc);
 
 }

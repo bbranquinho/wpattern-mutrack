@@ -11,12 +11,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.wpattern.mutrack.service.security.LoginDetail;
 import org.wpattern.mutrack.service.security.TokenUtils;
 import org.wpattern.mutrack.utils.data.IUserData;
 import org.wpattern.mutrack.utils.entities.PermissionEntity;
 import org.wpattern.mutrack.utils.entities.UserEntity;
 import org.wpattern.mutrack.utils.services.beans.AuthBean;
+import org.wpattern.mutrack.utils.services.beans.LoginDetailBean;
 import org.wpattern.mutrack.utils.services.beans.TokenBean;
 import org.wpattern.mutrack.utils.services.security.IAuthService;
 
@@ -50,7 +50,7 @@ public class AuthService implements IAuthService, UserDetailsService {
 			throw new UsernameNotFoundException("User with email \"" + email + "\" was not found");
 		}
 
-		LoginDetail login = new LoginDetail(user.getEmail(), user.getPassword());
+		LoginDetailBean login = new LoginDetailBean(user.getEmail(), user.getPassword());
 
 		for (PermissionEntity permission : user.getPermissions()) {
 			login.addRole(permission.getPermission().getRole());

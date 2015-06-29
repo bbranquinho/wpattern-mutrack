@@ -1,6 +1,5 @@
-package org.wpattern.mutrack.service.security;
+package org.wpattern.mutrack.utils.services.beans;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,8 +8,9 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.wpattern.mutrack.utils.BaseBean;
 
-public class LoginDetail implements Serializable, UserDetails {
+public class LoginDetailBean extends BaseBean implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +20,7 @@ public class LoginDetail implements Serializable, UserDetails {
 
 	private final Set<String> roles;
 
-	public LoginDetail(String email, String passwordHash) {
+	public LoginDetailBean(String email, String passwordHash) {
 		this.email = email;
 		this.password = passwordHash;
 		this.roles = new HashSet<String>();
