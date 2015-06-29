@@ -32,6 +32,12 @@
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jackson-provider</artifactId>
 		</dependency>
+		
+		<!-- SPRING SECURITY WEB -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
