@@ -16,33 +16,51 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
+import org.wpattern.mutrack.service.security.properties.SecurityProperties;
 
 @Component
 public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 
+	private static final String TOKEN_HEADER = "X-Auth-Token";
+
 	@Inject
 	private UserDetailsService userService;
+
+	@Inject
+	private SecurityProperties securityProperties;
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = this.getAsHttpRequest(request);
 
-		String authToken = this.extractAuthTokenFromRequest(httpRequest);
-		String userName = TokenUtils.getUserNameFromToken(authToken);
+		String authToken = httpRequest.getHeader(TOKEN_HEADER);
+		String userName = this.getUserNameFromToken(authToken);
 
 		if (userName != null) {
 			UserDetails userDetails = this.userService.loadUserByUsername(userName);
 
-			if (TokenUtils.validateToken(authToken, userDetails)) {
+			if (TokenUtils.validateToken(authToken, userDetails, this.securityProperties.getMagickey())) {
 				UsernamePasswordAuthenticationToken authentication =
 						new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
+
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 		}
 
 		chain.doFilter(request, response);
+	}
+
+	private String getUserNameFromToken(String authToken) {
+		if ((authToken == null) || authToken.isEmpty()) {
+			return null;
+		}
+
+		String[] parts = authToken.split(":");
+
+		return parts[0];
 	}
 
 	private HttpServletRequest getAsHttpRequest(ServletRequest request) {
@@ -51,11 +69,6 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 		}
 
 		return (HttpServletRequest) request;
-	}
-
-	private String extractAuthTokenFromRequest(HttpServletRequest httpRequest) {
-		// Get token from header
-		return httpRequest.getHeader("X-Auth-Token");
 	}
 
 }

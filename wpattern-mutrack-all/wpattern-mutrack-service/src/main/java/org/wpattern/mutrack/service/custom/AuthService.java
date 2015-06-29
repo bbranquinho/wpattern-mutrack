@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.service.security.TokenUtils;
+import org.wpattern.mutrack.service.security.properties.SecurityProperties;
 import org.wpattern.mutrack.utils.data.IUserData;
 import org.wpattern.mutrack.utils.entities.PermissionEntity;
 import org.wpattern.mutrack.utils.entities.UserEntity;
@@ -30,6 +31,9 @@ public class AuthService implements IAuthService, UserDetailsService {
 	@Inject
 	private IUserData userData;
 
+	@Inject
+	private SecurityProperties securityProperties;
+
 	@Override
 	public TokenBean authenticate(AuthBean auth) {
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(auth.getEmail(), auth.getPassword());
@@ -39,7 +43,7 @@ public class AuthService implements IAuthService, UserDetailsService {
 
 		UserDetails userDetails = this.loadUserByUsername(auth.getEmail());
 
-		return new TokenBean(TokenUtils.createToken(userDetails));
+		return new TokenBean(TokenUtils.createToken(userDetails, this.securityProperties.getMagickey(), this.securityProperties.getExpires()));
 	}
 
 	@Override

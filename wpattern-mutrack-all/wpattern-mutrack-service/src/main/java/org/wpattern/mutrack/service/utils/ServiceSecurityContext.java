@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.wpattern.mutrack.service.security.AuthenticationTokenProcessingFilter;
+import org.wpattern.mutrack.service.security.properties.SecurityProperties;
 
 @Configuration
 public class ServiceSecurityContext {
@@ -17,9 +18,12 @@ public class ServiceSecurityContext {
 	@Inject
 	private AuthenticationTokenProcessingFilter authenticationFilter;
 
+	@Inject
+	private SecurityProperties securityProperties;
+
 	@Bean(name = "passwordEncoder")
 	public StandardPasswordEncoder getStandardPasswordEncoder() {
-		return new StandardPasswordEncoder("ThisIsASecretSoChangeMe");
+		return new StandardPasswordEncoder(this.securityProperties.getSecret());
 	}
 
 	@Bean(name = "authService")
