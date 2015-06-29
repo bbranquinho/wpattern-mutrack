@@ -26,10 +26,10 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 	public List<PackageEntity> findPackageByUser(Integer page, Integer size, String fields, String fieldsDesc) {
 		LoginDetailBean user = this.activeUserAccessor.getActiveUser();
 
-		if ((fieldsDesc == null) || fieldsDesc.trim().isEmpty()) {
-			return this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.ASC, this.splitFields(fields));
-		} else {
+		if ((fieldsDesc != null) && !fieldsDesc.trim().isEmpty()) {
 			return this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.DESC, this.splitFields(fieldsDesc));
+		} else {
+			return this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.ASC, this.splitFields(fields));
 		}
 	}
 
