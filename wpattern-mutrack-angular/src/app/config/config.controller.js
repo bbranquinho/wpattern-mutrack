@@ -1,5 +1,6 @@
 'use strict';
 
 angular.module('mutrack')
-  .controller('LoginCtrl', function() {
+  .controller('ConfigCtrl', function() {
+
 });
