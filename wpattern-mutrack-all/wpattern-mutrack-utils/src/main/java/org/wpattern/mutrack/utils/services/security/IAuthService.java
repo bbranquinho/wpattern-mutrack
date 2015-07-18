@@ -10,7 +10,7 @@ import org.wpattern.mutrack.utils.services.ServiceNames;
 import org.wpattern.mutrack.utils.services.beans.AuthBean;
 import org.wpattern.mutrack.utils.services.beans.TokenBean;
 
-@Path(ServiceNames.PUBLIC_ROOT_PATH + "/auth")
+@Path(ServiceNames.AUTH_PATH)
 @Produces(ServiceConstants.MEDIA_TYPE)
 @Consumes(ServiceConstants.MEDIA_TYPE)
 public interface IAuthService {

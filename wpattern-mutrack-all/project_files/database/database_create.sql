@@ -99,9 +99,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mutrack`;
-INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (1, 'ROLE_ADMIN');
-INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (2, 'ROLE_USER');
-INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (3, 'ROLE_EMPLOYEE');
+INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (1, 'admin');
+INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (2, 'user');
+INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (3, 'employee');
 
 COMMIT;
 
