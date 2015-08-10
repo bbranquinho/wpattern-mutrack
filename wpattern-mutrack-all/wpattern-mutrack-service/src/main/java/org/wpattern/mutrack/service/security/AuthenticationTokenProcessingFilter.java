@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,9 +34,15 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = this.getAsHttpRequest(request);
-
 		String authToken = httpRequest.getHeader(TOKEN_HEADER);
 		String userName = this.getUserNameFromToken(authToken);
+
+		// CORS
+		HttpServletResponse httpResp = (HttpServletResponse) response;
+		httpResp.setHeader("Access-Control-Allow-Origin", "*");
+		httpResp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		httpResp.setHeader("Access-Control-Max-Age", "3600");
+		httpResp.setHeader("Access-Control-Allow-Headers", "*");
 
 		if (userName != null) {
 			UserDetails userDetails = this.userService.loadUserByUsername(userName);
@@ -54,13 +61,11 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 	}
 
 	private String getUserNameFromToken(String authToken) {
-		if ((authToken == null) || authToken.isEmpty()) {
+		if ((authToken == null) || authToken.trim().isEmpty()) {
 			return null;
 		}
 
-		String[] parts = authToken.split(":");
-
-		return parts[0];
+		return authToken.split(":")[0];
 	}
 
 	private HttpServletRequest getAsHttpRequest(ServletRequest request) {

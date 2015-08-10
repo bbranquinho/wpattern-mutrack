@@ -2,10 +2,7 @@ package org.wpattern.mutrack.service.custom;
 
 import javax.inject.Inject;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,10 +22,6 @@ import org.wpattern.mutrack.utils.services.security.IAuthService;
 public class AuthService implements IAuthService, UserDetailsService {
 
 	@Inject
-	@Qualifier("authenticationManager")
-	private AuthenticationManager authManager;
-
-	@Inject
 	private IUserData userData;
 
 	@Inject
@@ -36,14 +29,14 @@ public class AuthService implements IAuthService, UserDetailsService {
 
 	@Override
 	public TokenBean authenticate(AuthBean auth) {
-		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(auth.getEmail(), auth.getPassword());
-		Authentication authentication = this.authManager.authenticate(authenticationToken);
-
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-
 		UserDetails userDetails = this.loadUserByUsername(auth.getEmail());
+		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken
+				(auth.getEmail(), auth.getPassword(), userDetails.getAuthorities());
 
-		return new TokenBean(TokenUtils.createToken(userDetails, this.securityProperties.getMagickey(), this.securityProperties.getInterval()));
+		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+
+		return new TokenBean(TokenUtils.createToken(userDetails, this.securityProperties.getMagickey(),
+				this.securityProperties.getInterval()));
 	}
 
 	@Override

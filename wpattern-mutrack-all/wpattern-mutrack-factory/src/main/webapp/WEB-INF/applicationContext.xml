@@ -11,21 +11,5 @@
     http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
     <context:component-scan base-package="org.wpattern.mutrack.factory" />
-    
-	<security:authentication-manager id="authenticationManager">
-		<security:authentication-provider user-service-ref="authService">
-			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
-		</security:authentication-provider>
-	</security:authentication-manager>
-
-	<security:http realm="Protected API" use-expressions="true" auto-config="false"
-			create-session="stateless" entry-point-ref="unauthorizedEntryPoint"
-			authentication-manager-ref="authenticationManager">
-		<security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
-		<security:intercept-url pattern="/service/public/auth" access="permitAll" />
-		<security:intercept-url pattern="/service/private/package/byuser" access="hasRole('user')" />
-		<security:intercept-url pattern="/service/private/package/**" access="hasRole('admin')" />
-		<security:intercept-url pattern="/service/private/user/**" access="hasRole('admin')" />
-	</security:http>
 
 </beans>
