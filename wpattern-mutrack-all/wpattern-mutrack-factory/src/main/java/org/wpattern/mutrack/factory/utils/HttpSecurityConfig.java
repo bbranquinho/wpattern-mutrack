@@ -41,10 +41,6 @@ public class HttpSecurityConfig {
 		@Autowired
 		private UnauthorizedEntryPoint unauthorizedEntryPoint;
 
-		public ApiWebSecurityConfigurationAdapter() {
-			System.out.println();
-		}
-
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http
