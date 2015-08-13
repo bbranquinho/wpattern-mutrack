@@ -34,7 +34,6 @@ public class HttpSecurityConfig {
 	}
 
 	@Configuration
-	@EnableWebSecurity
 	@Order(1)
 	public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
 
@@ -63,9 +62,9 @@ public class HttpSecurityConfig {
 			.and()
 			.authorizeRequests()
 			.antMatchers("/service/public/**").permitAll()
-			.antMatchers("/service/private/package/byuser").hasRole("user")
-			.antMatchers("/service/private/package/**").hasRole("admin")
-			.antMatchers("/service/private/user/**").hasRole("admin")
+			.antMatchers("/service/private/package/byuser").hasAnyAuthority("user")
+			.antMatchers("/service/private/package/**").hasAnyAuthority("admin")
+			.antMatchers("/service/private/user/**").hasAnyAuthority("admin")
 			.anyRequest().authenticated();
 		}
 	}
