@@ -129,8 +129,8 @@ public class Tracker implements ITracker {
 			throw new ParserException(e.getMessage());
 		}
 
-		if (this.LOGGER.isInfoEnabled()) {
-			this.LOGGER.info(requestBean);
+		if (this.LOGGER.isDebugEnabled()) {
+			this.LOGGER.debug(requestBean);
 		}
 
 		return requestBean;
