@@ -53,7 +53,7 @@ public class HttpSecurityConfig {
 			.authenticationEntryPoint(this.unauthorizedEntryPoint)
 			.and()
 			.authorizeRequests()
-			.antMatchers("/service/public/auth").permitAll()
+			.antMatchers("/service/public/**").permitAll()
 			.antMatchers("/service/private/package/byuser").hasRole("user")
 			.antMatchers("/service/private/package/**").hasRole("admin")
 			.antMatchers("/service/private/user/**").hasRole("admin")

@@ -15,7 +15,7 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.wpattern.mutrack.utils.services.ServiceNames;
 
-public class WebAppInitializer  implements WebApplicationInitializer {
+public class WebAppInitializer implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
