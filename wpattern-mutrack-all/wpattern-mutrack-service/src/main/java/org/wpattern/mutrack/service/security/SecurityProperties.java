@@ -1,4 +1,4 @@
-package org.wpattern.mutrack.service.security.properties;
+package org.wpattern.mutrack.service.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;

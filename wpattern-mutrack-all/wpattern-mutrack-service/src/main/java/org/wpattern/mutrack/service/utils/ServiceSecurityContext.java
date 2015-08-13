@@ -16,8 +16,8 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.service.security.AuthenticationTokenFilter;
+import org.wpattern.mutrack.service.security.SecurityProperties;
 import org.wpattern.mutrack.service.security.UnauthorizedEntryPoint;
-import org.wpattern.mutrack.service.security.properties.SecurityProperties;
 
 @Component
 @Configuration
