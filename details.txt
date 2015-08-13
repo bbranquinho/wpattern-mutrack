@@ -1,22 +1,9 @@
-GROUP:
-1. Antonio
-2. Branquinho
-3. Eduardo
-4. Gabriel
-5. João Paulo
-
 TODO (Activities):
   * REST (back-end)
       1. Include bean validation (Hibernate Validation)
-      2. Spring Security
-      3. Handle REST errors (https://github.com/swagger-api/swagger-spec)
+      2. Handle REST errors (https://github.com/swagger-api/swagger-spec)
   * AngularJS (front-end)
-      1. Test the angular calling the REST, must require the CORs filter inside the REST.
-      2. Create a project using Yeoman, Gulp, ...
+      1. Create a project using Yeoman, Gulp, ...
 
-IMPROVAMENTS (Activities):
-  * REST (back-end)
-      1. 
-      
 EXAMPLE OF PROJECTS
   1. Spring Security with REST: https://github.com/philipsorst/angular-rest-springsecurity
