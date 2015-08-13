@@ -2,7 +2,6 @@ package org.wpattern.mutrack.factory.utils;
 
 import java.util.EnumSet;
 
-import javax.inject.Inject;
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
@@ -16,6 +15,7 @@ import org.jboss.resteasy.plugins.interceptors.CorsFilter;
 import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 import org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap;
 import org.jboss.resteasy.plugins.spring.SpringContextLoaderListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.filter.DelegatingFilterProxy;
@@ -25,7 +25,7 @@ import org.wpattern.mutrack.utils.services.ServiceNames;
 @Component
 public class WebAppInitializer implements WebApplicationInitializer, Feature {
 
-	@Inject
+	@Autowired
 	private FactoryProperties properties;
 
 	@Override

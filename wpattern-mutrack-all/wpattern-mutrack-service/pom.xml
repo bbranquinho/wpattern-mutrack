@@ -15,12 +15,6 @@
 			<artifactId>wpattern-mutrack-utils</artifactId>
 		</dependency>
 
-		<!-- JAVAX INJECT -->
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-		</dependency>
-
 		<!-- SPRING TEST -->
 		<dependency>
 			<groupId>org.springframework</groupId>

@@ -74,13 +74,6 @@
 				<version>${project.version}</version>
 			</dependency>
 
-			<!-- JAVAX INJECT -->
-			<dependency>
-				<groupId>javax.inject</groupId>
-				<artifactId>javax.inject</artifactId>
-				<version>1</version>
-			</dependency>
-
 			<!-- SPRING TEST -->
 			<dependency>
 				<groupId>org.springframework</groupId>
