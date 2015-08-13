@@ -5,7 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource("classpath:service.security.properties")
+@PropertySource("classpath:service.properties")
 public class SecurityProperties {
 
 	@Value("${service.security.token.magickey}")
