@@ -2,8 +2,7 @@ package org.wpattern.mutrack.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.service.utils.GenericService;
@@ -14,10 +13,10 @@ import org.wpattern.mutrack.utils.services.paths.IUserService;
 @Component
 public class UserService extends GenericService<UserEntity, Long> implements IUserService {
 
-	@Inject
+	@Autowired
 	private IUserData userData;
 
-	@Inject
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Override

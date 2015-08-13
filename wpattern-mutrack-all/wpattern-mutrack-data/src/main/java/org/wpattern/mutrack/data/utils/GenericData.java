@@ -3,9 +3,8 @@ package org.wpattern.mutrack.data.utils;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -21,7 +20,7 @@ public abstract class GenericData<T extends BaseEntity<ID>, ID extends Serializa
 
 	protected static final int DEFAULT_PAGE = 0;
 
-	@Inject
+	@Autowired
 	protected JpaRepository<T, ID> genericRepository;
 
 	@Override

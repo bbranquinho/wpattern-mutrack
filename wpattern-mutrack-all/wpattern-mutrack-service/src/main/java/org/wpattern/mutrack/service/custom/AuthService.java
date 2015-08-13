@@ -1,7 +1,6 @@
 package org.wpattern.mutrack.service.custom;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,14 +23,14 @@ import org.wpattern.mutrack.utils.services.security.IAuthService;
 @Component
 public class AuthService implements IAuthService, UserDetailsService {
 
-	@Inject
+	@Autowired
 	private IUserData userData;
 
-	@Inject
+	@Autowired
 	@Qualifier("authenticationManager")
 	private AuthenticationManager authManager;
 
-	@Inject
+	@Autowired
 	private SecurityProperties securityProperties;
 
 	@Override

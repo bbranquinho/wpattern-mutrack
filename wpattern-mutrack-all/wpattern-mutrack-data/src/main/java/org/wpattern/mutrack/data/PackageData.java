@@ -2,8 +2,7 @@ package org.wpattern.mutrack.data;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
@@ -17,10 +16,10 @@ import org.wpattern.mutrack.utils.entities.UserEntity;
 @Component
 public class PackageData extends GenericData<PackageEntity, Long> implements IPackageData {
 
-	@Inject
+	@Autowired
 	private IPackageRepository packageRepository;
 
-	@Inject
+	@Autowired
 	private IUserRepository userRepository;
 
 	@Override

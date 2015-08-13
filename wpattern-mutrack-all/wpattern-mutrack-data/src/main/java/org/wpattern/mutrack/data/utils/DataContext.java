@@ -2,11 +2,11 @@ package org.wpattern.mutrack.data.utils;
 
 import java.beans.PropertyVetoException;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +35,7 @@ public class DataContext {
 
 	static final String ENTITY_BASE_PACKAGE = "org.wpattern.mutrack.utils.entities";
 
-	@Inject
+	@Autowired
 	private DataProperties properties;
 
 	public DataContext() {

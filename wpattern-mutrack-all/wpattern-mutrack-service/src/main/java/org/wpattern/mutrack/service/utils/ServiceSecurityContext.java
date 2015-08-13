@@ -1,7 +1,6 @@
 package org.wpattern.mutrack.service.utils;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
@@ -10,7 +9,7 @@ import org.wpattern.mutrack.service.security.properties.SecurityProperties;
 @Configuration
 public class ServiceSecurityContext {
 
-	@Inject
+	@Autowired
 	private SecurityProperties securityProperties;
 
 	@Bean(name = "passwordEncoder")

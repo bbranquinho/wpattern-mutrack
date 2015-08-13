@@ -2,8 +2,7 @@ package org.wpattern.mutrack.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.service.security.IActiveUserAccessor;
@@ -16,10 +15,10 @@ import org.wpattern.mutrack.utils.services.paths.IPackageService;
 @Component
 public class PackageService extends GenericService<PackageEntity, Long> implements IPackageService {
 
-	@Inject
+	@Autowired
 	private IPackageData packageData;
 
-	@Inject
+	@Autowired
 	private IActiveUserAccessor activeUserAccessor;
 
 	@Override

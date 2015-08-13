@@ -13,9 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.business.beans.RequestBean;
 import org.wpattern.mutrack.business.beans.RequestEventBean;
@@ -42,7 +41,7 @@ public class Tracker implements ITracker {
 
 	private XStream xStream;
 
-	@Inject
+	@Autowired
 	private CorreioProperties correioProperties;
 
 	public Tracker() {

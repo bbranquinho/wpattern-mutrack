@@ -3,9 +3,8 @@ package org.wpattern.mutrack.service.utils;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
 import org.wpattern.mutrack.utils.BaseEntity;
 import org.wpattern.mutrack.utils.data.IGenericData;
@@ -15,7 +14,7 @@ public abstract class GenericService<T extends BaseEntity<ID>, ID extends Serial
 
 	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
-	@Inject
+	@Autowired
 	protected IGenericData<T, ID> genericData;
 
 	@Override

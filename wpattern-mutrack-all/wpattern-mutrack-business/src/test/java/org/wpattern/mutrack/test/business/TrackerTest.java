@@ -3,10 +3,9 @@ package org.wpattern.mutrack.test.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.wpattern.mutrack.test.business.utils.AbstractBusinessTest;
 import org.wpattern.mutrack.utils.business.ITracker;
 import org.wpattern.mutrack.utils.business.beans.PackageBean;
@@ -15,7 +14,7 @@ public class TrackerTest extends AbstractBusinessTest {
 
 	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
-	@Inject
+	@Autowired
 	private ITracker tracker;
 
 	@Test

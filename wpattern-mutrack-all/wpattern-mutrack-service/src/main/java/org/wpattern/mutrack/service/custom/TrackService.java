@@ -3,8 +3,7 @@ package org.wpattern.mutrack.service.custom;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.utils.business.ITracker;
 import org.wpattern.mutrack.utils.business.beans.PackageBean;
@@ -15,10 +14,10 @@ import org.wpattern.mutrack.utils.services.paths.ITrackService;
 @Component
 public class TrackService implements ITrackService {
 
-	@Inject
+	@Autowired
 	private ITracker tracker;
 
-	@Inject
+	@Autowired
 	private IPackageData packageData;
 
 	@Override
