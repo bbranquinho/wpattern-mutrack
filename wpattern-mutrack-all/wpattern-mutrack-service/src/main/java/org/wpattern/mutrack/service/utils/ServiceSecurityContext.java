@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
-import org.wpattern.mutrack.service.security.AuthenticationTokenProcessingFilter;
+import org.wpattern.mutrack.service.security.AuthenticationTokenFilter;
 import org.wpattern.mutrack.service.security.UnauthorizedEntryPoint;
 import org.wpattern.mutrack.service.security.properties.SecurityProperties;
 
@@ -48,7 +48,7 @@ public class ServiceSecurityContext {
 	public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
 
 		@Autowired
-		private AuthenticationTokenProcessingFilter springSecurityFilterChain;
+		private AuthenticationTokenFilter springSecurityFilterChain;
 
 		@Autowired
 		private UnauthorizedEntryPoint unauthorizedEntryPoint;

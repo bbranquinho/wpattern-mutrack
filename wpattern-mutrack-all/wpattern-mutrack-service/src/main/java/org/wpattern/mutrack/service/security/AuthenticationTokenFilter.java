@@ -19,7 +19,7 @@ import org.springframework.web.filter.GenericFilterBean;
 import org.wpattern.mutrack.service.security.properties.SecurityProperties;
 
 @Component
-public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
+public class AuthenticationTokenFilter extends GenericFilterBean {
 
 	private static final String TOKEN_HEADER = "X-Auth-Token";
 
