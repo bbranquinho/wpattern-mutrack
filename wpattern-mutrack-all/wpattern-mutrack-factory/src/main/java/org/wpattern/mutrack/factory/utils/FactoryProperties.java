@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:factory.properties")
 public class FactoryProperties {
 
-	@Value("${factory.cors.allowedorigins}")
+	@Value("#{'${factory.cors.allowedorigins}'.split(',')}")
 	private List<String> corsAllowedOrigins;
 
 	public FactoryProperties() {
