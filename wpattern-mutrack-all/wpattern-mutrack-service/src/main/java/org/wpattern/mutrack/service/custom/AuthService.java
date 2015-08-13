@@ -18,7 +18,7 @@ import org.wpattern.mutrack.utils.entities.UserEntity;
 import org.wpattern.mutrack.utils.services.beans.AuthBean;
 import org.wpattern.mutrack.utils.services.beans.LoginDetailBean;
 import org.wpattern.mutrack.utils.services.beans.TokenBean;
-import org.wpattern.mutrack.utils.services.security.IAuthService;
+import org.wpattern.mutrack.utils.services.paths.IAuthService;
 
 @Component
 public class AuthService implements IAuthService, UserDetailsService {

@@ -1,4 +1,4 @@
-package org.wpattern.mutrack.utils.services.security;
+package org.wpattern.mutrack.utils.services.paths;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
