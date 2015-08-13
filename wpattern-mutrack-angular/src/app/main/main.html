@@ -1,6 +1,11 @@
-<div class="container" ng-controller="MainCtrl">
+<div class="container"  ng-controller="TrackCtrl">
 
-  <h2>Rastreamento de Pacotes</h2>
+  <div class="jumbotron">
+    <p><h2>Bem vindo ao MuTrack!</h2></p>
+    <p>Esta é sua melhor forma de rastrear pacotes dos correios.</p>
+    <p class="warning">Entre no sistema com seu usuário para garantir o armazenamento de seus pacotes. Ao entrar você poderá acessar seus pacotes em outras máquinas.</p>
 
-  <div ng-include="'app/track/track.html'" ng-controller="TrackCtrl"></div>
+    <div ng-include="'app/track/track.html'"></div>
+  </div>
+
 </div>
