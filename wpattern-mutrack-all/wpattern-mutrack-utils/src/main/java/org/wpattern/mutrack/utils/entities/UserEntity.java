@@ -39,11 +39,6 @@ public class UserEntity extends BaseEntity<Long> {
 	@JoinTable(name = "tb_user_permission", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "permission_id") )
 	private List<PermissionEntity> permissions;
 
-	// This property was removed to simplify the management of the project.
-	// @OneToMany(fetch = FetchType.EAGER, targetEntity = PackageEntity.class)
-	// @JoinColumn(name = "owner_id")
-	// private List<PackageEntity> packages;
-
 	public UserEntity() {
 	}
 
@@ -99,13 +94,5 @@ public class UserEntity extends BaseEntity<Long> {
 	public void setPermissions(List<PermissionEntity> permissions) {
 		this.permissions = permissions;
 	}
-
-	// public List<PackageEntity> getPackages() {
-	// return this.packages;
-	// }
-	//
-	// public void setPackages(List<PackageEntity> packages) {
-	// this.packages = packages;
-	// }
 
 }
