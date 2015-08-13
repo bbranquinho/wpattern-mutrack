@@ -16,6 +16,7 @@ public class UnauthorizedEntryPoint implements AuthenticationEntryPoint {
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
 			throws IOException, ServletException {
+		// TODO augusto.branquinho: treat the error based in the error.
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
 				"Unauthorized: Authentication token was either missing or invalid.");
 	}
