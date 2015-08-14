@@ -1,6 +1,6 @@
 'use strict';
 
-var intervalTrack = 15 * 60 * 1000; // 15 minutes
+var intervalTrack = 1 * 20 * 1000; // 15 minutes
 
 var ignorePackageStatus = [1];
 
@@ -102,13 +102,28 @@ angular.module('mutrack')
 
 angular.module('mutrack')
   .service('SchedulerTrackSrv', function($interval, TrackSrv) {
-    return {
-      track : function(packages, callbackTrigger) {
-        $interval(function() {
-          var packagesToVerify = TrackSrv.selectPackagesToTrack(packages);
+    var schedulerFactory = {};
+    var promise;
 
-          TrackSrv.trackMultipleLastEvent(packagesToVerify, callbackTrigger);
-        }, intervalTrack);
-      }
+    // start a process to track a list of packages.
+    var trackPackages = function(packages, callbackTrigger) {
+      var packagesToVerify = TrackSrv.selectPackagesToTrack(packages);
+
+      TrackSrv.trackMultipleLastEvent(packagesToVerify, callbackTrigger);
     };
+
+    // starts the interval
+    schedulerFactory.start = function(packages, callbackTrigger) {
+      // stops any running interval to avoid two intervals running at the same time
+      //schedulerFactory.stop();
+
+      promise = $interval(trackPackages(packages, callbackTrigger), intervalTrack);
+    };
+
+    // stops the interval
+    schedulerFactory.stop = function() {
+      $interval.cancel(promise);
+    };
+
+    return schedulerFactory;
 });

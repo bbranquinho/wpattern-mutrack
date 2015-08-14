@@ -13,5 +13,4 @@ angular.module('mutrack')
     $scope.$watch('packages', function() {
       localStorageService.set('packages', $scope.packages);
     }, true);
-
 });

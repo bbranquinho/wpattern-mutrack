@@ -1,5 +1,4 @@
 // NavBar
-
 .navbar-inverse {
   background-color: #337AB7;
   border-color: #FFFFFF;
@@ -28,16 +27,15 @@
 }
 
 // Data Table
-.pull-right-timeout {
-    margin-top: 20px;
-    margin-right: 4px;
-    vertical-align: middle;
-}
 .filterable {
     margin-top: 15px;
 }
 .filterable .panel-heading .pull-right {
     margin-top: -24px;
+}
+.filterable .panel-heading .pull-right-time {
+    margin-top: -18px;
+    margin-right: 4px;
 }
 .filterable .filters input[disabled] {
     background-color: transparent;
@@ -68,17 +66,33 @@
 }
 
 // ngNotify
-
 .ngn-success {
     background-color: #337ab7;
 }
 
 // switch
 .switch {
-    background: rgb(255, 0, 0);
-    border-color: #337ab7;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    width: 95px;
 }
-
+.switch.checked {
+    background: #337ab7;
+    border: 1px solid #fff;
+}
+.switch small {
+    border: 1px solid #337ab7;
+    background: #337ab7;
+}
+.switch.checked small {
+    border: 1px solid #337ab7;
+    background: #FFF;
+    left: 65px;
+}
+.switch .off {
+    color: #337ab7;
+    left: 42px;
+}
 
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
    all your less files automatically */

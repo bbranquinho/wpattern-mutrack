@@ -18,12 +18,16 @@ angular.module('mutrack')
   })
   .filter('formatToTime', function() {
     return function(seconds) {
+      if (seconds === undefined) {
+        return '';
+      }
+
       if (seconds > 60) {
         var time = Math.floor(seconds / 60);
 
-        return time + ' minuto' + (time == 1 ? '' : 's');
+        return 'Atualizar em ' + time + ' minuto' + (time === 1 ? '' : 's');
       } else if (seconds > 0) {
-        return seconds + ' segundo' + (seconds == 1 ? '' : 's');
+        return 'Atualizar em ' + seconds + ' segundo' + (seconds === 1 ? '' : 's');
       } else {
         return 'Atualizando!';
       }

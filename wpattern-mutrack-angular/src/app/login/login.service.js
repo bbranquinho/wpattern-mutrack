@@ -15,10 +15,8 @@ angular.module('mutrack')
 
       $http(requestParams)
         .success(function(data) {
-          var dd = data;
         })
         .error(function(erro) {
-          var ds = erro;
         });
     };
 

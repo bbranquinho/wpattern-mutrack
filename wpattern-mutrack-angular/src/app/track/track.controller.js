@@ -2,7 +2,6 @@
 
 angular.module('mutrack')
   .controller('TrackCtrl', function ($scope, $modal, $log, $timeout, TrackSrv, SchedulerTrackSrv, ngNotify) {
-
     $scope.savePackage = function(pack) {
       pack.code = pack.code.toUpperCase();
       $scope.packages.push(pack);
@@ -74,7 +73,10 @@ angular.module('mutrack')
     $scope.updateTime = 0;
 
     function countdown() {
-      $scope.updateTime--;
+      if ($scope.updateTime !== undefined) {
+        $scope.updateTime--;
+      }
+
       $scope.timeout = $timeout(countdown, 1000);
     }
 
@@ -91,11 +93,28 @@ angular.module('mutrack')
       $timeout.cancel($scope.timeout);
     };
 
+    $scope.disableTimeout = function() {
+      $scope.updateTime = undefined;
+      $scope.stopTimeout();
+    };
+
+    // Switch to activate/desactivate auto update.
+    $scope.switchEnabled = true; // active
+
+    $scope.onSwitchChange = function(status) {
+      if (status) {
+        $scope.startTimeout();
+        SchedulerTrackSrv.start($scope.packages, $scope.resetTimeout);
+      } else {
+        $scope.disableTimeout();
+        SchedulerTrackSrv.stop();
+      }
+    };
+
     // Track the last event of all packages.
-    TrackSrv.trackMultipleLastEvent(TrackSrv.selectPackagesToTrack($scope.packages),
-      $scope.resetTimeout);
+    TrackSrv.trackMultipleLastEvent(TrackSrv.selectPackagesToTrack($scope.packages), $scope.resetTimeout);
 
     // Start a scheduler to track packages.
     $scope.startTimeout();
-    SchedulerTrackSrv.track($scope.packages, $scope.resetTimeout);
+    SchedulerTrackSrv.start($scope.packages, $scope.resetTimeout);
 });

@@ -3,9 +3,9 @@
        <div class="panel-heading">
            <h3 class="panel-title">Rastreamentos de Pacotes</h3>
            <div class="pull-right">
-             <switch id="enabled" name="enabled" ng-model="enabled" on="Ligar" off="Desligar" class="green"></switch>
+             <switch id="enabled" name="enabled" ng-model="switchEnabled" ng-change="onSwitchChange(switchEnabled)" on="Desativar" off="Ativar" class="green"></switch>
            </div>
-           <div class="pull-right-timeout pull-right">
+           <div class="pull-right-time pull-right">
              {{ updateTime | formatToTime }}
            </div>
        </div>
