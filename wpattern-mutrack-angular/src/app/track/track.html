@@ -1,11 +1,12 @@
 <div class="row">
    <div class="panel panel-primary filterable">
        <div class="panel-heading">
-           <h3 class="panel-title">Rastreamentos de Pacotes{{ message }}</h3>
+           <h3 class="panel-title">Rastreamentos de Pacotes</h3>
            <div class="pull-right">
-               <button class="btn btn-default btn-xs btn-filter">
-                 <span class="glyphicon glyphicon-filter"></span> Filtrar
-               </button>
+             <switch id="enabled" name="enabled" ng-model="enabled" on="Ligar" off="Desligar" class="green"></switch>
+           </div>
+           <div class="pull-right-timeout pull-right">
+             {{ updateTime | formatToTime }}
            </div>
        </div>
        <table class="table">

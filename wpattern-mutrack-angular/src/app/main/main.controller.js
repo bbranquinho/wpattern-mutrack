@@ -3,7 +3,7 @@
 angular.module('mutrack')
   .controller('MainCtrl', function ($scope, $controller, localStorageService) {
     // Inheritance the track controller.
-    $controller('TrackCtrl', {$scope: $scope}); //This works
+    $controller('TrackCtrl', {$scope: $scope});
 
     // Local storage of public packages.
     var packagesInStore = localStorageService.get('packages');
@@ -14,5 +14,4 @@ angular.module('mutrack')
       localStorageService.set('packages', $scope.packages);
     }, true);
 
-    $scope.message = ' (PACOTES SALVOS LOCALMENTE)'
 });

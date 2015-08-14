@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('mutrack')
-  .controller('TrackCtrl', function ($scope, $modal, $log, TrackSrv, SchedulerTrackSrv, ngNotify) {
+  .controller('TrackCtrl', function ($scope, $modal, $log, $timeout, TrackSrv, SchedulerTrackSrv, ngNotify) {
+
     $scope.savePackage = function(pack) {
       pack.code = pack.code.toUpperCase();
       $scope.packages.push(pack);
@@ -52,7 +53,7 @@ angular.module('mutrack')
       });
     };
 
-    // Open Modal (Full Track of a Package)
+    // Open Modal (Full Track)
     $scope.openTrackPackage = function (code) {
       var modalInstance = $modal.open({
         animation: true,
@@ -69,9 +70,32 @@ angular.module('mutrack')
       modalInstance.result.then(function () { });
     };
 
+    // Run and show the update packate status timeout.
+    $scope.updateTime = 0;
+
+    function countdown() {
+      $scope.updateTime--;
+      $scope.timeout = $timeout(countdown, 1000);
+    }
+
+    $scope.resetTimeout = function() {
+      $scope.updateTime = TrackSrv.intervalTrack / 1000;
+    };
+
+    $scope.startTimeout = function() {
+      $scope.resetTimeout();
+      countdown();
+    };
+
+    $scope.stopTimeout = function() {
+      $timeout.cancel($scope.timeout);
+    };
+
     // Track the last event of all packages.
-    TrackSrv.trackMultipleLastEvent(TrackSrv.selectPackagesToTrack($scope.packages));
+    TrackSrv.trackMultipleLastEvent(TrackSrv.selectPackagesToTrack($scope.packages),
+      $scope.resetTimeout);
 
     // Start a scheduler to track packages.
-    SchedulerTrackSrv.track($scope.packages);
+    $scope.startTimeout();
+    SchedulerTrackSrv.track($scope.packages, $scope.resetTimeout);
 });

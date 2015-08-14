@@ -3,7 +3,8 @@
 var BASE_URL = 'http://localhost:8080/service';
 
 angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
- 'ngResource', 'ui.router', 'ui.bootstrap', 'LocalStorageModule', 'ngNotify'])
+ 'ngResource', 'ui.router', 'ui.bootstrap', 'LocalStorageModule', 'ngNotify',
+ 'uiSwitch'])
   .constant('REST_URL', {
     'ROOT':BASE_URL,
     'PUBLIC_PATH':BASE_URL + '/public',

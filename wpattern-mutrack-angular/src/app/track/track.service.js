@@ -7,13 +7,15 @@ var ignorePackageStatus = [1];
 angular.module('mutrack')
   .factory('TrackSrv', function($http, ngNotify, REST_URL) {
     var url = REST_URL.PUBLIC_PATH + '/track';
-    var dataFactory = {};
+    var trackFactory = {};
 
-    dataFactory.getPackages = function() {
+    trackFactory.intervalTrack = intervalTrack;
+
+    trackFactory.getPackages = function() {
       return $http.get(url);
     };
 
-    dataFactory.trackLastEvent = function(pack) {
+    trackFactory.trackLastEvent = function(pack) {
       pack.lastStatusChecking = true;
 
       $http.get(url + '/lastevent/' + pack.code)
@@ -30,7 +32,7 @@ angular.module('mutrack')
         });
     };
 
-    dataFactory.selectPackagesToTrack = function(packages) {
+    trackFactory.selectPackagesToTrack = function(packages) {
       var packagesToVerify = [];
 
       for (var pack in packages) {
@@ -42,8 +44,9 @@ angular.module('mutrack')
       return packagesToVerify;
     };
 
-    dataFactory.trackMultipleLastEvent = function(packages) {
+    trackFactory.trackMultipleLastEvent = function(packages, callbackTrigger) {
       if ((packages === null) || (packages.length <= 0)) {
+        callbackTrigger();
         return;
       }
 
@@ -80,26 +83,31 @@ angular.module('mutrack')
           if (isUpdated) {
             ngNotify.set('Status dos pacotes atualizados com sucesso!', 'success');
           }
+
+          callbackTrigger();
         })
         .error(function(erro) {
           for (var indexPackage in packages) {
             packages[indexPackage].lastStatusChecking = false;
           }
+
+          callbackTrigger();
+
           ngNotify.set('Erro ao atualizar os status dos pacotes! Erro: ' + erro, 'error');
         });
     };
 
-    return dataFactory;
+    return trackFactory;
 });
 
 angular.module('mutrack')
   .service('SchedulerTrackSrv', function($interval, TrackSrv) {
     return {
-      track : function(packages) {
+      track : function(packages, callbackTrigger) {
         $interval(function() {
           var packagesToVerify = TrackSrv.selectPackagesToTrack(packages);
 
-          TrackSrv.trackMultipleLastEvent(packagesToVerify);
+          TrackSrv.trackMultipleLastEvent(packagesToVerify, callbackTrigger);
         }, intervalTrack);
       }
     };
