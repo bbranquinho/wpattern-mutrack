@@ -16,7 +16,7 @@ angular.module('mutrack')
         }
       };
   })
-  .filter('formatToTime', function() {
+  .filter('formatToScheduleTime', function() {
     return function(seconds) {
       if (seconds === undefined) {
         return '';

@@ -1,6 +1,6 @@
 'use strict';
 
-var intervalTrack = 15 * 60 * 1000; // 15 minutes
+var intervalTrack = 30 * 60 * 1000; // 30 minutes
 
 var ignorePackageStatus = [1];
 
@@ -8,8 +8,6 @@ angular.module('mutrack')
   .factory('TrackSrv', function($http, ngNotify, REST_URL) {
     var url = REST_URL.PUBLIC_PATH + '/track';
     var trackFactory = {};
-
-    trackFactory.intervalTrack = intervalTrack;
 
     trackFactory.getPackages = function() {
       return $http.get(url);
@@ -44,12 +42,7 @@ angular.module('mutrack')
       return packagesToVerify;
     };
 
-    trackFactory.trackMultipleLastEvent = function(packages, callbackTrigger) {
-      if ((packages === null) || (packages.length <= 0)) {
-        callbackTrigger();
-        return;
-      }
-
+    trackFactory.trackMultipleLastEvent = function(packages, callbackEvent) {
       var packageCodes = [];
 
       for (var pack in packages) {
@@ -84,16 +77,16 @@ angular.module('mutrack')
             ngNotify.set('Status dos pacotes atualizados com sucesso!', 'success');
           }
 
-          callbackTrigger();
+          callbackEvent();
         })
         .error(function(erro) {
           for (var indexPackage in packages) {
             packages[indexPackage].lastStatusChecking = false;
           }
 
-          callbackTrigger();
-
           ngNotify.set('Erro ao atualizar os status dos pacotes! Erro: ' + erro, 'error');
+
+          callbackEvent();
         });
     };
 
@@ -101,22 +94,43 @@ angular.module('mutrack')
 });
 
 angular.module('mutrack')
-  .service('SchedulerTrackSrv', function($interval, TrackSrv) {
+  .service('SchedulerTrackSrv', function($timeout, TrackSrv) {
     var schedulerFactory = {};
-    var promise;
+    var packages = {};
+    var updateTime = {};
 
-    // starts the interval
-    schedulerFactory.start = function(packages, callbackTrigger) {
-      promise = $interval(function() {
-        var packagesToVerify = TrackSrv.selectPackagesToTrack(packages);
+    // Manage the timeout.
+    function countdown() {
+      if (updateTime.value <= 0) {
+        schedulerFactory.stop();
 
-        TrackSrv.trackMultipleLastEvent(packagesToVerify, callbackTrigger);
-      }, intervalTrack);
+        TrackSrv.trackMultipleLastEvent(TrackSrv.selectPackagesToTrack(packages), schedulerFactory.reset);
+      } else {
+        updateTime.value--;
+
+        schedulerFactory.timeout = $timeout(countdown, 1000);
+      }
+    }
+
+    // Manage the scheduler.
+    schedulerFactory.reset = function() {
+      schedulerFactory.stop();
+      schedulerFactory.start();
     };
 
-    // stops the interval
+    schedulerFactory.start = function() {
+      updateTime.value = intervalTrack / 1000; // Convert milliseconds to seconds.
+      countdown();
+    };
+
     schedulerFactory.stop = function() {
-      $interval.cancel(promise);
+      updateTime.value = undefined;
+      $timeout.cancel(schedulerFactory.timeout);
+    };
+
+    schedulerFactory.configScheduler = function(packs, uTime) {
+      packages = packs;
+      updateTime = uTime;
     };
 
     return schedulerFactory;

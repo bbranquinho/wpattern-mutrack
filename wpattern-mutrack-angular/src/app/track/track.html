@@ -6,7 +6,7 @@
              <switch id="enabled" name="enabled" ng-model="switchEnabled" ng-change="onSwitchChange(switchEnabled)" on="Desativar" off="Ativar" class="green"></switch>
            </div>
            <div class="pull-right-time pull-right">
-             {{ updateTime | formatToTime }}
+             {{ updateTime.value | formatToScheduleTime }}
            </div>
        </div>
        <table class="table">
