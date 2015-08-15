@@ -101,7 +101,6 @@ START TRANSACTION;
 USE `mutrack`;
 INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (1, 'admin');
 INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (2, 'user');
-INSERT INTO `mutrack`.`tb_permission` (`id`, `role`) VALUES (3, 'employee');
 
 COMMIT;
 
