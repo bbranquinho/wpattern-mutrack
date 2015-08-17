@@ -7,13 +7,13 @@ angular.module('mutrack')
     $scope.hasAnyPermission = function(authorities) {
       var hasPermission = false;
 
-      /*userDetails.authorities.forEach(function(userAuth) {
+      userDetails.authorities.forEach(function(userAuth) {
         authorities.forEach(function(auth) {
           if (userAuth === auth) {
             hasPermission = true;
           }
         });
-      });*/
+      });
 
       return hasPermission;
     };

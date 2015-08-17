@@ -4,8 +4,8 @@
     <h3 class="form-signin-heading">Bem Vindo!<br>Acesse utilizando email e senha.</h3>
 	  <hr class="colorgraph"><br>
 
-	  <input ng-model="email" type="text" class="form-control" placeholder="Email" required="" autofocus="" />
-	  <input ng-model="password" type="password" class="form-control" placeholder="Senha" required=""/>
+	  <input name="email" ng-model="email" type="text" class="form-control" placeholder="Email" required="" autofocus="" />
+	  <input name="password" ng-model="password" type="password" class="form-control" placeholder="Senha" required=""/>
 
 	  <button class="btn btn-lg btn-primary btn-block" value="Login" type="Submit" ng-click="login(email, password)">Acessar</button>
 	</div>

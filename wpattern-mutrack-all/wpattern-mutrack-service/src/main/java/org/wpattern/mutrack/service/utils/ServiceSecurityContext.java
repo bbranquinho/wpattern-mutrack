@@ -90,7 +90,7 @@ public class ServiceSecurityContext {
 			.antMatchers(HttpMethod.POST, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
 			.antMatchers(HttpMethod.PUT, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
 			.antMatchers(HttpMethod.DELETE, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
-			// Global OPTIONS Authorities.
+			// Global Authority to OPTIONS.
 			.antMatchers(HttpMethod.OPTIONS, ServiceNames.PRIVATE_ROOT_PATH + ALL).permitAll()
 			.anyRequest().authenticated();
 		}

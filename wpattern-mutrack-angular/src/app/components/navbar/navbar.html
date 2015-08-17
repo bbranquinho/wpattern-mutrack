@@ -8,10 +8,10 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <ul class="nav nav-pills" >
-          <!-- Using 'ng-if' and 'ng-show' just as examples. -->
-          <!-- However, can be used any command: ng-if/ng-show/ng-hide. -->
-          <li><a href="#/package">Pacotes</a></li>
-          <li ng-if="hasAnyPermission(['admin'])"><a href="#/user">Usuários</a></li>
+          <!-- Can be used any command: ng-if or ng-show. -->
+          <!-- However, each command have some differences. -->
+          <li ng-if="hasAnyPermission(['admin', 'user'])"><a href="#/package">Pacotes</a></li>
+          <li ng-show="hasAnyPermission(['admin'])"><a href="#/user">Usuários</a></li>
           <li ng-show="hasAnyPermission(['admin', 'user'])"><a href="#/config">Configurações</a></li>
         </ul>
       </ul>
