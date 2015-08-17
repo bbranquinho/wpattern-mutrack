@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS `mutrack`.`tb_package` (
   `name` VARCHAR(60) NOT NULL,
   `code` VARCHAR(20) NOT NULL,
   `description` VARCHAR(150) NULL,
-  `destination_cep` VARCHAR(12) NULL,
   `register_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `owner_id` INT NOT NULL,
   PRIMARY KEY (`id`),

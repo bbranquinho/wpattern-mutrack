@@ -21,6 +21,21 @@ angular.module('mutrack')
         localStorageService.set('packages', $scope.packages);
       }, true);
 
+      // Methods to save, edit and delete a package.
+      // A better/right way to pass 'packages' is use a promisse.
+      $scope.savePackage = function(scope, pack) {
+        pack.code = pack.code.toUpperCase();
+        scope.packages.push(pack);
+        ngNotify.set('Pacote \'' + pack.code + '\' salvo, buscando o último status!', 'success');
+        TrackSrv.trackLastEvent(pack);
+      };
+
+      // A better/right way to pass 'packages' is use a promisse.
+      $scope.deletePackage = function(scope, pack) {
+        var indexOf = $scope.packages.indexOf(pack);
+        scope.packages.splice(indexOf, 1);
+      };
+
       // Inheritance the track controller.
       $controller('TrackCtrl', {$scope: $scope});
     }

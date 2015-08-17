@@ -119,6 +119,8 @@ angular.module('mutrack')
     };
 
     schedulerFactory.start = function() {
+      schedulerFactory.stop();
+
       updateTime.value = intervalTrack / 1000; // Convert milliseconds to seconds.
       countdown();
     };

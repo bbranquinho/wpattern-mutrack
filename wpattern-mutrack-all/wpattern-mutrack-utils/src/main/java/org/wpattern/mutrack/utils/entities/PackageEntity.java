@@ -31,11 +31,8 @@ public class PackageEntity extends BaseEntity<Long> {
 	@Column(name = "description", length = 150, nullable = true)
 	private String description;
 
-	@Column(name = "destination_cep", length = 12, nullable = true)
-	private String destinationCep;
-
 	@Column(name = "register_date", nullable = false)
-	private Date registerDate;
+	private Date registerDate = new Date();
 
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
@@ -44,12 +41,10 @@ public class PackageEntity extends BaseEntity<Long> {
 	public PackageEntity() {
 	}
 
-	public PackageEntity(String name, String code, String description,
-			String destinationCep, Date registerDate, UserEntity user) {
+	public PackageEntity(String name, String code, String description, Date registerDate, UserEntity user) {
 		this.name = name;
 		this.code = code;
 		this.description = description;
-		this.destinationCep = destinationCep;
 		this.registerDate = registerDate;
 		this.user = user;
 	}
@@ -86,14 +81,6 @@ public class PackageEntity extends BaseEntity<Long> {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getDestinationCep() {
-		return this.destinationCep;
-	}
-
-	public void setDestinationCep(String destinationCep) {
-		this.destinationCep = destinationCep;
 	}
 
 	public Date getRegisterDate() {

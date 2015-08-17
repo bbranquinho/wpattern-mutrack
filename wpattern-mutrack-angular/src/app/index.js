@@ -32,6 +32,10 @@ angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
         templateUrl: 'app/login/login.html',
         controller: 'LoginCtrl'
       })
+      .state('logout', {
+        url: '/logout',
+        controller: 'LogoutCtrl'
+      })
       .state('package', {
         url: '/package',
         templateUrl: 'app/package/package.html',

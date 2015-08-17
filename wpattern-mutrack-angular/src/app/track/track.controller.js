@@ -3,18 +3,6 @@
 angular.module('mutrack')
   .controller('TrackCtrl', function ($scope, $modal, $log, $timeout, TrackSrv, SchedulerTrackSrv, ngNotify) {
 
-    $scope.savePackage = function(pack) {
-      pack.code = pack.code.toUpperCase();
-      $scope.packages.push(pack);
-      ngNotify.set('Pacote \'' + pack.code + '\' salvo, buscando o último status!', 'success');
-      TrackSrv.trackLastEvent(pack);
-    };
-
-    $scope.deletePackage = function(pack) {
-      var indexOf = $scope.packages.indexOf(pack);
-      $scope.packages.splice(indexOf, 1);
-    };
-
     // Open Modal (Add a New Package)
     $scope.openAddPackage = function () {
       var modalInstance = $modal.open({

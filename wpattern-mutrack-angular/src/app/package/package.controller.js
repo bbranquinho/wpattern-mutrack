@@ -7,6 +7,15 @@ angular.module('mutrack')
     // Retrieve packages of the user.
     PackageSrv.retrievePackages($scope);
 
+    // Methods to save, edit and delete a package.
+    $scope.savePackage = function(pack) {
+      PackageSrv.save($scope, pack);
+    };
+
+    $scope.deletePackage = function(pack) {
+      PackageSrv.delete($scope, pack);
+    };
+
     // Inheritance the track controller.
     $controller('TrackCtrl', {$scope: $scope});
 });
