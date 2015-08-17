@@ -1,10 +1,15 @@
 package org.wpattern.mutrack.service.custom;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -42,8 +47,9 @@ public class AuthService implements IAuthService, UserDetailsService {
 
 		UserDetails userDetails = this.loadUserByUsername(auth.getEmail());
 
-		return new TokenBean(TokenUtils.createToken(userDetails, this.securityProperties.getMagickey(),
-				this.securityProperties.getInterval()));
+		String token = TokenUtils.createToken(userDetails, this.securityProperties.getMagickey(), this.securityProperties.getInterval());
+
+		return new TokenBean(token, this.parseAuthorities(userDetails.getAuthorities()));
 	}
 
 	@Override
@@ -57,10 +63,20 @@ public class AuthService implements IAuthService, UserDetailsService {
 		LoginDetailBean login = new LoginDetailBean(user.getEmail(), user.getPassword());
 
 		for (PermissionEntity permission : user.getPermissions()) {
-			login.addRole(permission.getPermission().getRole());
+			login.addRole(permission.getPermission().role());
 		}
 
 		return login;
+	}
+
+	private String[] parseAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		List<String> auths = new ArrayList<String>();
+
+		for (GrantedAuthority auth : authorities) {
+			auths.add(auth.getAuthority());
+		}
+
+		return auths.toArray(new String[0]);
 	}
 
 }

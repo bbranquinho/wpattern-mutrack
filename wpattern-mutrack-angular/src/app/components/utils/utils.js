@@ -1,7 +1,6 @@
 'use strict';
 
-// DIRECTIVES and FILTERS
-
+// DIRECTIVES
 angular.module('mutrack')
   .directive('ngShow', function($compile, $animate) {
       return  {
@@ -15,7 +14,18 @@ angular.module('mutrack')
           }
         }
       };
-  })
+  });
+
+angular.module('mutrack')
+  .directive('login', function() {
+  return {
+    restrict: 'E',
+    templateUrl: '/app/components/navbar/login/login.template.html'
+  };
+});
+
+// FILTERS
+angular.module('mutrack')
   .filter('formatToScheduleTime', function() {
     return function(seconds) {
       if (seconds === undefined) {
@@ -31,5 +41,22 @@ angular.module('mutrack')
       } else {
         return 'Atualizando!';
       }
+    };
+  });
+
+// HTTP INTERCEPTORS
+angular.module('mutrack')
+  .config(function($httpProvider) {
+      $httpProvider.interceptors.push('sessionInjector');
+  })
+  .factory('sessionInjector', function(userDetails) {
+    return {
+        request: function(config) {
+            if (userDetails.token !== '') {
+              config.headers['X-Auth-Token'] = userDetails.token;
+            }
+
+            return config;
+        }
     };
   });

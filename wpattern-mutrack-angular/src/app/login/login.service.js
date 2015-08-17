@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mutrack')
-  .factory('LoginSrv', function($http, REST_URL) {
+  .factory('LoginSrv', function($http, userDetails, REST_URL) {
     var loginUrl = REST_URL.PUBLIC_PATH + '/auth';
     var loginFactory = {};
 
@@ -15,11 +15,13 @@ angular.module('mutrack')
 
       $http(requestParams)
         .success(function(data) {
+          userDetails.token = data.token;
+          userDetails.authorities = data.authorities;
         })
         .error(function(erro) {
+          console.log(erro);
         });
     };
 
     return loginFactory;
-  }
-);
+  });

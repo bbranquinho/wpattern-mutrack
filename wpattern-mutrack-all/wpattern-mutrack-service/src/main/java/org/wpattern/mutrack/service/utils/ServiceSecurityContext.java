@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.service.security.AuthenticationTokenFilter;
 import org.wpattern.mutrack.service.security.SecurityProperties;
 import org.wpattern.mutrack.service.security.UnauthorizedEntryPoint;
+import org.wpattern.mutrack.utils.entities.types.PermissionType;
+import org.wpattern.mutrack.utils.services.ServiceNames;
 
 @Component
 @Configuration
@@ -47,6 +50,8 @@ public class ServiceSecurityContext {
 	@Order(1)
 	public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
 
+		private static final String ALL = "/**";
+
 		@Autowired
 		private AuthenticationTokenFilter springSecurityFilterChain;
 
@@ -71,10 +76,22 @@ public class ServiceSecurityContext {
 			.authenticationEntryPoint(this.unauthorizedEntryPoint)
 			.and()
 			.authorizeRequests()
-			.antMatchers("/service/public/**").permitAll()
-			.antMatchers("/service/private/package/byuser").hasAnyAuthority("user")
-			.antMatchers("/service/private/package/**").hasAnyAuthority("admin")
-			.antMatchers("/service/private/user/**").hasAnyAuthority("admin")
+			// Public Authorities (permit all).
+			.antMatchers(ServiceNames.PUBLIC_ROOT_PATH + ALL).permitAll()
+			// Package Authorities.
+			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
+			.antMatchers(HttpMethod.POST, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
+			.antMatchers(HttpMethod.PUT, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
+			.antMatchers(HttpMethod.DELETE, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
+			// Package Authorities (Custom).
+			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_USER_CUSTOM_PATH).hasAnyAuthority(PermissionType.USER.role())
+			// User Authorities.
+			.antMatchers(HttpMethod.GET, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
+			.antMatchers(HttpMethod.POST, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
+			.antMatchers(HttpMethod.PUT, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
+			.antMatchers(HttpMethod.DELETE, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
+			// Global OPTIONS Authorities.
+			.antMatchers(HttpMethod.OPTIONS, ServiceNames.PRIVATE_ROOT_PATH + ALL).permitAll()
 			.anyRequest().authenticated();
 		}
 	}

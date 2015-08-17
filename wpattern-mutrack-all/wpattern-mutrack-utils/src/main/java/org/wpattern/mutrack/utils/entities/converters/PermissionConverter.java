@@ -10,7 +10,7 @@ public class PermissionConverter implements AttributeConverter<PermissionType, S
 
 	@Override
 	public String convertToDatabaseColumn(PermissionType permission) {
-		return permission.getRole();
+		return permission.role();
 	}
 
 	@Override

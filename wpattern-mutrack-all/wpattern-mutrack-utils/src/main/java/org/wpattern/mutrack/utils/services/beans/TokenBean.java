@@ -8,12 +8,19 @@ public class TokenBean extends BaseBean {
 
 	private final String token;
 
-	public TokenBean(String token) {
+	private final String[] authorities;
+
+	public TokenBean(String token, String[] authorities) {
 		this.token = token;
+		this.authorities = authorities;
 	}
 
 	public String getToken() {
 		return this.token;
+	}
+
+	public String[] getAuthorities() {
+		return this.authorities;
 	}
 
 }

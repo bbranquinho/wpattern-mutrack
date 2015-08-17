@@ -7,9 +7,7 @@ public enum PermissionType {
 
 	ADMIN("admin"),
 
-	USER("user"),
-
-	EMPLOYEE("employee");
+	USER("user");
 
 	private final String role;
 
@@ -35,7 +33,7 @@ public enum PermissionType {
 		return null;
 	}
 
-	public String getRole() {
+	public String role() {
 		return this.role;
 	}
 
