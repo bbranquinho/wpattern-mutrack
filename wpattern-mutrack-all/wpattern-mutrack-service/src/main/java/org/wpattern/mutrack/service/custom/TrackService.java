@@ -45,7 +45,11 @@ public class TrackService implements ITrackService {
 
 	@Override
 	public List<PackageBean> trackerMultipleLastEvent(List<String> packageCode) {
-		return this.tracker.trackLastEvent(packageCode);
+		if ((packageCode != null) && (packageCode.size() > 0)) {
+			return this.tracker.trackLastEvent(packageCode);
+		} else {
+			return null;
+		}
 	}
 
 }

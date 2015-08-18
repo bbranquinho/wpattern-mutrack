@@ -19,7 +19,7 @@ import org.wpattern.mutrack.utils.services.ServiceNames;
 public interface IPackageService extends IGenericService<PackageEntity, Long> {
 
 	@GET
-	@Path(ServiceNames.PACKAGE_USER_CUSTOM_PATH)
+	@Path("/user")
 	public List<PackageEntity> findPackageByUser(@QueryParam("page") Integer page, @QueryParam("size") Integer size,
 			@QueryParam("sort") String fields, @QueryParam("sortDesc") String fieldsDesc);
 

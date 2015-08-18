@@ -102,7 +102,7 @@ angular.module('mutrack')
     // Manage the timeout.
     function countdown() {
       if (updateTime.value <= 0) {
-        schedulerFactory.stop();
+        $timeout.cancel(schedulerFactory.timeout);
 
         TrackSrv.trackMultipleLastEvent(TrackSrv.selectPackagesToTrack(packages), schedulerFactory.reset);
       } else {
@@ -115,13 +115,15 @@ angular.module('mutrack')
     // Manage the scheduler.
     schedulerFactory.reset = function() {
       schedulerFactory.stop();
-      schedulerFactory.start();
+
+      updateTime.value = intervalTrack / 1000; // Convert milliseconds to seconds.
+      countdown();
     };
 
     schedulerFactory.start = function() {
       schedulerFactory.stop();
 
-      updateTime.value = intervalTrack / 1000; // Convert milliseconds to seconds.
+      updateTime.value = 0; // Convert milliseconds to seconds.
       countdown();
     };
 

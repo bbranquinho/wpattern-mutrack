@@ -7,7 +7,7 @@ angular.module('mutrack')
 
     // A better/right way to pass 'packages' is use a promisse.
     packageFactory.retrievePackages = function(scope) {
-      $http.get(url)
+      $http.get(url + '/user')
         .success(function(data) {
           scope.packages = data;
         })

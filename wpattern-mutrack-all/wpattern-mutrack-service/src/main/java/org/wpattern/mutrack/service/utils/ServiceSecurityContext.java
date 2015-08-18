@@ -78,20 +78,24 @@ public class ServiceSecurityContext {
 			.authorizeRequests()
 			// Public Authorities (permit all).
 			.antMatchers(ServiceNames.PUBLIC_ROOT_PATH + ALL).permitAll()
+			// Global Authority to OPTIONS.
+			.antMatchers(HttpMethod.OPTIONS, ServiceNames.PRIVATE_ROOT_PATH + ALL).permitAll()
+			// Package Authorities (Custom).
+			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_PATH + "/user").hasAnyAuthority(PermissionType.USER.role())
+			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
+			.antMatchers(HttpMethod.POST, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
+			.antMatchers(HttpMethod.PUT, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
+			.antMatchers(HttpMethod.DELETE, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
 			// Package Authorities.
 			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
 			.antMatchers(HttpMethod.POST, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
 			.antMatchers(HttpMethod.PUT, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
 			.antMatchers(HttpMethod.DELETE, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
-			// Package Authorities (Custom).
-			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_USER_CUSTOM_PATH).hasAnyAuthority(PermissionType.USER.role())
 			// User Authorities.
 			.antMatchers(HttpMethod.GET, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
 			.antMatchers(HttpMethod.POST, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
 			.antMatchers(HttpMethod.PUT, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
 			.antMatchers(HttpMethod.DELETE, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
-			// Global Authority to OPTIONS.
-			.antMatchers(HttpMethod.OPTIONS, ServiceNames.PRIVATE_ROOT_PATH + ALL).permitAll()
 			.anyRequest().authenticated();
 		}
 	}
