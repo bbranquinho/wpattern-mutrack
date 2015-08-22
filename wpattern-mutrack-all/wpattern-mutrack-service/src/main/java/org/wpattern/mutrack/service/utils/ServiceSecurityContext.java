@@ -82,7 +82,6 @@ public class ServiceSecurityContext {
 			.antMatchers(HttpMethod.OPTIONS, ServiceNames.PRIVATE_ROOT_PATH + ALL).permitAll()
 			// Package Authorities (Custom).
 			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_PATH + "/user").hasAnyAuthority(PermissionType.USER.role())
-			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
 			.antMatchers(HttpMethod.POST, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
 			.antMatchers(HttpMethod.PUT, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
 			.antMatchers(HttpMethod.DELETE, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())

@@ -27,20 +27,33 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 
 	@Override
 	public PackageEntity insert(PackageEntity packageObj) {
-		if (packageObj.getUser() == null) {
-			LoginDetailBean user = this.activeUserAccessor.getActiveUser();
+		LoginDetailBean user = this.activeUserAccessor.getActiveUser();
 
-			packageObj.setUser(this.userData.findByEmail(user.getUsername()));
-		}
+		packageObj.setUser(this.userData.findByEmail(user.getUsername()));
 
 		return super.insert(packageObj);
 	}
 
 	@Override
+	public void update(PackageEntity packageObj) {
+		String email = this.activeUserAccessor.getActiveUser().getUsername();
+		PackageEntity userPackage = this.packageData.findById(packageObj.getId());
+
+		if (email.compareTo(userPackage.getUser().getEmail()) == 0) {
+			packageObj.setUser(userPackage.getUser());
+			super.update(packageObj);
+		} else {
+			// TODO: Throw a exception.
+		}
+	}
+
+	@Override
 	public void delete(PackageEntity packageObj) {
+		String email = this.activeUserAccessor.getActiveUser().getUsername();
+
 		packageObj = this.packageData.findById(packageObj.getId());
 
-		if (this.activeUserAccessor.getActiveUser().getUsername().compareTo(packageObj.getUser().getEmail()) == 0) {
+		if (email.compareTo(packageObj.getUser().getEmail()) == 0) {
 			super.delete(packageObj);
 		} else {
 			// TODO: Throw a exception.
