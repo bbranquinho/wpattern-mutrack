@@ -30,20 +30,9 @@ public class ServiceSecurityContext {
 	@Autowired
 	private SecurityProperties securityProperties;
 
-	@Autowired
-	private UserDetailsService userService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
 	@Bean(name = "passwordEncoder")
 	public StandardPasswordEncoder getStandardPasswordEncoder() {
 		return new StandardPasswordEncoder(this.securityProperties.getSecret());
-	}
-
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(this.userService).passwordEncoder(this.passwordEncoder);
 	}
 
 	@Configuration
@@ -58,10 +47,21 @@ public class ServiceSecurityContext {
 		@Autowired
 		private UnauthorizedEntryPoint unauthorizedEntryPoint;
 
+		@Autowired
+		private PasswordEncoder passwordEncoder;
+
+		@Autowired
+		private UserDetailsService userService;
+
 		@Override
 		@Bean(name = "authenticationManager")
 		public AuthenticationManager authenticationManager() throws Exception {
 			return super.authenticationManager();
+		}
+
+		@Override
+		public void configure(AuthenticationManagerBuilder auth) throws Exception {
+			auth.userDetailsService(this.userService).passwordEncoder(this.passwordEncoder);
 		}
 
 		@Override
@@ -78,7 +78,7 @@ public class ServiceSecurityContext {
 			.authorizeRequests()
 			// Public Authorities (permit all).
 			.antMatchers(ServiceNames.PUBLIC_ROOT_PATH + ALL).permitAll()
-			// Global Authority to OPTIONS.
+			// Global Authority to OPTIONS (permit all).
 			.antMatchers(HttpMethod.OPTIONS, ServiceNames.PRIVATE_ROOT_PATH + ALL).permitAll()
 			// Package Authorities (Custom).
 			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_PATH + "/user").hasAnyAuthority(PermissionType.USER.role())
@@ -87,15 +87,9 @@ public class ServiceSecurityContext {
 			.antMatchers(HttpMethod.PUT, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
 			.antMatchers(HttpMethod.DELETE, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
 			// Package Authorities.
-			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
-			.antMatchers(HttpMethod.POST, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
-			.antMatchers(HttpMethod.PUT, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
-			.antMatchers(HttpMethod.DELETE, ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
+			.antMatchers(ServiceNames.PACKAGE_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
 			// User Authorities.
-			.antMatchers(HttpMethod.GET, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
-			.antMatchers(HttpMethod.POST, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
-			.antMatchers(HttpMethod.PUT, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
-			.antMatchers(HttpMethod.DELETE, ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
+			.antMatchers(ServiceNames.USER_PATH + ALL).hasAnyAuthority(PermissionType.ADMIN.role())
 			.anyRequest().authenticated();
 		}
 	}
