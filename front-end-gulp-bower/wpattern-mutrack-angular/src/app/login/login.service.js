@@ -21,8 +21,7 @@ angular.module('mutrack')
           // Redirect to package view.
           $location.path('/package');
         })
-        .error(function(erro) {
-          console.log(erro);
+        .error(function() {
         });
     };
 

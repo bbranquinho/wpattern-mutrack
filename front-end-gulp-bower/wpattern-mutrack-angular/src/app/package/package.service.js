@@ -11,14 +11,13 @@ angular.module('mutrack')
         .success(function(data) {
           scope.packages = data;
         })
-        .error(function(error) {
-          console.log(error);
+        .error(function() {
         });
     };
 
     // A better/right way to pass 'packages' is use a promisse.
     packageFactory.save = function(scope, pack) {
-      delete pack['enabledCode'];
+      delete pack.enabledCode;
 
       var requestParams = {
         method: 'POST',
@@ -49,7 +48,7 @@ angular.module('mutrack')
       };
 
       $http(requestParams)
-        .success(function(data) {
+        .success(function() {
           var indexOf = scope.packages.indexOf(pack);
           scope.packages.splice(indexOf, 1);
 

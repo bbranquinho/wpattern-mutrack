@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mutrack')
-  .controller('TrackCtrl', function ($scope, $modal, $log, $timeout, TrackSrv, SchedulerTrackSrv, ngNotify) {
+  .controller('TrackCtrl', function ($scope, $modal, $log, $timeout, TrackSrv, SchedulerTrackSrv) {
 
     // Open Modal (Add a New Package)
     $scope.openAddPackage = function () {

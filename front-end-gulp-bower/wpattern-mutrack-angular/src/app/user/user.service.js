@@ -10,8 +10,7 @@ angular.module('mutrack')
         .success(function(data) {
           scope.users = data;
         })
-        .error(function(erro) {
-          console.log(erro);
+        .error(function() {
         });
     };
 
