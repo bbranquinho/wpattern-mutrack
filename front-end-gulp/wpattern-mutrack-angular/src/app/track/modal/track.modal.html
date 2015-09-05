@@ -1,0 +1,36 @@
+<script id="trackModalContent.html" type="text/ng-template">
+  <div class="modal-header">
+      <h3 class="modal-title">Adicionar Pacote</h3>
+  </div>
+
+  <!-- Code -->
+  <div class="form-group">
+    <label class=" control-label" for="textinput">Código</label>
+    <div class="">
+      <input name="packageCode" placeholder="Código do pacote" class="form-control input-md" type="text" ng-model="package.code" ng-readonly="package.enabledCode">
+    </div>
+  </div>
+
+  <!-- Name -->
+  <div class="form-group">
+    <label class=" control-label" for="textinput">Nome</label>
+    <div class="">
+      <input name="packageName" placeholder="Nome do Pacote" class="form-control input-md" type="text" ng-model="package.name">
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="form-group">
+    <label class=" control-label" for="textinput">Descrição</label>
+    <div class="">
+      <input name="packageDescription" placeholder="Descrição do Pacote" class="form-control input-md" type="text" ng-model="package.description">
+    </div>
+  </div>
+
+  <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="save()">Salvar</button>
+      <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+  </div>
+</script>
+
+<button class="btn btn-default btn-primary" ng-click="openAddPackage()">Adicionar Pacote</button>

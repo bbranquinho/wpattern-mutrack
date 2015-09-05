@@ -1,0 +1,14 @@
+<div class="container">
+
+  <div class="jumbotron">
+    <p><h2>Bem vindo ao MuTrack!</h2></p>
+    <p>A melhor opção para rastrear suas encomendas.</p>
+
+    <div ng-if="!isAutheticated()">
+      <p class="warning">Acesse gratuitamente o sistema para salvar e sincronizar remotamente seus pacotes.</p>
+
+      <div ng-include="'app/track/track.html'"></div>
+    </div>
+  </div>
+
+</div>

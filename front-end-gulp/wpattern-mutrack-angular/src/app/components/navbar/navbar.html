@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default navbar-inverse" role="navigation" ng-controller="NavbarCtrl">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#/home">MuTrack</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <ul class="nav nav-pills" >
+          <!-- Can be used any command: ng-if or ng-show. -->
+          <!-- However, each command have some differences. -->
+          <li ng-if="hasAnyPermission(['admin', 'user'])"><a href="#/package">Pacotes</a></li>
+          <li ng-show="hasAnyPermission(['admin'])"><a href="#/user">Usuários</a></li>
+          <li ng-show="hasAnyPermission(['admin', 'user'])"><a href="#/config">Configurações</a></li>
+        </ul>
+      </ul>
+      <login />
+    </div>
+  </div>
+</nav>
