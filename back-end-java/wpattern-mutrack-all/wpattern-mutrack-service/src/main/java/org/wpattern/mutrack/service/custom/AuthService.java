@@ -13,23 +13,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.service.security.SecurityProperties;
 import org.wpattern.mutrack.service.security.TokenUtils;
-import org.wpattern.mutrack.utils.data.IUserData;
-import org.wpattern.mutrack.utils.entities.PermissionEntity;
-import org.wpattern.mutrack.utils.entities.UserEntity;
 import org.wpattern.mutrack.utils.services.beans.AuthBean;
-import org.wpattern.mutrack.utils.services.beans.LoginDetailBean;
 import org.wpattern.mutrack.utils.services.beans.TokenBean;
 import org.wpattern.mutrack.utils.services.paths.IAuthService;
 
 @Component
-public class AuthService implements IAuthService, UserDetailsService {
-
-	@Autowired
-	private IUserData userData;
+public class AuthService implements IAuthService {
 
 	@Autowired
 	@Qualifier("authenticationManager")
@@ -38,6 +30,9 @@ public class AuthService implements IAuthService, UserDetailsService {
 	@Autowired
 	private SecurityProperties securityProperties;
 
+	@Autowired
+	private UserDetailsService userService;
+
 	@Override
 	public TokenBean authenticate(AuthBean auth) {
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(auth.getEmail(), auth.getPassword());
@@ -45,28 +40,11 @@ public class AuthService implements IAuthService, UserDetailsService {
 		Authentication authentication = this.authManager.authenticate(authenticationToken);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		UserDetails userDetails = this.loadUserByUsername(auth.getEmail());
+		UserDetails userDetails = this.userService.loadUserByUsername(auth.getEmail());
 
 		String token = TokenUtils.createToken(userDetails, this.securityProperties.getMagickey(), this.securityProperties.getInterval());
 
 		return new TokenBean(token, this.parseAuthorities(userDetails.getAuthorities()));
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		UserEntity user = this.userData.findByEmail(email);
-
-		if (user == null) {
-			throw new UsernameNotFoundException("User with email \"" + email + "\" was not found");
-		}
-
-		LoginDetailBean login = new LoginDetailBean(user.getEmail(), user.getPassword());
-
-		for (PermissionEntity permission : user.getPermissions()) {
-			login.addRole(permission.getPermission().role());
-		}
-
-		return login;
 	}
 
 	private String[] parseAuthorities(Collection<? extends GrantedAuthority> authorities) {

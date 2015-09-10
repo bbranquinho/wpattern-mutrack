@@ -24,7 +24,6 @@ import org.wpattern.mutrack.utils.services.ServiceNames;
 
 @Component
 @Configuration
-@EnableWebSecurity
 public class ServiceSecurityContext {
 
 	@Autowired
@@ -37,6 +36,7 @@ public class ServiceSecurityContext {
 
 	@Configuration
 	@Order(1)
+	@EnableWebSecurity
 	public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
 
 		private static final String ALL = "/**";
@@ -48,14 +48,13 @@ public class ServiceSecurityContext {
 		private UnauthorizedEntryPoint unauthorizedEntryPoint;
 
 		@Autowired
-		private PasswordEncoder passwordEncoder;
-
-		@Autowired
 		private UserDetailsService userService;
 
-		@Override
+		@Autowired
+		private PasswordEncoder passwordEncoder;
+
 		@Bean(name = "authenticationManager")
-		public AuthenticationManager authenticationManager() throws Exception {
+		public AuthenticationManager getAuthenticationManager() throws Exception {
 			return super.authenticationManager();
 		}
 
