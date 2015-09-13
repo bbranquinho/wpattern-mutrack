@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mutrack')
-  .controller('MainCtrl', function ($scope, $controller, localStorageService, userDetails) {
+  .controller('MainCtrl', function ($scope, $controller, localStorageService, userDetails, ngNotify, TrackSrv) {
     // Check if the user is authenticated.
     $scope.isAutheticated = function() {
       if (userDetails.token === '') {

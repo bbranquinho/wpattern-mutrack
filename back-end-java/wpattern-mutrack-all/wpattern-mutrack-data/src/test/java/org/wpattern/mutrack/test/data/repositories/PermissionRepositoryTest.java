@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.wpattern.mutrack.data.repositories.IPermissionRepository;
 import org.wpattern.mutrack.test.data.utils.AbstractDataTest;
 import org.wpattern.mutrack.utils.entities.PermissionEntity;
+import org.wpattern.mutrack.utils.entities.types.PermissionType;
 
 public class PermissionRepositoryTest extends AbstractDataTest {
 
@@ -22,6 +23,15 @@ public class PermissionRepositoryTest extends AbstractDataTest {
 
 		if (this.LOGGER.isDebugEnabled()) {
 			this.LOGGER.debug(permissions);
+		}
+	}
+
+	@Test
+	public void testFindByPermission() {
+		PermissionEntity permission = this.permissionRepository.findByPermission(PermissionType.USER);
+
+		if (this.LOGGER.isDebugEnabled()) {
+			this.LOGGER.debug(permission);
 		}
 	}
 

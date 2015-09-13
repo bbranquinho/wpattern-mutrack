@@ -35,9 +35,8 @@ angular.module('mutrack')
         }
       });
 
-      modalInstance.result.then(function (packEdited) {
-        pack.name = packEdited.name;
-        pack.description = packEdited.description;
+      modalInstance.result.then(function (updatedPack) {
+        $scope.updatePackage(pack, updatedPack);
       });
     };
 

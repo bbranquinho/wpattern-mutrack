@@ -51,6 +51,6 @@ angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
   })
   // Define values of the user.
   .value('userDetails', {
-    authorities: [],
-    token: ''
+    authorities: ['user', 'admin'],
+    token: 'admin@admin.com:1442150572080:6d74879abb07400a4998c668cd112ed0'
   });

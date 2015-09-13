@@ -25,4 +25,9 @@ public class UserData extends GenericData<UserEntity, Long> implements IUserData
 		return this.userRepository.findByEmail(email);
 	}
 
+	@Override
+	public boolean findByEmailExists(String email) {
+		return this.userRepository.findByEmailExists(email);
+	}
+
 }

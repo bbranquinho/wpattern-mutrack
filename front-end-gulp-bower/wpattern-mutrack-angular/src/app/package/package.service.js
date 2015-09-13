@@ -5,18 +5,39 @@ angular.module('mutrack')
     var url = REST_URL.PRIVATE_PATH + '/package';
     var packageFactory = {};
 
-    // A better/right way to pass 'packages' is use a promisse.
-    packageFactory.retrievePackages = function(scope) {
+    packageFactory.retrievePackages = function(packages) {
       $http.get(url + '/user')
         .success(function(data) {
-          scope.packages = data;
+          packages.push.apply(packages, data);
         })
         .error(function() {
         });
     };
 
-    // A better/right way to pass 'packages' is use a promisse.
-    packageFactory.save = function(scope, pack) {
+    packageFactory.update = function(pack, updatedPack) {
+      delete updatedPack.enabledCode;
+      updatedPack.id = pack.id;
+
+      var requestParams = {
+        method: 'PUT',
+        url: url,
+        headers: { 'Content-Type': 'application/json' },
+        data: updatedPack
+      };
+
+      $http(requestParams)
+        .success(function() {
+          pack.name = updatedPack.name;
+          pack.description = updatedPack.description;
+
+          ngNotify.set('Pacote \'' + updatedPack.code + '\' atualizado com sucesso!', 'success');
+        })
+        .error(function(erro) {
+          ngNotify.set('Erro ao atualizar o pacote: ' + erro, 'error');
+        });
+    };
+
+    packageFactory.save = function(packages, pack) {
       delete pack.enabledCode;
 
       var requestParams = {
@@ -27,19 +48,18 @@ angular.module('mutrack')
       };
 
       $http(requestParams)
-        .success(function(data) {
-          data.code = data.code.toUpperCase();
-          scope.packages.push(pack);
-          ngNotify.set('Pacote \'' + pack.code + '\' salvo, buscando o último status!', 'success');
-          TrackSrv.trackLastEvent(pack);
+        .success(function(newPack) {
+          newPack.code = newPack.code.toUpperCase();
+          packages.push(newPack);
+          ngNotify.set('Pacote \'' + newPack.code + '\' salvo, buscando o último status!', 'success');
+          TrackSrv.trackLastEvent(newPack);
         })
         .error(function(erro) {
           ngNotify.set('Erro ao adicionar o novo pacote: ' + erro, 'error');
         });
     };
 
-    // A better/right way to pass 'packages' is use a promisse.
-    packageFactory.delete = function(scope, pack) {
+    packageFactory.delete = function(packages, pack) {
       var requestParams = {
         method: 'DELETE',
         url: url,
@@ -49,8 +69,7 @@ angular.module('mutrack')
 
       $http(requestParams)
         .success(function() {
-          var indexOf = scope.packages.indexOf(pack);
-          scope.packages.splice(indexOf, 1);
+          packages.splice(packages.indexOf(pack), 1);
 
           ngNotify.set('Pacote ' + pack.code + ' deletado com sucesso!', 'success');
         })

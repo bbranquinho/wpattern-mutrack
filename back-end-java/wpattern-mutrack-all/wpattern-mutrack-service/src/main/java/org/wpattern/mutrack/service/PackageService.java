@@ -1,5 +1,6 @@
 package org.wpattern.mutrack.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 		LoginDetailBean user = this.activeUserAccessor.getActiveUser();
 
 		packageObj.setUser(this.userData.findByEmail(user.getUsername()));
+		packageObj.setRegisterDate(new Date());
 
 		return super.insert(packageObj);
 	}
@@ -63,12 +65,15 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 	@Override
 	public List<PackageEntity> findPackageByUser(Integer page, Integer size, String fields, String fieldsDesc) {
 		LoginDetailBean user = this.activeUserAccessor.getActiveUser();
+		List<PackageEntity> packages;
 
 		if ((fieldsDesc != null) && !fieldsDesc.trim().isEmpty()) {
-			return this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.DESC, this.splitFields(fieldsDesc));
+			packages = this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.DESC, this.splitFields(fieldsDesc));
 		} else {
-			return this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.ASC, this.splitFields(fields));
+			packages = this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.ASC, this.splitFields(fields));
 		}
+
+		return packages;
 	}
 
 }

@@ -43,4 +43,13 @@ public class UserRepositoryTest extends AbstractDataTest {
 		}
 	}
 
+	@Test
+	public void testEmailContaining() {
+		Boolean user = this.userRepository.findByEmailExists("admin@admin.com");
+
+		if (this.LOGGER.isDebugEnabled()) {
+			this.LOGGER.debug(user);
+		}
+	}
+
 }

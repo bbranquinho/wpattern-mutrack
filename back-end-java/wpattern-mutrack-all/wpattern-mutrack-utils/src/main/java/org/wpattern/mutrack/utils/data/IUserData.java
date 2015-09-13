@@ -10,4 +10,6 @@ public interface IUserData extends IGenericData<UserEntity, Long> {
 
 	public UserEntity findByEmail(String email);
 
+	public boolean findByEmailExists(String email);
+
 }
