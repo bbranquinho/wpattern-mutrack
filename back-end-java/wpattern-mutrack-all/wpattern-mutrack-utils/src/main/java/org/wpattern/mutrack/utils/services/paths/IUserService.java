@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -12,6 +13,7 @@ import org.wpattern.mutrack.utils.entities.UserEntity;
 import org.wpattern.mutrack.utils.services.IGenericService;
 import org.wpattern.mutrack.utils.services.ServiceConstants;
 import org.wpattern.mutrack.utils.services.ServiceNames;
+import org.wpattern.mutrack.utils.services.beans.PasswordBean;
 
 @Path(ServiceNames.USER_PATH)
 @Consumes(ServiceConstants.MEDIA_TYPE)
@@ -25,5 +27,9 @@ public interface IUserService extends IGenericService<UserEntity, Long> {
 	@GET
 	@Path("/email/{email}")
 	public UserEntity findByEmail(@PathParam("email") String email);
+
+	@PUT
+	@Path("/change/password")
+	public void changePassword(PasswordBean password);
 
 }

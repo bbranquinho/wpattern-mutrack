@@ -18,7 +18,7 @@ angular.module('mutrack')
 
     $scope.updatePackage = function(pack, updatedPack) {
       PackageSrv.update(pack, updatedPack);
-    }
+    };
 
     // Inheritance the track controller.
     $controller('TrackCtrl', {$scope: $scope});

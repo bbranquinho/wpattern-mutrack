@@ -1,17 +1,34 @@
 'use strict';
 
 angular.module('mutrack')
-  .controller('UserCtrl', function ($scope, UserSrv, ngNotify) {
+  .controller('UserCtrl', function ($scope, UserSrv) {
     $scope.user = {};
+    $scope.user.permission = { admin:false, user:false };
+
     $scope.users = {};
     $scope.showAddEditUser = false;
 
     $scope.save = function(user) {
-      if (user.password === user.confirmPassword) {
-        //UserSrv.addUser($scope.users, user);
-        //UserSrv.updateUser(user);
+      user.permissions = [];
+
+      if (user.permission === undefined) {
+        user.permission = {};
+      }
+      if (user.permission.admin) {
+        user.permissions.push({ permission:'ADMIN' });
+      }
+      if (user.permission.user) {
+        user.permissions.push({ permission:'USER' });
+      }
+
+      if (user.id === undefined) {
+        UserSrv.addUser($scope.users, user, function() {
+          $scope.hide();
+        });
       } else {
-        ngNotify.set('Senha e confirmar senha não podem ser diferentes!', 'error');
+        UserSrv.updateUser($scope.users, user, function() {
+          $scope.hide();
+        });
       }
     };
 

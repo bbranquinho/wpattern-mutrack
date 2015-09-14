@@ -1,5 +1,21 @@
 'use strict';
 
+function setPermissions(users) {
+  users.forEach(function(user, userIndex) {
+    users[userIndex].permission = { admin:false, user:false };
+
+    user.permissions.forEach(function(userPermission) {
+      if (userPermission.permission === 'ADMIN') {
+        users[userIndex].permission.admin = true;
+      }
+
+      if (userPermission.permission === 'USER') {
+        users[userIndex].permission.user = true;
+      }
+    });
+  });
+}
+
 angular.module('mutrack')
   .service('UserSrv', function($http, ngNotify, REST_URL) {
     var url = REST_URL.PRIVATE_PATH + '/user';
@@ -8,28 +24,15 @@ angular.module('mutrack')
     userFactory.retrieveUsers = function(scope) {
       $http.get(url)
         .success(function(users) {
-          users.forEach(function(user, userIndex) {
-            users[userIndex].permission = { admin:false, user:false };
-
-            user.permissions.forEach(function(userPermission) {
-              if (userPermission.permission === 'ADMIN') {
-                users[userIndex].permission.admin = true;
-              }
-
-              if (userPermission.permission === 'USER') {
-                users[userIndex].permission.user = true;
-              }
-            });
-          });
-
+          setPermissions(users);
           scope.users = users;
         })
         .error(function() {
         });
     };
 
-    userFactory.addUser = function(users, user) {
-      delete user.confirmPassword;
+    userFactory.addUser = function(users, user, callback) {
+      delete user.permission;
 
       var requestParams = {
         method: 'POST',
@@ -41,6 +44,8 @@ angular.module('mutrack')
       $http(requestParams)
         .success(function(newUser) {
           users.push(newUser);
+          setPermissions(users);
+          callback();
 
           ngNotify.set('Usuário ' + user.name + ' criado com sucesso!', 'success');
         })
@@ -49,8 +54,8 @@ angular.module('mutrack')
         });
     };
 
-    userFactory.updateUser = function(user) {
-      delete user.confirmPassword;
+    userFactory.updateUser = function(users, user, callback) {
+      delete user.permission;
 
       var requestParams = {
         method: 'PUT',
@@ -61,6 +66,15 @@ angular.module('mutrack')
 
       $http(requestParams)
         .success(function() {
+          for (var i = 0; i < users.length; i++) {
+            if (users[i].id === user.id) {
+              users[i] = user;
+            }
+          }
+
+          setPermissions(users);
+          callback();
+
           ngNotify.set('Usuário ' + user.name + ' modificado com sucesso!', 'success');
         })
         .error(function() {

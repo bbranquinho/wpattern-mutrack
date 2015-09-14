@@ -20,14 +20,9 @@
     </div>
 
     <div class="form-group">
-      <label>Confirmar Senha</label>
-      <input type="password" class="form-control" placeholder="Confirmar Senha" ng-model="user.confirmPassword" required>
-    </div>
-
-    <div class="form-group">
       <label>Permissões</label> <br>
-      <input type="checkbox" ng-checked="user.permission.admin"> Administrador <br>
-      <input type="checkbox" ng-checked="user.permission.user"> Usuário <br>
+      <input type="checkbox" ng-model="user.permission.admin" ng-checked="user.permission.admin"> Administrador <br>
+      <input type="checkbox" ng-model="user.permission.user" ng-checked="user.permission.user"> Usuário <br>
     </div>
 
     <button type="submit" class="btn btn-default btn-lg btn-primary">Salvar</button>

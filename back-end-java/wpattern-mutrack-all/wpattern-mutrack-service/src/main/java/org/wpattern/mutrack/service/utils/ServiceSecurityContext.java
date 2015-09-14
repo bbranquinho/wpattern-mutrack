@@ -79,7 +79,9 @@ public class ServiceSecurityContext {
 			.antMatchers(ServiceNames.PUBLIC_ROOT_PATH + ALL).permitAll()
 			// Global Authority to OPTIONS (permit all).
 			.antMatchers(HttpMethod.OPTIONS, ServiceNames.PRIVATE_ROOT_PATH + ALL).permitAll()
-			// Package Authorities (Custom).
+			// User Authorities (Custom - user).
+			.antMatchers(HttpMethod.PUT, ServiceNames.USER_PATH + "/change/password").hasAnyAuthority(PermissionType.USER.role())
+			// Package Authorities (Custom - user).
 			.antMatchers(HttpMethod.GET, ServiceNames.PACKAGE_PATH + "/user").hasAnyAuthority(PermissionType.USER.role())
 			.antMatchers(HttpMethod.POST, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
 			.antMatchers(HttpMethod.PUT, ServiceNames.PACKAGE_PATH).hasAnyAuthority(PermissionType.USER.role())
