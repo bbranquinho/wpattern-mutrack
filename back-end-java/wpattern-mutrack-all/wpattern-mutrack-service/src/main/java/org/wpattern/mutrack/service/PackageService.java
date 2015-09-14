@@ -58,7 +58,7 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 		if (email.compareTo(packageObj.getUser().getEmail()) == 0) {
 			super.delete(packageObj);
 		} else {
-			// TODO: Throw a exception.
+			// TODO: augusto.branquinho Throw a exception.
 		}
 	}
 

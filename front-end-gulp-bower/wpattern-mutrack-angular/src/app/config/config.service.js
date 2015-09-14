@@ -16,7 +16,7 @@ angular.module('mutrack')
       $http(requestParams)
         .success(function() {
           // Redirect to package view.
-          $location.path('/logout');
+          $location.path('/login');
 
           ngNotify.set('Senha alterada com sucesso.', 'success');
         })

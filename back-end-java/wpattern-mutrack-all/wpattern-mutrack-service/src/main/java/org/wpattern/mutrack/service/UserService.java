@@ -2,7 +2,6 @@ package org.wpattern.mutrack.service;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -13,13 +12,12 @@ import org.wpattern.mutrack.utils.data.IUserData;
 import org.wpattern.mutrack.utils.entities.PermissionEntity;
 import org.wpattern.mutrack.utils.entities.UserEntity;
 import org.wpattern.mutrack.utils.services.beans.PasswordBean;
-import org.wpattern.mutrack.utils.services.exceptions.InvalidFieldException;
+import org.wpattern.mutrack.utils.services.constants.MessageConstants;
+import org.wpattern.mutrack.utils.services.exceptions.ValidationException;
 import org.wpattern.mutrack.utils.services.paths.IUserService;
 
 @Component
 public class UserService extends GenericService<UserEntity, Long> implements IUserService {
-
-	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
 	@Autowired
 	private IUserData userData;
@@ -36,9 +34,7 @@ public class UserService extends GenericService<UserEntity, Long> implements IUs
 	@Override
 	public UserEntity insert(UserEntity user) {
 		if (this.userData.findByEmailExists(user.getEmail())) {
-			// TODO: augusto.branquinho Throw an exception.
-			this.LOGGER.error("Email aleady registered!");
-			return null;
+			throw new ValidationException(MessageConstants.VALIDATION, MessageConstants.MESSAGE_EMAIL_REGISTERED);
 		}
 
 		this.setPermissions(user);
@@ -74,7 +70,7 @@ public class UserService extends GenericService<UserEntity, Long> implements IUs
 			user.setPassword(this.passwordEncoder.encode(password.getNewPassword()));
 			this.userData.update(user);
 		} else {
-			throw new InvalidFieldException("Invalid value of the current password.");
+			throw new ValidationException(MessageConstants.VALIDATION, MessageConstants.MESSAGE_PASSWORD_VALIDATION);
 		}
 	}
 
