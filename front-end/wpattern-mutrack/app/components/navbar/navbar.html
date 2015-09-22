@@ -1,0 +1,19 @@
+<nav class="navbar navbar-default navbar-inverse" ng-controller="NavbarCtrl">
+  <div class="container-fluid">
+    <div>
+      <a class="navbar-brand" href="#/home">MuTrack</a>
+    </div>
+
+    <div>
+      <ul class="nav navbar-nav nav-pills" >
+        <!-- Can be used any command: ng-if or ng-show. -->
+        <!-- However, each command have some differences. -->
+        <li ng-if="hasAnyPermission(['admin', 'user'])"><a href="#/package">Pacotes</a></li>
+        <li ng-show="hasAnyPermission(['admin'])"><a href="#/user">Usuários</a></li>
+        <li ng-show="hasAnyPermission(['admin', 'user'])"><a href="#/config">Configurações</a></li>
+      </ul>
+
+      <login />
+    </div>
+  </div>
+</nav>

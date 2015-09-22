@@ -1,0 +1,53 @@
+<html ng-app="mutrack" class="ng-scope">
+   <head>
+      <meta charset="utf-8">
+      <title>MuTrack</title>
+
+      <link rel="stylesheet" href="app/vendor.css">
+      <link rel="stylesheet" href="modules/ng-notify/ng-notify.css">
+      <link rel="stylesheet" href="modules/fontawesome/css/font-awesome.css">
+      <link rel="stylesheet" href="modules/angular-ui-switch/angular-ui-switch.css">
+      <link rel="stylesheet" href="app/index.css">
+   </head>
+
+   <body>
+      <div ng-include="'app/components/navbar/navbar.html'"></div>
+
+      <div ui-view></div>
+
+      <script src="modules/jquery/jquery.js"></script>
+      <script src="modules/angular/angular.js"></script>
+      <script src="modules/angular-cookies/angular-cookies.js"></script>
+      <script src="modules/angular-ui-router/angular-ui-router.js"></script>
+      <script src="modules/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+      <script src="modules/angular-resource/angular-resource.js"></script>
+      <script src="modules/angular-local-storage/angular-local-storage.js"></script>
+      <script src="modules/ng-notify/ng-notify.js"></script>
+      <script src="modules/angular-ui-switch/angular-ui-switch.js"></script>
+
+      <script src="app/index.js"></script>
+      <script src="app/components/navbar/login/login.template.controller.js"></script>
+      <script src="app/track/modal/track.modal.service.js"></script>
+      <script src="app/track/modal/track.modal.controller.js"></script>
+      <script src="app/track/modal/full.track.modal.js"></script>
+      <script src="app/components/utils/utils.js"></script>
+      <script src="app/components/navbar/navbar.controller.js"></script>
+      <script src="app/user/user.service.js"></script>
+      <script src="app/user/user.controller.js"></script>
+      <script src="app/track/track.service.js"></script>
+      <script src="app/track/track.controller.js"></script>
+      <script src="app/package/package.service.js"></script>
+      <script src="app/package/package.controller.js"></script>
+      <script src="app/main/main.controller.js"></script>
+      <script src="app/logout/logout.controller.js"></script>
+      <script src="app/login/login.service.js"></script>
+      <script src="app/login/login.controller.js"></script>
+      <script src="app/config/config.service.js"></script>
+      <script src="app/config/config.controller.js"></script>
+
+      <div class="ngn ng-scope" ng-class="ngNotify.notifyClass" ng-style="ngNotify.notifyStyle" style="display: none; opacity: 0;">
+         <span class="ngn-dismiss" ng-click="dismiss()">×</span>
+         <span ng-if="!ngNotify.notifyHtml" ng-bind="ngNotify.notifyMessage" class="ng-binding ng-scope"></span>
+      </div>
+   </body>
+</html>
