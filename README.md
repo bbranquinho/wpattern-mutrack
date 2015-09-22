@@ -6,7 +6,7 @@ Project to track packages (correios, fedex, ...). The project use REST (back-end
 
 Partial deployment architecture used by the project.
 
-![](https://github.com/bbranquinho/wpattern-mutrack/blob/master/files/deployment.jpg)
+![](https://github.com/bbranquinho/wpattern-mutrack/blob/master/files/deployment.png)
 
 <h5>REST Service</h5>
 
@@ -22,7 +22,7 @@ Partial deployment architecture used by the project.
 
 Distribution and dependency of packages used for each project.
 
-![](https://github.com/bbranquinho/wpattern-mutrack/blob/master/files/rest-service-architecture.jpg)
+![](https://github.com/bbranquinho/wpattern-mutrack/blob/master/files/rest-service-architecture.png)
 
 <h1>Requirements</h1>
 
