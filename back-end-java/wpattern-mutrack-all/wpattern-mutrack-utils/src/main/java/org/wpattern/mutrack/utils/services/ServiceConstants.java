@@ -6,4 +6,6 @@ public final class ServiceConstants {
 
 	public static final String MEDIA_TYPE = MediaType.APPLICATION_JSON;
 
+	private ServiceConstants() {}
+	
 }

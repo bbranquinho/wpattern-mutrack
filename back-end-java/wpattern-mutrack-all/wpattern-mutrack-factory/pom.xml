@@ -14,18 +14,21 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>wpattern-mutrack-business</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- WPATTERN MUTRACK DATA -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>wpattern-mutrack-data</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- WPATTERN MUTRACK SERVICE -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>wpattern-mutrack-service</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- WPATTERN MUTRACK UTILS -->

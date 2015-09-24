@@ -5,5 +5,6 @@ TODO (Activities):
   * AngularJS (front-end)
       1. Create a project using Yeoman, Gulp, ...
 
-EXAMPLE OF PROJECTS
+LINKS
   1. Spring Security with REST: https://github.com/philipsorst/angular-rest-springsecurity
+  2. https://github.com/AveVlad/gulp-connect/
