@@ -1,0 +1,6 @@
+<ul class="nav navbar-nav navbar-right" ng-controller="LoginTemplateCtrl">
+  <li>
+    <a href="" ng-if="!isAuthenticated()" ng-click="login()" class="dropdown-toggle" data-toggle="dropdown"><b>Entrar</b> <span class="caret"></span></a>
+    <a href="" ng-if="isAuthenticated()" ng-click="logout()" class="dropdown-toggle" data-toggle="dropdown"><b>Sair</b> <span class="caret"></span></a>
+  </li>
+</ul>

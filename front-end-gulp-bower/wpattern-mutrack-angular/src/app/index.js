@@ -14,6 +14,11 @@ angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
   .config(['localStorageServiceProvider', function(localStorageServiceProvider){
     localStorageServiceProvider.setPrefix('ls');
   }])
+  // Define values of the user.
+  .value('userDetails', {
+    authorities: [],
+    token: ''
+  })
   // Define routes.
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -32,10 +37,6 @@ angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
         templateUrl: 'app/login/login.html',
         controller: 'LoginCtrl'
       })
-      .state('logout', {
-        url: '/logout',
-        controller: 'LogoutCtrl'
-      })
       .state('package', {
         url: '/package',
         templateUrl: 'app/package/package.html',
@@ -48,9 +49,4 @@ angular.module('mutrack', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
       });
 
     $urlRouterProvider.otherwise('/');
-  })
-  // Define values of the user.
-  .value('userDetails', {
-    authorities: [],
-    token: ''
   });

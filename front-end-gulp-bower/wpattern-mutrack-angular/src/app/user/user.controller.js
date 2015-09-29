@@ -15,7 +15,7 @@ angular.module('mutrack')
         user.permission = {};
       }
       if (user.permission.admin) {
-        user.permissions.push({ permission:'ADMIN' });
+        user.permissions.push({ permdission:'ADMIN' });
       }
       if (user.permission.user) {
         user.permissions.push({ permission:'USER' });

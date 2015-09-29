@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 import org.wpattern.mutrack.utils.services.ServiceConstants;
 import org.wpattern.mutrack.utils.services.ServiceNames;
 import org.wpattern.mutrack.utils.services.beans.AuthBean;
-import org.wpattern.mutrack.utils.services.beans.TokenBean;
+import org.wpattern.mutrack.utils.services.beans.interfaces.IAuthBean;
 
 @Path(ServiceNames.AUTH_PATH)
 @Produces(ServiceConstants.MEDIA_TYPE)
@@ -16,6 +16,6 @@ import org.wpattern.mutrack.utils.services.beans.TokenBean;
 public interface IAuthService {
 
 	@POST
-	public TokenBean authenticate(AuthBean auth);
+	public IAuthBean authenticate(AuthBean auth);
 
 }

@@ -20,7 +20,7 @@ angular.module('mutrack')
   .directive('login', function() {
   return {
     restrict: 'E',
-    templateUrl: '/app/components/navbar/login/login.template.html'
+    templateUrl: '/app/components/navbar/templates/login.template.html'
   };
 });
 

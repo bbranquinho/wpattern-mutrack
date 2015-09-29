@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mutrack')
-  .service('configSrv', function($http, $location, ngNotify, REST_URL) {
+  .service('configSrv', function($http, $location, ngNotify, LoginSrv, REST_URL) {
     var url = REST_URL.PRIVATE_PATH + '/user/change/password';
     var configFactory = {};
 
@@ -15,8 +15,8 @@ angular.module('mutrack')
 
       $http(requestParams)
         .success(function() {
-          // Redirect to package view.
-          $location.path('/login');
+          // When the password is changed the user needs login again.
+          LoginSrv.logout();
 
           ngNotify.set('Senha alterada com sucesso.', 'success');
         })
