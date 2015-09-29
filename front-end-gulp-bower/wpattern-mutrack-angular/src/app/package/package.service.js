@@ -6,7 +6,7 @@ angular.module('mutrack')
     var packageFactory = {};
 
     packageFactory.retrievePackages = function(packages) {
-      $http.get(url + '/user')
+      $http.get(url)
         .success(function(data) {
           packages.push.apply(packages, data);
         })

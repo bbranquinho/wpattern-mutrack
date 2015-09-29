@@ -5,7 +5,8 @@ import java.io.Serializable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.wpattern.mutrack.utils.services.exceptions.ServiceParseException;
+import org.wpattern.mutrack.utils.services.constants.MessageConstants;
+import org.wpattern.mutrack.utils.services.exceptions.BadRequestException;
 
 public abstract class BaseKey implements Serializable {
 
@@ -13,13 +14,13 @@ public abstract class BaseKey implements Serializable {
 
 	protected String[] parseKey(String id, int numId) {
 		if (id == null) {
-			throw new ServiceParseException("ID can not be 'null'.");
+			throw new BadRequestException(MessageConstants.MESSAGE_ERROR_PARSE_KEY);
 		}
 
 		String[] split = id.split("\\.|,");
 
 		if (split.length != numId) {
-			throw new ServiceParseException(String.format("Invalid ID [%s], the number of IDs must be equal [%s].", id, numId));
+			throw new BadRequestException(MessageConstants.MESSAGE_INVALID_NUM_KEY, id, numId);
 		}
 
 		return split;

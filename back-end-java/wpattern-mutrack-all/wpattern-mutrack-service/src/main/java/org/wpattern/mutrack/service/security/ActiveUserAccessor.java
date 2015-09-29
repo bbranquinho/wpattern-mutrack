@@ -3,6 +3,8 @@ package org.wpattern.mutrack.service.security;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.wpattern.mutrack.utils.services.beans.LoginDetailBean;
+import org.wpattern.mutrack.utils.services.constants.MessageConstants;
+import org.wpattern.mutrack.utils.services.exceptions.ServerException;
 
 @Component
 public class ActiveUserAccessor implements IActiveUserAccessor {
@@ -16,8 +18,7 @@ public class ActiveUserAccessor implements IActiveUserAccessor {
 		}
 
 		if (!(principal instanceof LoginDetailBean)) {
-			// TODO: Throw an exception.
-			return null;
+			throw new ServerException(MessageConstants.MESSAGE_UNKNOWN_PRINCIPAL_TYPE);
 		}
 
 		return (LoginDetailBean)principal;

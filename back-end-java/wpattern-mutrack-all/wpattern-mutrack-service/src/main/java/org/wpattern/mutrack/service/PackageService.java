@@ -12,6 +12,8 @@ import org.wpattern.mutrack.utils.data.IPackageData;
 import org.wpattern.mutrack.utils.data.IUserData;
 import org.wpattern.mutrack.utils.entities.PackageEntity;
 import org.wpattern.mutrack.utils.services.beans.LoginDetailBean;
+import org.wpattern.mutrack.utils.services.constants.MessageConstants;
+import org.wpattern.mutrack.utils.services.exceptions.ServiceException;
 import org.wpattern.mutrack.utils.services.paths.IPackageService;
 
 @Component
@@ -25,6 +27,20 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 
 	@Autowired
 	private IActiveUserAccessor activeUserAccessor;
+
+	@Override
+	public List<PackageEntity> findAll(Integer page, Integer size, String fields, String fieldsDesc) {
+		LoginDetailBean user = this.activeUserAccessor.getActiveUser();
+		List<PackageEntity> packages;
+
+		if ((fieldsDesc != null) && !fieldsDesc.trim().isEmpty()) {
+			packages = this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.DESC, this.splitFields(fieldsDesc));
+		} else {
+			packages = this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.ASC, this.splitFields(fields));
+		}
+
+		return packages;
+	}
 
 	@Override
 	public PackageEntity insert(PackageEntity packageObj) {
@@ -45,7 +61,7 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 			packageObj.setUser(userPackage.getUser());
 			super.update(packageObj);
 		} else {
-			// TODO: Throw a exception.
+			throw new ServiceException(MessageConstants.MESSAGE_USER_PACKAGE);
 		}
 	}
 
@@ -58,22 +74,8 @@ public class PackageService extends GenericService<PackageEntity, Long> implemen
 		if (email.compareTo(packageObj.getUser().getEmail()) == 0) {
 			super.delete(packageObj);
 		} else {
-			// TODO: augusto.branquinho Throw a exception.
+			throw new ServiceException(MessageConstants.MESSAGE_USER_PACKAGE);
 		}
-	}
-
-	@Override
-	public List<PackageEntity> findPackageByUser(Integer page, Integer size, String fields, String fieldsDesc) {
-		LoginDetailBean user = this.activeUserAccessor.getActiveUser();
-		List<PackageEntity> packages;
-
-		if ((fieldsDesc != null) && !fieldsDesc.trim().isEmpty()) {
-			packages = this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.DESC, this.splitFields(fieldsDesc));
-		} else {
-			packages = this.packageData.findPackageByEmail(user.getUsername(), page, size, Direction.ASC, this.splitFields(fields));
-		}
-
-		return packages;
 	}
 
 }
